@@ -30,6 +30,16 @@ namespace QuanLychiTieu
             lbExpense.BackColor = Color.FromArgb(255, 255, 128);
             lbIncome.BackColor = Color.FromArgb(255, 255, 128);
             lbStatistics.BackColor = Color.FromArgb(255, 255, 128);
+            foreach (Control control in pnShowMain.Controls)
+            {
+                control.Dispose();
+            }
+            pnShowMain.Controls.Clear();
+            Profile profile = new Profile(_userId);
+            profile.TopLevel = false;
+            profile.AutoScroll = true;
+            pnShowMain.Controls.Add(profile);
+            profile.Show();
         }
 
         private void lbExpense_Click(object sender, EventArgs e)
@@ -78,6 +88,7 @@ namespace QuanLychiTieu
             {
                 picAvatar.Image = Properties.Resources.man;
             }
+            lbName.Text = user.FULLNAME;
         }
     }
 }
