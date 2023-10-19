@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLychiTieu.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,20 +13,15 @@ namespace QuanLychiTieu
 {
     public partial class Home : Form
     {
+        private QLChiTieuModel _qLChiTieuModel;
         private Login _loginForm;
-        private string _username;
-        public Home(Login loginForm, string username)
+        private int _userId;
+        public Home(Login loginForm, int userId)
         {
             InitializeComponent();
             _loginForm = loginForm;
-            _username = username;
-            if(String.Compare(_username, "Female", true) == 0) {
-                picAvatar.Image = Properties.Resources.human;
-            }
-            else
-            {
-                picAvatar.Image = Properties.Resources.man;
-            }
+            _userId = userId;
+            _qLChiTieuModel = new QLChiTieuModel();
         }
 
         private void lbProfile_Click(object sender, EventArgs e)
@@ -69,6 +65,19 @@ namespace QuanLychiTieu
         private void Home_FormClosing(object sender, FormClosingEventArgs e)
         {
             _loginForm.Show();
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            USER user = _qLChiTieuModel.USERS.Find(_userId);
+            if (String.Compare(user.GENDER, "Female", true) == 0)
+            {
+                picAvatar.Image = Properties.Resources.human;
+            }
+            else
+            {
+                picAvatar.Image = Properties.Resources.man;
+            }
         }
     }
 }

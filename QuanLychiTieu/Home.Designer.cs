@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.picLogout = new System.Windows.Forms.PictureBox();
             this.lbStatistics = new System.Windows.Forms.Label();
             this.lbIncome = new System.Windows.Forms.Label();
             this.lbExpense = new System.Windows.Forms.Label();
             this.lbProfile = new System.Windows.Forms.Label();
-            this.pnShowMain = new System.Windows.Forms.Panel();
-            this.picLogout = new System.Windows.Forms.PictureBox();
             this.picAvatar = new System.Windows.Forms.PictureBox();
+            this.pnShowMain = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
@@ -54,6 +54,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(269, 603);
             this.panel1.TabIndex = 0;
+            // 
+            // picLogout
+            // 
+            this.picLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picLogout.Image = global::QuanLychiTieu.Properties.Resources.logout;
+            this.picLogout.Location = new System.Drawing.Point(82, 525);
+            this.picLogout.Name = "picLogout";
+            this.picLogout.Size = new System.Drawing.Size(90, 46);
+            this.picLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogout.TabIndex = 4;
+            this.picLogout.TabStop = false;
+            this.picLogout.Click += new System.EventHandler(this.picLogout_Click);
             // 
             // lbStatistics
             // 
@@ -107,25 +119,6 @@
             this.lbProfile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbProfile.Click += new System.EventHandler(this.lbProfile_Click);
             // 
-            // pnShowMain
-            // 
-            this.pnShowMain.Location = new System.Drawing.Point(264, -4);
-            this.pnShowMain.Name = "pnShowMain";
-            this.pnShowMain.Size = new System.Drawing.Size(694, 603);
-            this.pnShowMain.TabIndex = 1;
-            // 
-            // picLogout
-            // 
-            this.picLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picLogout.Image = global::QuanLychiTieu.Properties.Resources.logout;
-            this.picLogout.Location = new System.Drawing.Point(82, 525);
-            this.picLogout.Name = "picLogout";
-            this.picLogout.Size = new System.Drawing.Size(90, 46);
-            this.picLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogout.TabIndex = 4;
-            this.picLogout.TabStop = false;
-            this.picLogout.Click += new System.EventHandler(this.picLogout_Click);
-            // 
             // picAvatar
             // 
             this.picAvatar.Image = global::QuanLychiTieu.Properties.Resources.man;
@@ -135,6 +128,13 @@
             this.picAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picAvatar.TabIndex = 0;
             this.picAvatar.TabStop = false;
+            // 
+            // pnShowMain
+            // 
+            this.pnShowMain.Location = new System.Drawing.Point(264, -4);
+            this.pnShowMain.Name = "pnShowMain";
+            this.pnShowMain.Size = new System.Drawing.Size(694, 603);
+            this.pnShowMain.TabIndex = 1;
             // 
             // Home
             // 
@@ -147,6 +147,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
+            this.Load += new System.EventHandler(this.Home_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();

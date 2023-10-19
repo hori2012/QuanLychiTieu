@@ -1,10 +1,12 @@
-﻿using System;
+﻿using QuanLychiTieu.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,24 +14,45 @@ namespace QuanLychiTieu
 {
     public partial class Login : Form
     {
+        private QLChiTieuModel _qLChiTieuModel;
         public Login()
         {
             InitializeComponent();
             picEyeShow.Show();
             picEyeHide.Hide();
+            _qLChiTieuModel = new QLChiTieuModel();
         }
 
         private void picLogin_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            //Home formHome = new Home(this, txtUser.Text);
-            //formHome.Show();
-            DialogResult dialog = MessageBox.Show(new MD5Hash().EncryptionMD5Hash(txtUser.Text),"Note", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if(dialog == DialogResult.OK)
+            Regex regex = new Regex(@"^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$");
+            string message = "";
+            if(String.IsNullOrEmpty(txtEmail.Text) || String.IsNullOrEmpty(txtPass.Text))
             {
-                this.Hide();
-                Home formHome = new Home(this, txtUser.Text);
-                formHome.Show();
+                message += "Email or password cannot be blank!\n";
+            }
+            else if (regex.IsMatch(txtEmail.Text) == true)
+            {
+                string pass = new MD5Hash().EncryptionMD5Hash(txtPass.Text);
+                var values = _qLChiTieuModel.USERS.Where(x => x.EMAIL == txtEmail.Text && x.PASSWORD == pass).FirstOrDefault();
+                if (values != null)
+                {
+                    this.Hide();
+                    Home formHome = new Home(this, (int)values.USERID);
+                    formHome.Show();
+                }
+                else
+                {
+                    message += "Email or password was entered incorrectly!\n";
+                }
+            }
+            else
+            {
+                message += "Invalid email!\n";
+            }
+            if (!String.IsNullOrEmpty(message))
+            {
+                DialogResult dialog = MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

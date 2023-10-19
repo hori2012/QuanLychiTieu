@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtUser = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.likRegister = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -74,12 +74,12 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Password:";
             // 
-            // txtUser
+            // txtEmail
             // 
-            this.txtUser.Location = new System.Drawing.Point(150, 125);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(159, 22);
-            this.txtUser.TabIndex = 3;
+            this.txtEmail.Location = new System.Drawing.Point(150, 125);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(159, 22);
+            this.txtEmail.TabIndex = 3;
             // 
             // txtPass
             // 
@@ -159,7 +159,7 @@
             this.Controls.Add(this.picLogin);
             this.Controls.Add(this.likRegister);
             this.Controls.Add(this.txtPass);
-            this.Controls.Add(this.txtUser);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -180,7 +180,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtUser;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.LinkLabel likRegister;
         private System.Windows.Forms.PictureBox picLogin;
