@@ -21,7 +21,6 @@ namespace QuanLychiTieu
             InitializeComponent();
             _loginForm = loginForm;
             _userId = userId;
-            _qLChiTieuModel = new QLChiTieuModel();
         }
 
         private void lbProfile_Click(object sender, EventArgs e)
@@ -84,7 +83,7 @@ namespace QuanLychiTieu
                     control.Dispose();
                 }
                 pnShowMain.Controls.Clear();
-                Expenses expenses = new Expenses();
+                Expenses expenses = new Expenses(_userId);
                 expenses.TopLevel = false;
                 expenses.AutoScroll = true;
                 pnShowMain.Controls.Add(expenses);
@@ -123,6 +122,7 @@ namespace QuanLychiTieu
 
         private void Home_Load(object sender, EventArgs e)
         {
+            _qLChiTieuModel = new QLChiTieuModel();
             USER user = _qLChiTieuModel.USERS.Find(_userId);
             if (String.Compare(user.GENDER, "Female", true) == 0)
             {

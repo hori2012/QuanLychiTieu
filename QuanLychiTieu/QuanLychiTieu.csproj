@@ -94,6 +94,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddExpenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddExpenses.Designer.cs">
+      <DependentUpon>AddExpenses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddExpenses.resx">
+      <DependentUpon>AddExpenses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses.resx">
       <DependentUpon>Expenses.cs</DependentUpon>
     </EmbeddedResource>
