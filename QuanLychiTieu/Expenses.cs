@@ -59,10 +59,10 @@ namespace QuanLychiTieu
             var values = from expenses in _qLChiTieu.EXPENSES
                          join expensesType in _qLChiTieu.EXPENSESTYPEs on expenses.EXTYPEID equals expensesType.EXTYPEID
                          where expenses.USERID == _userId
-                         select new { nameType = expensesType.NAMEEXTYPE, money = expenses.MONEY, date = expenses.EXDATE, note = expenses.NOTE};
+                         select new {id = expenses.EXPENSESID, nameType = expensesType.NAMEEXTYPE, money = expenses.MONEY, date = expenses.EXDATE, note = expenses.NOTE};
             foreach (var item in values)
             {
-                dtGridEx.Rows.Add(item.nameType, item.money, item.date, item.note);
+                dtGridEx.Rows.Add(item.id, item.nameType, item.money, item.date, item.note);
             }
         }
 
@@ -81,6 +81,27 @@ namespace QuanLychiTieu
         private void linkLabel1_MouseLeave(object sender, EventArgs e)
         {
             linkLabel1.LinkColor = Color.Gray;
+        }
+
+        private void dtGridEx_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)  // Make sure the clicked row index is not the header row
+            {
+                var confirmResult = MessageBox.Show("Are you sure you want to delete this row??",
+                                                    "Confirm deletion!!",
+                                                    MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    int id = int.Parse(dtGridEx.Rows[e.RowIndex].Cells["colId"].Value.ToString());
+                    var entity = _qLChiTieu.EXPENSES.Find(id);
+                    if (entity != null)
+                    {
+                        //_qLChiTieu.EXPENSES.Remove(entity);
+                        //_qLChiTieu.SaveChanges();
+                        dtGridEx.Rows.RemoveAt(e.RowIndex);
+                    }
+                }
+            }
         }
     }
 }

@@ -41,6 +41,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colExType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,6 +114,7 @@
             this.dtGridEx.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dtGridEx.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGridEx.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colId,
             this.colExType,
             this.colMoney,
             this.colDate,
@@ -126,6 +128,7 @@
             this.dtGridEx.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtGridEx.Size = new System.Drawing.Size(669, 298);
             this.dtGridEx.TabIndex = 10;
+            this.dtGridEx.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridEx_CellDoubleClick);
             // 
             // lbMoney
             // 
@@ -192,6 +195,13 @@
             this.linkLabel1.MouseEnter += new System.EventHandler(this.linkLabel1_MouseEnter);
             this.linkLabel1.MouseLeave += new System.EventHandler(this.linkLabel1_MouseLeave);
             // 
+            // colId
+            // 
+            this.colId.HeaderText = "ID";
+            this.colId.MinimumWidth = 6;
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            // 
             // colExType
             // 
             this.colExType.HeaderText = "Expenses type";
@@ -222,7 +232,7 @@
             this.colNote.MinimumWidth = 6;
             this.colNote.Name = "colNote";
             this.colNote.ReadOnly = true;
-            this.colNote.Width = 240;
+            this.colNote.Width = 200;
             // 
             // Expenses
             // 
@@ -270,6 +280,7 @@
         private System.Windows.Forms.PictureBox picLoad;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
         private System.Windows.Forms.DataGridViewTextBoxColumn colExType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMoney;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
