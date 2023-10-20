@@ -28,17 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbName = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbStatistics = new System.Windows.Forms.Label();
             this.lbIncome = new System.Windows.Forms.Label();
             this.lbExpense = new System.Windows.Forms.Label();
             this.lbProfile = new System.Windows.Forms.Label();
             this.pnShowMain = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbName = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.picHeart = new System.Windows.Forms.PictureBox();
             this.picLogout = new System.Windows.Forms.PictureBox();
             this.picAvatar = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.pnShowMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picHeart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +66,24 @@
             this.panel1.Size = new System.Drawing.Size(269, 603);
             this.panel1.TabIndex = 0;
             // 
+            // lbName
+            // 
+            this.lbName.AutoSize = true;
+            this.lbName.Location = new System.Drawing.Point(79, 124);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(0, 16);
+            this.lbName.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 16);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Hello:";
+            // 
             // lbStatistics
             // 
             this.lbStatistics.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -71,6 +95,8 @@
             this.lbStatistics.Text = "Statistics";
             this.lbStatistics.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbStatistics.Click += new System.EventHandler(this.lbStatistics_Click);
+            this.lbStatistics.MouseEnter += new System.EventHandler(this.lbStatistics_MouseEnter);
+            this.lbStatistics.MouseLeave += new System.EventHandler(this.lbStatistics_MouseLeave);
             // 
             // lbIncome
             // 
@@ -83,6 +109,8 @@
             this.lbIncome.Text = "Income";
             this.lbIncome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbIncome.Click += new System.EventHandler(this.lbIncome_Click);
+            this.lbIncome.MouseEnter += new System.EventHandler(this.lbIncome_MouseEnter);
+            this.lbIncome.MouseLeave += new System.EventHandler(this.lbIncome_MouseLeave);
             // 
             // lbExpense
             // 
@@ -95,6 +123,8 @@
             this.lbExpense.Text = "Expense";
             this.lbExpense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbExpense.Click += new System.EventHandler(this.lbExpense_Click);
+            this.lbExpense.MouseEnter += new System.EventHandler(this.lbExpense_MouseEnter);
+            this.lbExpense.MouseLeave += new System.EventHandler(this.lbExpense_MouseLeave);
             // 
             // lbProfile
             // 
@@ -107,45 +137,54 @@
             this.lbProfile.Text = "Profile";
             this.lbProfile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbProfile.Click += new System.EventHandler(this.lbProfile_Click);
+            this.lbProfile.MouseEnter += new System.EventHandler(this.lbProfile_MouseEnter);
+            this.lbProfile.MouseLeave += new System.EventHandler(this.lbProfile_MouseLeave);
             // 
             // pnShowMain
             // 
-            this.pnShowMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(241)))));
+            this.pnShowMain.BackColor = System.Drawing.Color.White;
             this.pnShowMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnShowMain.Controls.Add(this.label3);
+            this.pnShowMain.Controls.Add(this.label2);
+            this.pnShowMain.Controls.Add(this.picHeart);
             this.pnShowMain.Location = new System.Drawing.Point(264, -4);
             this.pnShowMain.Name = "pnShowMain";
             this.pnShowMain.Size = new System.Drawing.Size(693, 600);
             this.pnShowMain.TabIndex = 1;
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 124);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 16);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Hello:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(132, 188);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(442, 25);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Welcome to the expense management app !!";
             // 
-            // lbName
+            // picHeart
             // 
-            this.lbName.AutoSize = true;
-            this.lbName.Location = new System.Drawing.Point(79, 124);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(0, 16);
-            this.lbName.TabIndex = 6;
+            this.picHeart.Image = global::QuanLychiTieu.Properties.Resources.heart;
+            this.picHeart.Location = new System.Drawing.Point(271, 262);
+            this.picHeart.Name = "picHeart";
+            this.picHeart.Size = new System.Drawing.Size(161, 80);
+            this.picHeart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picHeart.TabIndex = 0;
+            this.picHeart.TabStop = false;
             // 
             // picLogout
             // 
             this.picLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLogout.Image = global::QuanLychiTieu.Properties.Resources.logout;
-            this.picLogout.Location = new System.Drawing.Point(82, 525);
+            this.picLogout.Location = new System.Drawing.Point(-4, 533);
             this.picLogout.Name = "picLogout";
-            this.picLogout.Size = new System.Drawing.Size(90, 46);
+            this.picLogout.Size = new System.Drawing.Size(276, 61);
             this.picLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLogout.TabIndex = 4;
             this.picLogout.TabStop = false;
             this.picLogout.Click += new System.EventHandler(this.picLogout_Click);
+            this.picLogout.MouseEnter += new System.EventHandler(this.picLogout_MouseEnter);
+            this.picLogout.MouseLeave += new System.EventHandler(this.picLogout_MouseLeave);
             // 
             // picAvatar
             // 
@@ -157,6 +196,16 @@
             this.picAvatar.TabIndex = 0;
             this.picAvatar.TabStop = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe Print", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(258, 378);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(189, 30);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Have a nice day <3!!";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -164,6 +213,7 @@
             this.ClientSize = new System.Drawing.Size(951, 592);
             this.Controls.Add(this.pnShowMain);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
@@ -171,6 +221,9 @@
             this.Load += new System.EventHandler(this.Home_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnShowMain.ResumeLayout(false);
+            this.pnShowMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picHeart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
             this.ResumeLayout(false);
@@ -189,5 +242,8 @@
         private System.Windows.Forms.Label lbStatistics;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox picHeart;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

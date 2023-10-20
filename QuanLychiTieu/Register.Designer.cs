@@ -100,6 +100,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(198, 22);
             this.txtName.TabIndex = 4;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // label5
             // 
@@ -117,6 +118,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(198, 22);
             this.txtEmail.TabIndex = 6;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // txtPass
             // 
@@ -125,6 +127,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(198, 22);
             this.txtPass.TabIndex = 7;
+            this.txtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPass_KeyDown);
             // 
             // txtConfPass
             // 
@@ -133,6 +136,7 @@
             this.txtConfPass.PasswordChar = '*';
             this.txtConfPass.Size = new System.Drawing.Size(198, 22);
             this.txtConfPass.TabIndex = 8;
+            this.txtConfPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConfPass_KeyDown);
             // 
             // pictureBox1
             // 

@@ -76,5 +76,31 @@ namespace QuanLychiTieu
             Register formRegister = new Register(this);
             formRegister.Show();
         }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                picLogin_Click(picLogin, new EventArgs());
+            }
+        }
+
+        private void txtPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                picLogin_Click(picLogin, new EventArgs());
+            }
+        }
+
+        private void picLogin_MouseEnter(object sender, EventArgs e)
+        {
+            picLogin.BackColor = Color.FromArgb(255, 255, 128);
+        }
+
+        private void picLogin_MouseLeave(object sender, EventArgs e)
+        {
+            picLogin.BackColor = Color.FromArgb(255, 255, 128);
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -80,6 +81,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(183, 22);
             this.txtEmail.TabIndex = 3;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // txtPass
             // 
@@ -88,6 +90,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(183, 22);
             this.txtPass.TabIndex = 4;
+            this.txtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPass_KeyDown);
             // 
             // likRegister
             // 
@@ -139,13 +142,15 @@
             // 
             this.picLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLogin.Image = global::QuanLychiTieu.Properties.Resources.sign_in;
-            this.picLogin.Location = new System.Drawing.Point(120, 250);
+            this.picLogin.Location = new System.Drawing.Point(131, 242);
             this.picLogin.Name = "picLogin";
-            this.picLogin.Size = new System.Drawing.Size(139, 66);
+            this.picLogin.Size = new System.Drawing.Size(106, 71);
             this.picLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLogin.TabIndex = 8;
             this.picLogin.TabStop = false;
             this.picLogin.Click += new System.EventHandler(this.picLogin_Click);
+            this.picLogin.MouseEnter += new System.EventHandler(this.picLogin_MouseEnter);
+            this.picLogin.MouseLeave += new System.EventHandler(this.picLogin_MouseLeave);
             // 
             // Login
             // 
@@ -163,6 +168,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

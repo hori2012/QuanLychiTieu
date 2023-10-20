@@ -121,5 +121,37 @@ namespace QuanLychiTieu
         {
             _loginForm.Show();
         }
+
+        private void txtName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                picRegister_Click(picRegister, new EventArgs());
+            }
+        }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                picRegister_Click(picRegister, new EventArgs());
+            }
+        }
+
+        private void txtPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                picRegister_Click(picRegister, new EventArgs());
+            }
+        }
+
+        private void txtConfPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                picRegister_Click(picRegister, new EventArgs());
+            }
+        }
     }
 }

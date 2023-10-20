@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,12 +45,73 @@ namespace QuanLychiTieu
 
         private void likChangePass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            pnUpdatePass.Show();
+            if (pnUpdatePass.Visible)
+            {
+                pnUpdatePass.Hide();
+            }
+            else
+            {
+                pnUpdatePass.Show();
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            USER _user = _qLChiTieu.USERS.Find(_userId);
+            Regex regex = new Regex(@"^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$");
+            string message = "";
+            if (String.IsNullOrEmpty(txtName.Text))
+            {
+                message += "Fullname cannot be blank!\n";
+            }
+            else
+            {
+                _user.FULLNAME = txtName.Text;
+            }
+            if (String.IsNullOrEmpty(txtEmail.Text))
+            {
+                message += "Email cannot be blank!\n";
+            }
+            else if (regex.IsMatch(txtEmail.Text) == true)
+            {
+                _user.EMAIL = txtEmail.Text;
+            }
+            else
+            {
+                message += "Invalid email!\n";
+            }
+            if (rbMale.Checked == true)
+            {
+                _user.GENDER = rbMale.Text;
+            }
+            else
+            {
+                _user.GENDER = rbFemale.Text;
+            }
+            if (pnUpdatePass.Visible)
+            {
+                if (String.IsNullOrEmpty(txtPass.Text) || String.IsNullOrEmpty(txtConfirmPass.Text))
+                {
+                    message += "Password or ConfirmPass cannot be blank!\n";
+                }
+                else if (String.Compare(txtPass.Text, txtConfirmPass.Text, true) != 0)
+                {
+                    message += "New password and ConfirmPass don't matching!\n";
+                }
+                else
+                {
+                    _user.PASSWORD = new MD5Hash().EncryptionMD5Hash(txtPass.Text);
+                }
+            }
+            if (!String.IsNullOrEmpty(message))
+            {
+                DialogResult dialog = MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                _qLChiTieu.SaveChanges();
+                DialogResult dialog = MessageBox.Show("Update success!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void picEyeShow1_Click(object sender, EventArgs e)
@@ -78,6 +140,38 @@ namespace QuanLychiTieu
             txtConfirmPass.PasswordChar = '*';
             picEyeShow2.Show();
             picEyeHide2.Hide();
+        }
+
+        private void txtName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnUpdate.PerformClick();
+            }
+        }
+
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnUpdate.PerformClick();
+            }
+        }
+
+        private void txtPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnUpdate.PerformClick();
+            }
+        }
+
+        private void txtConfirmPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnUpdate.PerformClick();
+            }
         }
     }
 }

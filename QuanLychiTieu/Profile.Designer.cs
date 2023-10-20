@@ -33,27 +33,27 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.rbMale = new System.Windows.Forms.RadioButton();
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.pnUpdatePass = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtConfirmPass = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.likChangePass = new System.Windows.Forms.LinkLabel();
+            this.picEyeHide2 = new System.Windows.Forms.PictureBox();
             this.picEyeShow1 = new System.Windows.Forms.PictureBox();
             this.picEyeHide1 = new System.Windows.Forms.PictureBox();
             this.picEyeShow2 = new System.Windows.Forms.PictureBox();
-            this.picEyeHide2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnUpdatePass.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picEyeHide2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEyeShow1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEyeHide1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEyeShow2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picEyeHide2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -106,22 +106,13 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "New password:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.profile;
-            this.pictureBox1.Location = new System.Drawing.Point(235, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(164, 115);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(326, 216);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(229, 22);
             this.txtName.TabIndex = 6;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // txtEmail
             // 
@@ -129,6 +120,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(229, 22);
             this.txtEmail.TabIndex = 7;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyDown);
             // 
             // txtPass
             // 
@@ -137,6 +129,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(229, 22);
             this.txtPass.TabIndex = 8;
+            this.txtPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPass_KeyDown);
             // 
             // rbMale
             // 
@@ -175,6 +168,15 @@
             this.pnUpdatePass.Size = new System.Drawing.Size(437, 100);
             this.pnUpdatePass.TabIndex = 11;
             // 
+            // txtConfirmPass
+            // 
+            this.txtConfirmPass.Location = new System.Drawing.Point(201, 63);
+            this.txtConfirmPass.Name = "txtConfirmPass";
+            this.txtConfirmPass.PasswordChar = '*';
+            this.txtConfirmPass.Size = new System.Drawing.Size(229, 22);
+            this.txtConfirmPass.TabIndex = 12;
+            this.txtConfirmPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConfirmPass_KeyDown);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -184,14 +186,6 @@
             this.label6.Size = new System.Drawing.Size(111, 18);
             this.label6.TabIndex = 12;
             this.label6.Text = "ConfirmPass:";
-            // 
-            // txtConfirmPass
-            // 
-            this.txtConfirmPass.Location = new System.Drawing.Point(201, 63);
-            this.txtConfirmPass.Name = "txtConfirmPass";
-            this.txtConfirmPass.PasswordChar = '*';
-            this.txtConfirmPass.Size = new System.Drawing.Size(229, 22);
-            this.txtConfirmPass.TabIndex = 12;
             // 
             // btnUpdate
             // 
@@ -215,6 +209,18 @@
             this.likChangePass.TabStop = true;
             this.likChangePass.Text = "Change Password";
             this.likChangePass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.likChangePass_LinkClicked);
+            // 
+            // picEyeHide2
+            // 
+            this.picEyeHide2.BackColor = System.Drawing.Color.White;
+            this.picEyeHide2.Image = global::QuanLychiTieu.Properties.Resources.hide;
+            this.picEyeHide2.Location = new System.Drawing.Point(406, 65);
+            this.picEyeHide2.Name = "picEyeHide2";
+            this.picEyeHide2.Size = new System.Drawing.Size(20, 18);
+            this.picEyeHide2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picEyeHide2.TabIndex = 17;
+            this.picEyeHide2.TabStop = false;
+            this.picEyeHide2.Click += new System.EventHandler(this.picEyeHide2_Click);
             // 
             // picEyeShow1
             // 
@@ -252,23 +258,21 @@
             this.picEyeShow2.TabStop = false;
             this.picEyeShow2.Click += new System.EventHandler(this.picEyeShow2_Click);
             // 
-            // picEyeHide2
+            // pictureBox1
             // 
-            this.picEyeHide2.BackColor = System.Drawing.Color.White;
-            this.picEyeHide2.Image = global::QuanLychiTieu.Properties.Resources.hide;
-            this.picEyeHide2.Location = new System.Drawing.Point(406, 65);
-            this.picEyeHide2.Name = "picEyeHide2";
-            this.picEyeHide2.Size = new System.Drawing.Size(20, 18);
-            this.picEyeHide2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picEyeHide2.TabIndex = 17;
-            this.picEyeHide2.TabStop = false;
-            this.picEyeHide2.Click += new System.EventHandler(this.picEyeHide2_Click);
+            this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.profile;
+            this.pictureBox1.Location = new System.Drawing.Point(235, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(164, 115);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // Profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(251)))), ((int)(((byte)(241)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(693, 600);
             this.Controls.Add(this.likChangePass);
             this.Controls.Add(this.btnUpdate);
@@ -287,13 +291,13 @@
             this.Name = "Profile";
             this.Text = "Profile";
             this.Load += new System.EventHandler(this.Profile_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnUpdatePass.ResumeLayout(false);
             this.pnUpdatePass.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picEyeHide2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEyeShow1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEyeHide1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEyeShow2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picEyeHide2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
