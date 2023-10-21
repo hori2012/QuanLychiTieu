@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -51,6 +52,7 @@ namespace QuanLychiTieu
             cbExType.DataSource = _qLChiTieu.EXPENSESTYPEs.ToList();
             cbExType.ValueMember = "EXTYPEID";
             cbExType.DisplayMember = "NAMEEXTYPE";
+            cbMoney.Items.Clear();
             cbMoney.Items.Add("< 5.000.000VND");
             cbMoney.Items.Add("< 15.000.000VND");
             cbMoney.Items.Add("< 50.000.000VND");
@@ -59,10 +61,11 @@ namespace QuanLychiTieu
             var values = from expenses in _qLChiTieu.EXPENSES
                          join expensesType in _qLChiTieu.EXPENSESTYPEs on expenses.EXTYPEID equals expensesType.EXTYPEID
                          where expenses.USERID == _userId
-                         select new {id = expenses.EXPENSESID, nameType = expensesType.NAMEEXTYPE, money = expenses.MONEY, date = expenses.EXDATE, note = expenses.NOTE};
+                         select new { id = expenses.EXPENSESID, nameType = expensesType.NAMEEXTYPE, money = expenses.MONEY, date = expenses.EXDATE, note = expenses.NOTE };
+            NumberFormatInfo nfi = new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 };
             foreach (var item in values)
             {
-                dtGridEx.Rows.Add(item.id, item.nameType, item.money, item.date, item.note);
+                dtGridEx.Rows.Add(item.id, item.nameType, item.money.Value.ToString("#,##0", nfi), item.date.Value.ToShortDateString(), item.note);
             }
         }
 
@@ -85,21 +88,20 @@ namespace QuanLychiTieu
 
         private void dtGridEx_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)  // Make sure the clicked row index is not the header row
+
+            if (e.RowIndex >= 0)
             {
-                var confirmResult = MessageBox.Show("Are you sure you want to delete this row??",
-                                                    "Confirm deletion!!",
-                                                    MessageBoxButtons.YesNo);
-                if (confirmResult == DialogResult.Yes)
+                if (dtGridEx.Rows[e.RowIndex] != null && dtGridEx.Rows[e.RowIndex].Cells["colId"] != null && dtGridEx.Rows[e.RowIndex].Cells["colId"].Value != null)
                 {
                     int id = int.Parse(dtGridEx.Rows[e.RowIndex].Cells["colId"].Value.ToString());
-                    var entity = _qLChiTieu.EXPENSES.Find(id);
-                    if (entity != null)
-                    {
-                        //_qLChiTieu.EXPENSES.Remove(entity);
-                        //_qLChiTieu.SaveChanges();
-                        dtGridEx.Rows.RemoveAt(e.RowIndex);
-                    }
+                    DetailExpenses detailExpenses = new DetailExpenses(id);
+                    //detailExpenses.ShowDialog();
+                    dtGridEx.Rows.RemoveAt(e.RowIndex);
+                    Expenses_Load(sender, new EventArgs());
+                }
+                else
+                {
+                    DialogResult dialog = MessageBox.Show("Invalid selection!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

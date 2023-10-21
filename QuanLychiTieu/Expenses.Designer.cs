@@ -201,6 +201,7 @@
             this.colId.MinimumWidth = 6;
             this.colId.Name = "colId";
             this.colId.ReadOnly = true;
+            this.colId.Width = 125;
             // 
             // colExType
             // 
@@ -212,7 +213,7 @@
             // 
             // colMoney
             // 
-            this.colMoney.HeaderText = "Money";
+            this.colMoney.HeaderText = "Money (VND)";
             this.colMoney.MinimumWidth = 6;
             this.colMoney.Name = "colMoney";
             this.colMoney.ReadOnly = true;
