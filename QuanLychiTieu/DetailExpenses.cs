@@ -39,8 +39,7 @@ namespace QuanLychiTieu
                 cbExType.SelectedItem = item.nameType;
                 txtMoney.Text = item.money.Value.ToString();
                 dateEx.Value = item.date.Value;
-                //if(items)
-                //txtNote.Text = item.note.ToString();
+                txtNote.Text = item.note.ToString();
             }
         }
 
@@ -92,12 +91,6 @@ namespace QuanLychiTieu
                 {
                     DialogResult dialog = MessageBox.Show(ex.ToString(), "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-               
-                //EXPENS expense = _qLChiTieu.EXPENSES.Find(_expensesId);
-                //if (expense != null)
-                //{
-                //    DialogResult dialog = MessageBox.Show(expense.MONEY.ToString() + "\n" + expense.EXDATE.ToString(), "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //}
             }
         }
 

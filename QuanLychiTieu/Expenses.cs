@@ -95,8 +95,7 @@ namespace QuanLychiTieu
                 {
                     int id = int.Parse(dtGridEx.Rows[e.RowIndex].Cells["colId"].Value.ToString());
                     DetailExpenses detailExpenses = new DetailExpenses(id);
-                    //detailExpenses.ShowDialog();
-                    dtGridEx.Rows.RemoveAt(e.RowIndex);
+                    detailExpenses.ShowDialog();
                     Expenses_Load(sender, new EventArgs());
                 }
                 else
