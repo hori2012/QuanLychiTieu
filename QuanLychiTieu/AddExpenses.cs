@@ -41,6 +41,14 @@ namespace QuanLychiTieu
                     message += "Only enter numbers!\n";
                 }
             }
+            if(dateEx.Value.Date > DateTime.Now.Date)
+            {
+                message += "The selected time is invalid!\n";
+            }
+            if (String.IsNullOrEmpty(txtNote.Text))
+            {
+                txtNote.Text = "N/A";
+            }
             if (!String.IsNullOrEmpty(message))
             {
                 DialogResult dialog = MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);

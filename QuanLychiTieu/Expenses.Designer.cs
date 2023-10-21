@@ -35,17 +35,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dateExpense = new System.Windows.Forms.DateTimePicker();
             this.dtGridEx = new System.Windows.Forms.DataGridView();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbMoney = new System.Windows.Forms.Label();
             this.cbMoney = new System.Windows.Forms.ComboBox();
             this.picLoad = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridEx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -80,6 +80,7 @@
             this.cbExType.Name = "cbExType";
             this.cbExType.Size = new System.Drawing.Size(262, 24);
             this.cbExType.TabIndex = 5;
+            this.cbExType.SelectedIndexChanged += new System.EventHandler(this.cbExType_SelectedIndexChanged);
             // 
             // btnAddType
             // 
@@ -108,6 +109,7 @@
             this.dateExpense.Name = "dateExpense";
             this.dateExpense.Size = new System.Drawing.Size(262, 22);
             this.dateExpense.TabIndex = 8;
+            this.dateExpense.ValueChanged += new System.EventHandler(this.dateExpense_ValueChanged);
             // 
             // dtGridEx
             // 
@@ -130,6 +132,46 @@
             this.dtGridEx.TabIndex = 10;
             this.dtGridEx.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridEx_CellDoubleClick);
             // 
+            // colId
+            // 
+            this.colId.HeaderText = "ID";
+            this.colId.MinimumWidth = 6;
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            this.colId.Width = 125;
+            // 
+            // colExType
+            // 
+            this.colExType.HeaderText = "Expenses type";
+            this.colExType.MinimumWidth = 6;
+            this.colExType.Name = "colExType";
+            this.colExType.ReadOnly = true;
+            this.colExType.Width = 125;
+            // 
+            // colMoney
+            // 
+            this.colMoney.HeaderText = "Money (VND)";
+            this.colMoney.MinimumWidth = 6;
+            this.colMoney.Name = "colMoney";
+            this.colMoney.ReadOnly = true;
+            this.colMoney.Width = 125;
+            // 
+            // colDate
+            // 
+            this.colDate.HeaderText = "Date";
+            this.colDate.MinimumWidth = 6;
+            this.colDate.Name = "colDate";
+            this.colDate.ReadOnly = true;
+            this.colDate.Width = 125;
+            // 
+            // colNote
+            // 
+            this.colNote.HeaderText = "Note";
+            this.colNote.MinimumWidth = 6;
+            this.colNote.Name = "colNote";
+            this.colNote.ReadOnly = true;
+            this.colNote.Width = 200;
+            // 
             // lbMoney
             // 
             this.lbMoney.AutoSize = true;
@@ -148,6 +190,7 @@
             this.cbMoney.Name = "cbMoney";
             this.cbMoney.Size = new System.Drawing.Size(262, 24);
             this.cbMoney.TabIndex = 12;
+            this.cbMoney.SelectedIndexChanged += new System.EventHandler(this.cbMoney_SelectedIndexChanged);
             // 
             // picLoad
             // 
@@ -194,46 +237,6 @@
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             this.linkLabel1.MouseEnter += new System.EventHandler(this.linkLabel1_MouseEnter);
             this.linkLabel1.MouseLeave += new System.EventHandler(this.linkLabel1_MouseLeave);
-            // 
-            // colId
-            // 
-            this.colId.HeaderText = "ID";
-            this.colId.MinimumWidth = 6;
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
-            this.colId.Width = 125;
-            // 
-            // colExType
-            // 
-            this.colExType.HeaderText = "Expenses type";
-            this.colExType.MinimumWidth = 6;
-            this.colExType.Name = "colExType";
-            this.colExType.ReadOnly = true;
-            this.colExType.Width = 125;
-            // 
-            // colMoney
-            // 
-            this.colMoney.HeaderText = "Money (VND)";
-            this.colMoney.MinimumWidth = 6;
-            this.colMoney.Name = "colMoney";
-            this.colMoney.ReadOnly = true;
-            this.colMoney.Width = 125;
-            // 
-            // colDate
-            // 
-            this.colDate.HeaderText = "Date";
-            this.colDate.MinimumWidth = 6;
-            this.colDate.Name = "colDate";
-            this.colDate.ReadOnly = true;
-            this.colDate.Width = 125;
-            // 
-            // colNote
-            // 
-            this.colNote.HeaderText = "Note";
-            this.colNote.MinimumWidth = 6;
-            this.colNote.Name = "colNote";
-            this.colNote.ReadOnly = true;
-            this.colNote.Width = 200;
             // 
             // Expenses
             // 

@@ -39,7 +39,16 @@ namespace QuanLychiTieu
                 cbExType.SelectedItem = item.nameType;
                 txtMoney.Text = item.money.Value.ToString();
                 dateEx.Value = item.date.Value;
-                txtNote.Text = item.note.ToString();
+                if(item.note != null)
+                {
+
+                    txtNote.Text = item.note.ToString();
+                }
+                else
+                {
+
+                    txtNote.Text = "N/A";
+                }
             }
         }
 

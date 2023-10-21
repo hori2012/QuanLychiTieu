@@ -18,10 +18,18 @@ namespace QuanLychiTieu
     {
         private QLChiTieuModel _qLChiTieu;
         private int _userId;
+        private List<ComboItem> _comboItem;
         public Expenses(int userId)
         {
             InitializeComponent();
             _userId = userId;
+            _comboItem = new List<ComboItem>
+            {
+                new ComboItem { Value = 1, Display = "<= 5.000.000 VND" },
+                new ComboItem { Value = 2, Display = "<= 15.000.000 VND" },
+                new ComboItem { Value = 3, Display = "<= 50.000.000 VND" },
+                new ComboItem { Value = 4, Display = "> 50.000.000 VND" }
+            };
         }
 
         private void btnAddType_Click(object sender, EventArgs e)
@@ -34,7 +42,7 @@ namespace QuanLychiTieu
         private void picLoad_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-            timer.Interval = 5000;
+            timer.Interval = 2000;
             picLoad.Image = Properties.Resources.work_in_progress;
             timer.Tick += (s, ev) =>
             {
@@ -49,14 +57,16 @@ namespace QuanLychiTieu
         private void Expenses_Load(object sender, EventArgs e)
         {
             _qLChiTieu = new QLChiTieuModel();
+            cbExType.SelectedIndexChanged -= cbExType_SelectedIndexChanged;
             cbExType.DataSource = _qLChiTieu.EXPENSESTYPEs.ToList();
             cbExType.ValueMember = "EXTYPEID";
             cbExType.DisplayMember = "NAMEEXTYPE";
-            cbMoney.Items.Clear();
-            cbMoney.Items.Add("< 5.000.000VND");
-            cbMoney.Items.Add("< 15.000.000VND");
-            cbMoney.Items.Add("< 50.000.000VND");
-            cbMoney.Items.Add("> 50.000.000VND");
+            cbExType.SelectedIndexChanged += cbExType_SelectedIndexChanged;
+            cbMoney.SelectedIndexChanged -= cbMoney_SelectedIndexChanged;
+            cbMoney.DataSource = _comboItem;
+            cbMoney.ValueMember = "Value";
+            cbMoney.DisplayMember = "Display";
+            cbMoney.SelectedIndexChanged += cbMoney_SelectedIndexChanged;
             dtGridEx.Rows.Clear();
             var values = from expenses in _qLChiTieu.EXPENSES
                          join expensesType in _qLChiTieu.EXPENSESTYPEs on expenses.EXTYPEID equals expensesType.EXTYPEID
@@ -102,6 +112,97 @@ namespace QuanLychiTieu
                 {
                     DialogResult dialog = MessageBox.Show("Invalid selection!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        private void cbExType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string itemSelect = cbExType.Text.ToString();
+            for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+            {
+                DataGridViewRow row = dtGridEx.Rows[i];
+                if (String.Compare(row.Cells["colExType"].Value.ToString(), itemSelect, true) != 0)
+                {
+                    dtGridEx.Rows.Remove(row);
+                }
+            }
+            if (dtGridEx.RowCount == 1)
+            {
+                DialogResult dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dateExpense_ValueChanged(object sender, EventArgs e)
+        {
+            string itemSelect = dateExpense.Value.ToShortDateString();
+            for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+            {
+                DataGridViewRow row = dtGridEx.Rows[i];
+                if (String.Compare(row.Cells["colDate"].Value.ToString(), itemSelect, true) != 0)
+                {
+                    dtGridEx.Rows.Remove(row);
+                }
+            }
+            if (dtGridEx.RowCount == 1)
+            {
+                DialogResult dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void cbMoney_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectItem = cbMoney.SelectedValue;
+            long money = 0;
+            switch (selectItem)
+            {
+                case 1:
+                    for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+                    {
+                        DataGridViewRow row = dtGridEx.Rows[i];
+                        money = long.Parse(row.Cells["colMoney"].Value.ToString().Replace(".", ""));
+                        if (money > 5000000)
+                        {
+                            dtGridEx.Rows.Remove(row);
+                        }
+                    }
+                    break;
+                case 2:
+                    for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+                    {
+                        DataGridViewRow row = dtGridEx.Rows[i];
+                        money = long.Parse(row.Cells["colMoney"].Value.ToString().Replace(".", ""));
+                        if (money > 15000000)
+                        {
+                            dtGridEx.Rows.Remove(row);
+                        }
+                    }
+                    break;
+                case 3:
+                    for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+                    {
+                        DataGridViewRow row = dtGridEx.Rows[i];
+                        money = long.Parse(row.Cells["colMoney"].Value.ToString().Replace(".", ""));
+                        if (money > 50000000)
+                        {
+                            dtGridEx.Rows.Remove(row);
+                        }
+                    }
+                    break;
+                default:
+                    for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+                    {
+                        DataGridViewRow row = dtGridEx.Rows[i];
+                        money = long.Parse(row.Cells["colMoney"].Value.ToString().Replace(".", ""));
+                        if (money <= 50000000)
+                        {
+                            dtGridEx.Rows.Remove(row);
+                        }
+                    }
+                    break;
+            }
+            if (dtGridEx.RowCount == 1)
+            {
+                DialogResult dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
