@@ -34,7 +34,7 @@ namespace QuanLychiTieu
 
         private void btnAddType_Click(object sender, EventArgs e)
         {
-            formAddType formAddType = new formAddType();
+            formAddType formAddType = new formAddType(_userId);
             formAddType.ShowDialog();
             this.Expenses_Load(sender, e);
         }
@@ -58,7 +58,7 @@ namespace QuanLychiTieu
         {
             _qLChiTieu = new QLChiTieuModel();
             cbExType.SelectedIndexChanged -= cbExType_SelectedIndexChanged;
-            cbExType.DataSource = _qLChiTieu.EXPENSESTYPEs.ToList();
+            cbExType.DataSource = _qLChiTieu.EXPENSESTYPEs.Where(x => x.USERID == _userId).ToList();
             cbExType.ValueMember = "EXTYPEID";
             cbExType.DisplayMember = "NAMEEXTYPE";
             cbExType.SelectedIndexChanged += cbExType_SelectedIndexChanged;

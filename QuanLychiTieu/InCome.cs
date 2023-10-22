@@ -34,7 +34,7 @@ namespace QuanLychiTieu
         {
             _qLChiTieu = new QLChiTieuModel();
             cbInType.SelectedIndexChanged -= cbInType_SelectedIndexChanged;
-            cbInType.DataSource = _qLChiTieu.INCOMETYPEs.ToList();
+            cbInType.DataSource = _qLChiTieu.INCOMETYPEs.Where(x => x.USERID == _userId).ToList();
             cbInType.ValueMember = "INTYPEID";
             cbInType.DisplayMember = "NAMEINTYPE";
             cbInType.SelectedIndexChanged += cbInType_SelectedIndexChanged;
@@ -46,6 +46,7 @@ namespace QuanLychiTieu
             dtGridIn.Rows.Clear();
             var result = from income in _qLChiTieu.INCOMEs
                          join incomeType in _qLChiTieu.INCOMETYPEs on income.INTYPEID equals incomeType.INTYPEID
+                         where income.USERID == _userId
                          select new {id = income.INCOMEID, nameType = incomeType.NAMEINTYPE,  money = income.MONEY, date = income.INDATE, note = income.NOTE};
             NumberFormatInfo nfi = new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 };
             foreach(var item in result)
@@ -56,7 +57,7 @@ namespace QuanLychiTieu
 
         private void btnAddType_Click(object sender, EventArgs e)
         {
-            formAddIncomeType formAddIncomeType = new formAddIncomeType();
+            formAddIncomeType formAddIncomeType = new formAddIncomeType(_userId);
             formAddIncomeType.ShowDialog();
             InCome_Load(sender, e);
         }

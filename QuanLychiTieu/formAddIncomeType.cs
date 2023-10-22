@@ -14,17 +14,20 @@ namespace QuanLychiTieu
     public partial class formAddIncomeType : Form
     {
         private QLChiTieuModel _qLChiTieu;
-        public formAddIncomeType()
+        private int _userId;
+        public formAddIncomeType(int userId)
         {
             InitializeComponent();
             _qLChiTieu = new QLChiTieuModel();
+            _userId = userId;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             INCOMETYPE iNCOMETYPE = new INCOMETYPE();
+            iNCOMETYPE.USERID = _userId;
             string message = "";
-            var exType = _qLChiTieu.INCOMETYPEs.Where(x => x.NAMEINTYPE == txtNameType.Text).Any();
+            var exType = _qLChiTieu.INCOMETYPEs.Where(x => x.NAMEINTYPE == txtNameType.Text && x.USERID == _userId).Any();
             if (exType == true)
             {
                 message += "Name income type is exist!\n";

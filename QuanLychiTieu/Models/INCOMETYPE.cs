@@ -21,8 +21,10 @@ namespace QuanLychiTieu.Models
 
         [StringLength(250)]
         public string NAMEINTYPE { get; set; }
+        public decimal? USERID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INCOME> INCOMEs { get; set; }
+        public virtual USER USER { get; set; }
     }
 }

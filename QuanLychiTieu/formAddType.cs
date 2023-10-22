@@ -14,17 +14,20 @@ namespace QuanLychiTieu
     public partial class formAddType : Form
     {
         private QLChiTieuModel _qLChiTieu;
-        public formAddType()
+        private int _userId;
+        public formAddType(int userId)
         {
             InitializeComponent();
-            _qLChiTieu = new QLChiTieuModel(); 
+            _qLChiTieu = new QLChiTieuModel();
+            _userId = userId;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             EXPENSESTYPE value = new EXPENSESTYPE();
+            value.USERID = _userId;
             string message = "";
-            var exType = _qLChiTieu.EXPENSESTYPEs.Where(x => x.NAMEEXTYPE == txtNameType.Text).Any();
+            var exType = _qLChiTieu.EXPENSESTYPEs.Where(x => x.NAMEEXTYPE == txtNameType.Text && x.USERID == _userId).Any();
             if(exType == true)
             {
                 message += "Name expenses type is exist!\n";

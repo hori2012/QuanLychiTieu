@@ -25,7 +25,7 @@ namespace QuanLychiTieu
         private void AddIncome_Load(object sender, EventArgs e)
         {
             _qLChiTieu = new QLChiTieuModel();
-            cbInType.DataSource = _qLChiTieu.INCOMETYPEs.ToList();
+            cbInType.DataSource = _qLChiTieu.INCOMETYPEs.Where(x => x.USERID == _userId).ToList();
             cbInType.ValueMember = "INTYPEID";
             cbInType.DisplayMember = "NAMEINTYPE";
         }
