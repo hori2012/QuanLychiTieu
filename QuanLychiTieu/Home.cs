@@ -153,11 +153,11 @@ namespace QuanLychiTieu
                     control.Dispose();
                 }
                 pnShowMain.Controls.Clear();
-                Expenses expenses = new Expenses(_userId);
-                expenses.TopLevel = false;
-                expenses.AutoScroll = true;
-                pnShowMain.Controls.Add(expenses);
-                expenses.Show();
+                Statistics statistics = new Statistics(_userId);
+                statistics.TopLevel = false;
+                statistics.AutoScroll = true;
+                pnShowMain.Controls.Add(statistics);
+                statistics.Show();
                 timer.Stop();
             };
             timer.Start();

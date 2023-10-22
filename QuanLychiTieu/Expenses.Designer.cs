@@ -57,7 +57,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(285, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 39);
+            this.label1.Size = new System.Drawing.Size(170, 38);
             this.label1.TabIndex = 1;
             this.label1.Text = "Expenses";
             // 
@@ -65,7 +65,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(66, 142);
+            this.label2.Location = new System.Drawing.Point(74, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 18);
             this.label2.TabIndex = 3;
@@ -76,7 +76,7 @@
             this.cbExType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cbExType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbExType.FormattingEnabled = true;
-            this.cbExType.Location = new System.Drawing.Point(239, 141);
+            this.cbExType.Location = new System.Drawing.Point(247, 141);
             this.cbExType.Name = "cbExType";
             this.cbExType.Size = new System.Drawing.Size(262, 24);
             this.cbExType.TabIndex = 5;
@@ -85,9 +85,9 @@
             // btnAddType
             // 
             this.btnAddType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddType.Location = new System.Drawing.Point(526, 139);
+            this.btnAddType.Location = new System.Drawing.Point(534, 139);
             this.btnAddType.Name = "btnAddType";
-            this.btnAddType.Size = new System.Drawing.Size(91, 30);
+            this.btnAddType.Size = new System.Drawing.Size(111, 30);
             this.btnAddType.TabIndex = 6;
             this.btnAddType.Text = "Add type";
             this.btnAddType.UseVisualStyleBackColor = true;
@@ -97,7 +97,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(66, 187);
+            this.label3.Location = new System.Drawing.Point(74, 187);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 18);
             this.label3.TabIndex = 7;
@@ -105,7 +105,7 @@
             // 
             // dateExpense
             // 
-            this.dateExpense.Location = new System.Drawing.Point(239, 187);
+            this.dateExpense.Location = new System.Drawing.Point(247, 187);
             this.dateExpense.Name = "dateExpense";
             this.dateExpense.Size = new System.Drawing.Size(262, 22);
             this.dateExpense.TabIndex = 8;
@@ -129,7 +129,7 @@
             this.dtGridEx.RowHeadersWidth = 51;
             this.dtGridEx.RowTemplate.Height = 24;
             this.dtGridEx.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtGridEx.Size = new System.Drawing.Size(669, 298);
+            this.dtGridEx.Size = new System.Drawing.Size(678, 298);
             this.dtGridEx.TabIndex = 10;
             this.dtGridEx.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridEx_CellDoubleClick);
             // 
@@ -177,7 +177,7 @@
             // 
             this.lbMoney.AutoSize = true;
             this.lbMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMoney.Location = new System.Drawing.Point(66, 234);
+            this.lbMoney.Location = new System.Drawing.Point(74, 234);
             this.lbMoney.Name = "lbMoney";
             this.lbMoney.Size = new System.Drawing.Size(63, 18);
             this.lbMoney.TabIndex = 11;
@@ -187,7 +187,7 @@
             // 
             this.cbMoney.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMoney.FormattingEnabled = true;
-            this.cbMoney.Location = new System.Drawing.Point(239, 234);
+            this.cbMoney.Location = new System.Drawing.Point(247, 234);
             this.cbMoney.Name = "cbMoney";
             this.cbMoney.Size = new System.Drawing.Size(262, 24);
             this.cbMoney.TabIndex = 12;
@@ -197,7 +197,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(66, 262);
+            this.label4.Location = new System.Drawing.Point(74, 262);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 18);
             this.label4.TabIndex = 14;
@@ -207,7 +207,7 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.linkLabel1.LinkColor = System.Drawing.Color.Gray;
-            this.linkLabel1.Location = new System.Drawing.Point(66, 264);
+            this.linkLabel1.Location = new System.Drawing.Point(74, 264);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(77, 16);
             this.linkLabel1.TabIndex = 15;
@@ -221,7 +221,7 @@
             // 
             this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
-            this.picLoad.Location = new System.Drawing.Point(544, 202);
+            this.picLoad.Location = new System.Drawing.Point(565, 196);
             this.picLoad.Name = "picLoad";
             this.picLoad.Size = new System.Drawing.Size(51, 41);
             this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

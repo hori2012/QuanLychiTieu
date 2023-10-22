@@ -27,7 +27,7 @@ namespace QuanLychiTieu
             INCOMETYPE iNCOMETYPE = new INCOMETYPE();
             iNCOMETYPE.USERID = _userId;
             string message = "";
-            var exType = _qLChiTieu.INCOMETYPEs.Where(x => x.NAMEINTYPE == txtNameType.Text && x.USERID == _userId).Any();
+            var exType = _qLChiTieu.INCOMETYPEs.Where(x =>(x.NAMEINTYPE.Replace(" ","") == txtNameType.Text.Replace(" ", "")) && x.USERID == _userId).Any();
             if (exType == true)
             {
                 message += "Name income type is exist!\n";

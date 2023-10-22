@@ -34,17 +34,17 @@
             this.lbMoney = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dtGridIn = new System.Windows.Forms.DataGridView();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateIncome = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAddType = new System.Windows.Forms.Button();
             this.cbInType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.picLoad = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridIn)).BeginInit();
@@ -57,7 +57,7 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.linkLabel1.LinkColor = System.Drawing.Color.Gray;
-            this.linkLabel1.Location = new System.Drawing.Point(64, 270);
+            this.linkLabel1.Location = new System.Drawing.Point(80, 270);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(77, 16);
             this.linkLabel1.TabIndex = 28;
@@ -71,7 +71,7 @@
             // 
             this.cbMoney.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMoney.FormattingEnabled = true;
-            this.cbMoney.Location = new System.Drawing.Point(237, 240);
+            this.cbMoney.Location = new System.Drawing.Point(253, 240);
             this.cbMoney.Name = "cbMoney";
             this.cbMoney.Size = new System.Drawing.Size(262, 24);
             this.cbMoney.TabIndex = 25;
@@ -81,7 +81,7 @@
             // 
             this.lbMoney.AutoSize = true;
             this.lbMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMoney.Location = new System.Drawing.Point(64, 240);
+            this.lbMoney.Location = new System.Drawing.Point(80, 240);
             this.lbMoney.Name = "lbMoney";
             this.lbMoney.Size = new System.Drawing.Size(63, 18);
             this.lbMoney.TabIndex = 24;
@@ -91,7 +91,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(64, 268);
+            this.label4.Location = new System.Drawing.Point(80, 268);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 18);
             this.label4.TabIndex = 27;
@@ -114,69 +114,9 @@
             this.dtGridIn.RowHeadersWidth = 51;
             this.dtGridIn.RowTemplate.Height = 24;
             this.dtGridIn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtGridIn.Size = new System.Drawing.Size(669, 298);
+            this.dtGridIn.Size = new System.Drawing.Size(684, 298);
             this.dtGridIn.TabIndex = 23;
             this.dtGridIn.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridIn_CellDoubleClick);
-            // 
-            // dateIncome
-            // 
-            this.dateIncome.Location = new System.Drawing.Point(237, 193);
-            this.dateIncome.Name = "dateIncome";
-            this.dateIncome.Size = new System.Drawing.Size(262, 22);
-            this.dateIncome.TabIndex = 22;
-            this.dateIncome.CloseUp += new System.EventHandler(this.dateIncome_CloseUp);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(64, 193);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 18);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Date Income:";
-            // 
-            // btnAddType
-            // 
-            this.btnAddType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddType.Location = new System.Drawing.Point(524, 145);
-            this.btnAddType.Name = "btnAddType";
-            this.btnAddType.Size = new System.Drawing.Size(91, 30);
-            this.btnAddType.TabIndex = 20;
-            this.btnAddType.Text = "Add type";
-            this.btnAddType.UseVisualStyleBackColor = true;
-            this.btnAddType.Click += new System.EventHandler(this.btnAddType_Click);
-            // 
-            // cbInType
-            // 
-            this.cbInType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.cbInType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbInType.FormattingEnabled = true;
-            this.cbInType.Location = new System.Drawing.Point(237, 147);
-            this.cbInType.Name = "cbInType";
-            this.cbInType.Size = new System.Drawing.Size(262, 24);
-            this.cbInType.TabIndex = 19;
-            this.cbInType.SelectedIndexChanged += new System.EventHandler(this.cbInType_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(64, 148);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 18);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Income Type:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(296, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 39);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Income";
             // 
             // colId
             // 
@@ -218,11 +158,71 @@
             this.colNote.ReadOnly = true;
             this.colNote.Width = 200;
             // 
+            // dateIncome
+            // 
+            this.dateIncome.Location = new System.Drawing.Point(253, 193);
+            this.dateIncome.Name = "dateIncome";
+            this.dateIncome.Size = new System.Drawing.Size(262, 22);
+            this.dateIncome.TabIndex = 22;
+            this.dateIncome.CloseUp += new System.EventHandler(this.dateIncome_CloseUp);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(80, 193);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 18);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Date Income:";
+            // 
+            // btnAddType
+            // 
+            this.btnAddType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddType.Location = new System.Drawing.Point(540, 145);
+            this.btnAddType.Name = "btnAddType";
+            this.btnAddType.Size = new System.Drawing.Size(104, 30);
+            this.btnAddType.TabIndex = 20;
+            this.btnAddType.Text = "Add type";
+            this.btnAddType.UseVisualStyleBackColor = true;
+            this.btnAddType.Click += new System.EventHandler(this.btnAddType_Click);
+            // 
+            // cbInType
+            // 
+            this.cbInType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cbInType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbInType.FormattingEnabled = true;
+            this.cbInType.Location = new System.Drawing.Point(253, 147);
+            this.cbInType.Name = "cbInType";
+            this.cbInType.Size = new System.Drawing.Size(262, 24);
+            this.cbInType.TabIndex = 19;
+            this.cbInType.SelectedIndexChanged += new System.EventHandler(this.cbInType_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(80, 148);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 18);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Income Type:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(296, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 38);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Income";
+            // 
             // picLoad
             // 
             this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
-            this.picLoad.Location = new System.Drawing.Point(542, 208);
+            this.picLoad.Location = new System.Drawing.Point(571, 205);
             this.picLoad.Name = "picLoad";
             this.picLoad.Size = new System.Drawing.Size(51, 41);
             this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
