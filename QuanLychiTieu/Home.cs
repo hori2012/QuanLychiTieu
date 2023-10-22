@@ -40,7 +40,7 @@ namespace QuanLychiTieu
             pnShowMain.Controls.Add(formSoon);
             formSoon.Show();
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-            timer.Interval = 5000;
+            timer.Interval = 3000;
             timer.Tick += (s, ev) =>
             {
                 foreach (Control control in pnShowMain.Controls)
@@ -75,7 +75,7 @@ namespace QuanLychiTieu
             pnShowMain.Controls.Add(formSoon);
             formSoon.Show();
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-            timer.Interval = 5000;
+            timer.Interval = 3000;
             timer.Tick += (s, ev) =>
             {
                 foreach (Control control in pnShowMain.Controls)
@@ -99,6 +99,33 @@ namespace QuanLychiTieu
             lbExpense.BackColor = Color.FromArgb(255, 255, 128);
             lbProfile.BackColor = Color.FromArgb(255, 255, 128);
             lbStatistics.BackColor = Color.FromArgb(255, 255, 128);
+            foreach (Control control in pnShowMain.Controls)
+            {
+                control.Dispose();
+            }
+            pnShowMain.Controls.Clear();
+            formSoon formSoon = new formSoon();
+            formSoon.TopLevel = false;
+            formSoon.AutoScroll = true;
+            pnShowMain.Controls.Add(formSoon);
+            formSoon.Show();
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = 3000;
+            timer.Tick += (s, ev) =>
+            {
+                foreach (Control control in pnShowMain.Controls)
+                {
+                    control.Dispose();
+                }
+                pnShowMain.Controls.Clear();
+                InCome income = new InCome(_userId);
+                income.TopLevel = false;
+                income.AutoScroll = true;
+                pnShowMain.Controls.Add(income);
+                income.Show();
+                timer.Stop();
+            };
+            timer.Start();
         }
 
         private void lbStatistics_Click(object sender, EventArgs e)
@@ -107,6 +134,33 @@ namespace QuanLychiTieu
             lbIncome.BackColor = Color.FromArgb(255, 255, 128);
             lbExpense.BackColor = Color.FromArgb(255, 255, 128);
             lbProfile.BackColor = Color.FromArgb(255, 255, 128);
+            foreach (Control control in pnShowMain.Controls)
+            {
+                control.Dispose();
+            }
+            pnShowMain.Controls.Clear();
+            formSoon formSoon = new formSoon();
+            formSoon.TopLevel = false;
+            formSoon.AutoScroll = true;
+            pnShowMain.Controls.Add(formSoon);
+            formSoon.Show();
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = 3000;
+            timer.Tick += (s, ev) =>
+            {
+                foreach (Control control in pnShowMain.Controls)
+                {
+                    control.Dispose();
+                }
+                pnShowMain.Controls.Clear();
+                Expenses expenses = new Expenses(_userId);
+                expenses.TopLevel = false;
+                expenses.AutoScroll = true;
+                pnShowMain.Controls.Add(expenses);
+                expenses.Show();
+                timer.Stop();
+            };
+            timer.Start();
         }
 
         private void picLogout_Click(object sender, EventArgs e)

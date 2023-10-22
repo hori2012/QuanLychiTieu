@@ -100,6 +100,12 @@
     <Compile Include="AddExpenses.Designer.cs">
       <DependentUpon>AddExpenses.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddIncome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddIncome.Designer.cs">
+      <DependentUpon>AddIncome.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComboItem.cs" />
     <Compile Include="DetailExpenses.cs">
       <SubType>Form</SubType>
@@ -107,11 +113,23 @@
     <Compile Include="DetailExpenses.Designer.cs">
       <DependentUpon>DetailExpenses.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailIncome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailIncome.Designer.cs">
+      <DependentUpon>DetailIncome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Expenses.Designer.cs">
       <DependentUpon>Expenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formAddIncomeType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAddIncomeType.Designer.cs">
+      <DependentUpon>formAddIncomeType.cs</DependentUpon>
     </Compile>
     <Compile Include="formAddType.cs">
       <SubType>Form</SubType>
@@ -130,6 +148,12 @@
     </Compile>
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InCome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InCome.Designer.cs">
+      <DependentUpon>InCome.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -161,11 +185,20 @@
     <EmbeddedResource Include="AddExpenses.resx">
       <DependentUpon>AddExpenses.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddIncome.resx">
+      <DependentUpon>AddIncome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DetailExpenses.resx">
       <DependentUpon>DetailExpenses.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetailIncome.resx">
+      <DependentUpon>DetailIncome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses.resx">
       <DependentUpon>Expenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAddIncomeType.resx">
+      <DependentUpon>formAddIncomeType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formAddType.resx">
       <DependentUpon>formAddType.cs</DependentUpon>
@@ -175,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InCome.resx">
+      <DependentUpon>InCome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

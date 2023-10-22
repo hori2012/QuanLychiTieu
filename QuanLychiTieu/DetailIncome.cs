@@ -3,12 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Entity;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -16,30 +12,30 @@ using System.Windows.Forms;
 
 namespace QuanLychiTieu
 {
-    public partial class DetailExpenses : Form
+    public partial class DetailIncome : Form
     {
         private QLChiTieuModel _qLChiTieu;
-        private int _expensesId;
-        public DetailExpenses(int expensesId)
+        private int _incomeId;
+        public DetailIncome(int incomeId)
         {
             InitializeComponent();
-            _expensesId = expensesId;
+            _incomeId = incomeId;
         }
 
-        private void DetailExpenses_Load(object sender, EventArgs e)
+        private void DetailIncome_Load(object sender, EventArgs e)
         {
             _qLChiTieu = new QLChiTieuModel();
-            var result = from expense in _qLChiTieu.EXPENSES
-                         join expensesType in _qLChiTieu.EXPENSESTYPEs on expense.EXTYPEID equals expensesType.EXTYPEID
-                         where expense.EXPENSESID == _expensesId
-                         select new { nameType = expensesType.NAMEEXTYPE, money = expense.MONEY, date = expense.EXDATE, note = expense.NOTE };
+            var result = from income in _qLChiTieu.INCOMEs
+                         join incomeType in _qLChiTieu.INCOMETYPEs on income.INTYPEID equals incomeType.INTYPEID
+                         where income.INCOMEID == _incomeId
+                         select new { nameType = incomeType.NAMEINTYPE, money = income.MONEY, date = income.INDATE, note = income.NOTE };
             foreach (var item in result)
             {
-                cbExType.Items.Add(item.nameType);
-                cbExType.SelectedItem = item.nameType;
+                cbInType.Items.Add(item.nameType);
+                cbInType.SelectedItem = item.nameType;
                 txtMoney.Text = item.money.Value.ToString();
-                dateEx.Value = item.date.Value;
-                if(item.note != null)
+                dateIn.Value = item.date.Value;
+                if (item.note != null)
                 {
 
                     txtNote.Text = item.note.ToString();
@@ -49,14 +45,6 @@ namespace QuanLychiTieu
 
                     txtNote.Text = "N/A";
                 }
-            }
-        }
-
-        private void txtMoney_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btnUpdate.PerformClick();
             }
         }
 
@@ -83,10 +71,10 @@ namespace QuanLychiTieu
             {
                 try
                 {
-                    string dateString = dateEx.Value.ToString("dd-MM-yyyy");
+                    string dateString = dateIn.Value.ToString("dd-MM-yyyy");
                     decimal money = decimal.Parse(txtMoney.Text);
-                    string sql = "UPDATE EXPENSES SET MONEY = :p0, EXDATE = TO_DATE(:p1, 'DD-MM-YYYY'), NOTE = :p2 WHERE EXPENSESID = :p3";
-                    int rowNum = _qLChiTieu.Database.ExecuteSqlCommand(sql, money, dateString, txtNote.Text, _expensesId);
+                    string sql = "UPDATE INCOME SET MONEY = :p0, INDATE = TO_DATE(:p1, 'DD-MM-YYYY'), NOTE = :p2 WHERE INCOMEID = :p3";
+                    int rowNum = _qLChiTieu.Database.ExecuteSqlCommand(sql, money, dateString, txtNote.Text, _incomeId);
                     if (rowNum > 0)
                     {
                         DialogResult dialog = MessageBox.Show("Update success!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -106,20 +94,36 @@ namespace QuanLychiTieu
         private void btnDelete_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure you want to delete this row??",
-                                                "Confirm deletion!!",
-                                                MessageBoxButtons.YesNo);
+                                               "Confirm deletion!!",
+                                               MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
 
-                var entity = _qLChiTieu.EXPENSES.Find(_expensesId);
+                var entity = _qLChiTieu.INCOMEs.Find(_incomeId);
                 if (entity != null)
                 {
-                    _qLChiTieu.EXPENSES.Remove(entity);
+                    _qLChiTieu.INCOMEs.Remove(entity);
                     _qLChiTieu.SaveChanges();
                     DialogResult dialog = MessageBox.Show("Delete success!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             this.Close();
+        }
+
+        private void txtMoney_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnUpdate.PerformClick();
+            }
+        }
+
+        private void txtNote_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnUpdate.PerformClick();
+            }
         }
     }
 }

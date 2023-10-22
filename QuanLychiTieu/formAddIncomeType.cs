@@ -11,34 +11,34 @@ using System.Windows.Forms;
 
 namespace QuanLychiTieu
 {
-    public partial class formAddType : Form
+    public partial class formAddIncomeType : Form
     {
         private QLChiTieuModel _qLChiTieu;
-        public formAddType()
+        public formAddIncomeType()
         {
             InitializeComponent();
-            _qLChiTieu = new QLChiTieuModel(); 
+            _qLChiTieu = new QLChiTieuModel();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            EXPENSESTYPE value = new EXPENSESTYPE();
+            INCOMETYPE iNCOMETYPE = new INCOMETYPE();
             string message = "";
-            var exType = _qLChiTieu.EXPENSESTYPEs.Where(x => x.NAMEEXTYPE == txtNameType.Text).Any();
-            if(exType == true)
+            var exType = _qLChiTieu.INCOMETYPEs.Where(x => x.NAMEINTYPE == txtNameType.Text).Any();
+            if (exType == true)
             {
-                message += "Name expenses type is exist!\n";
+                message += "Name income type is exist!\n";
             }
             else
             {
                 if (String.IsNullOrEmpty(txtNameType.Text))
                 {
-                    message += "Name expenses type cannot be blank!!\n";
+                    message += "Name income type cannot be blank!!\n";
                 }
                 else
                 {
 
-                    value.NAMEEXTYPE = txtNameType.Text;
+                    iNCOMETYPE.NAMEINTYPE = txtNameType.Text;
                 }
             }
             if (!String.IsNullOrEmpty(message))
@@ -47,7 +47,7 @@ namespace QuanLychiTieu
             }
             else
             {
-                _qLChiTieu.EXPENSESTYPEs.Add(value);
+                _qLChiTieu.INCOMETYPEs.Add(iNCOMETYPE);
                 _qLChiTieu.SaveChanges();
                 DialogResult dialog = MessageBox.Show("Add success!!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

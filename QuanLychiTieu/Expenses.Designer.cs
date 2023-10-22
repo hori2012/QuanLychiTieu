@@ -42,10 +42,10 @@
             this.colNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbMoney = new System.Windows.Forms.Label();
             this.cbMoney = new System.Windows.Forms.ComboBox();
-            this.picLoad = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.picLoad = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridEx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,10 +54,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(285, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 36);
+            this.label1.Size = new System.Drawing.Size(175, 39);
             this.label1.TabIndex = 1;
             this.label1.Text = "Expenses";
             // 
@@ -109,7 +109,7 @@
             this.dateExpense.Name = "dateExpense";
             this.dateExpense.Size = new System.Drawing.Size(262, 22);
             this.dateExpense.TabIndex = 8;
-            this.dateExpense.ValueChanged += new System.EventHandler(this.dateExpense_ValueChanged);
+            this.dateExpense.CloseUp += new System.EventHandler(this.dateExpense_CloseUp);
             // 
             // dtGridEx
             // 
@@ -123,6 +123,7 @@
             this.colNote});
             this.dtGridEx.Cursor = System.Windows.Forms.Cursors.Default;
             this.dtGridEx.Location = new System.Drawing.Point(7, 289);
+            this.dtGridEx.MultiSelect = false;
             this.dtGridEx.Name = "dtGridEx";
             this.dtGridEx.ReadOnly = true;
             this.dtGridEx.RowHeadersWidth = 51;
@@ -192,28 +193,6 @@
             this.cbMoney.TabIndex = 12;
             this.cbMoney.SelectedIndexChanged += new System.EventHandler(this.cbMoney_SelectedIndexChanged);
             // 
-            // picLoad
-            // 
-            this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
-            this.picLoad.Location = new System.Drawing.Point(544, 202);
-            this.picLoad.Name = "picLoad";
-            this.picLoad.Size = new System.Drawing.Size(51, 41);
-            this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLoad.TabIndex = 13;
-            this.picLoad.TabStop = false;
-            this.picLoad.Click += new System.EventHandler(this.picLoad_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.spending;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(164, 115);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -237,6 +216,28 @@
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             this.linkLabel1.MouseEnter += new System.EventHandler(this.linkLabel1_MouseEnter);
             this.linkLabel1.MouseLeave += new System.EventHandler(this.linkLabel1_MouseLeave);
+            // 
+            // picLoad
+            // 
+            this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
+            this.picLoad.Location = new System.Drawing.Point(544, 202);
+            this.picLoad.Name = "picLoad";
+            this.picLoad.Size = new System.Drawing.Size(51, 41);
+            this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLoad.TabIndex = 13;
+            this.picLoad.TabStop = false;
+            this.picLoad.Click += new System.EventHandler(this.picLoad_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.spending;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(164, 115);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // Expenses
             // 

@@ -132,23 +132,6 @@ namespace QuanLychiTieu
             }
         }
 
-        private void dateExpense_ValueChanged(object sender, EventArgs e)
-        {
-            string itemSelect = dateExpense.Value.ToShortDateString();
-            for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
-            {
-                DataGridViewRow row = dtGridEx.Rows[i];
-                if (String.Compare(row.Cells["colDate"].Value.ToString(), itemSelect, true) != 0)
-                {
-                    dtGridEx.Rows.Remove(row);
-                }
-            }
-            if (dtGridEx.RowCount == 1)
-            {
-                DialogResult dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void cbMoney_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectItem = cbMoney.SelectedValue;
@@ -199,6 +182,23 @@ namespace QuanLychiTieu
                         }
                     }
                     break;
+            }
+            if (dtGridEx.RowCount == 1)
+            {
+                DialogResult dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dateExpense_CloseUp(object sender, EventArgs e)
+        {
+            string itemSelect = dateExpense.Value.ToShortDateString();
+            for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+            {
+                DataGridViewRow row = dtGridEx.Rows[i];
+                if (String.Compare(row.Cells["colDate"].Value.ToString(), itemSelect, true) != 0)
+                {
+                    dtGridEx.Rows.Remove(row);
+                }
             }
             if (dtGridEx.RowCount == 1)
             {

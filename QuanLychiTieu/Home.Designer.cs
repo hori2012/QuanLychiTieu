@@ -32,21 +32,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.picLogout = new System.Windows.Forms.PictureBox();
             this.lbStatistics = new System.Windows.Forms.Label();
             this.lbIncome = new System.Windows.Forms.Label();
             this.lbExpense = new System.Windows.Forms.Label();
             this.lbProfile = new System.Windows.Forms.Label();
+            this.picAvatar = new System.Windows.Forms.PictureBox();
             this.pnShowMain = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.picHeart = new System.Windows.Forms.PictureBox();
-            this.picLogout = new System.Windows.Forms.PictureBox();
-            this.picAvatar = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.pnShowMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picHeart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
+            this.pnShowMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picHeart)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -83,6 +83,20 @@
             this.label1.Size = new System.Drawing.Size(48, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Hello:";
+            // 
+            // picLogout
+            // 
+            this.picLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picLogout.Image = global::QuanLychiTieu.Properties.Resources.logout;
+            this.picLogout.Location = new System.Drawing.Point(-4, 533);
+            this.picLogout.Name = "picLogout";
+            this.picLogout.Size = new System.Drawing.Size(276, 61);
+            this.picLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogout.TabIndex = 4;
+            this.picLogout.TabStop = false;
+            this.picLogout.Click += new System.EventHandler(this.picLogout_Click);
+            this.picLogout.MouseEnter += new System.EventHandler(this.picLogout_MouseEnter);
+            this.picLogout.MouseLeave += new System.EventHandler(this.picLogout_MouseLeave);
             // 
             // lbStatistics
             // 
@@ -140,6 +154,16 @@
             this.lbProfile.MouseEnter += new System.EventHandler(this.lbProfile_MouseEnter);
             this.lbProfile.MouseLeave += new System.EventHandler(this.lbProfile_MouseLeave);
             // 
+            // picAvatar
+            // 
+            this.picAvatar.Image = global::QuanLychiTieu.Properties.Resources.man;
+            this.picAvatar.Location = new System.Drawing.Point(56, 16);
+            this.picAvatar.Name = "picAvatar";
+            this.picAvatar.Size = new System.Drawing.Size(145, 97);
+            this.picAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picAvatar.TabIndex = 0;
+            this.picAvatar.TabStop = false;
+            // 
             // pnShowMain
             // 
             this.pnShowMain.BackColor = System.Drawing.Color.White;
@@ -151,6 +175,16 @@
             this.pnShowMain.Name = "pnShowMain";
             this.pnShowMain.Size = new System.Drawing.Size(693, 600);
             this.pnShowMain.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe Print", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(258, 378);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(189, 30);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Have a nice day <3!!";
             // 
             // label2
             // 
@@ -172,40 +206,6 @@
             this.picHeart.TabIndex = 0;
             this.picHeart.TabStop = false;
             // 
-            // picLogout
-            // 
-            this.picLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picLogout.Image = global::QuanLychiTieu.Properties.Resources.logout;
-            this.picLogout.Location = new System.Drawing.Point(-4, 533);
-            this.picLogout.Name = "picLogout";
-            this.picLogout.Size = new System.Drawing.Size(276, 61);
-            this.picLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogout.TabIndex = 4;
-            this.picLogout.TabStop = false;
-            this.picLogout.Click += new System.EventHandler(this.picLogout_Click);
-            this.picLogout.MouseEnter += new System.EventHandler(this.picLogout_MouseEnter);
-            this.picLogout.MouseLeave += new System.EventHandler(this.picLogout_MouseLeave);
-            // 
-            // picAvatar
-            // 
-            this.picAvatar.Image = global::QuanLychiTieu.Properties.Resources.man;
-            this.picAvatar.Location = new System.Drawing.Point(56, 16);
-            this.picAvatar.Name = "picAvatar";
-            this.picAvatar.Size = new System.Drawing.Size(145, 97);
-            this.picAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picAvatar.TabIndex = 0;
-            this.picAvatar.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe Print", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(258, 378);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(189, 30);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Have a nice day <3!!";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -214,6 +214,7 @@
             this.Controls.Add(this.pnShowMain);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
@@ -221,11 +222,11 @@
             this.Load += new System.EventHandler(this.Home_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
             this.pnShowMain.ResumeLayout(false);
             this.pnShowMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
             this.ResumeLayout(false);
 
         }
