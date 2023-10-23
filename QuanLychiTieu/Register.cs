@@ -44,15 +44,23 @@ namespace QuanLychiTieu
             {
                 message += "Email cannot be blank!\n";
             }
-            else if(regex.IsMatch(txtEmail.Text) == true)
+
+            else if (regex.IsMatch(txtEmail.Text) == true)
             {
-                _user.EMAIL = txtEmail.Text;
+                if (_qLChiTieuModel.USERS.Where(x => x.EMAIL == txtEmail.Text).Any())
+                {
+                    message += "Email is exists!!\n";
+                }
+                else
+                {
+                    _user.EMAIL = txtEmail.Text;
+                }
             }
             else
             {
                 message += "Invalid email!\n";
             }
-            if(rbMale.Checked == true)
+            if (rbMale.Checked == true)
             {
                 _user.GENDER = rbMale.Text;
             }
@@ -60,10 +68,11 @@ namespace QuanLychiTieu
             {
                 _user.GENDER = rbFemale.Text;
             }
-            if(String.IsNullOrEmpty(txtPass.Text) || String.IsNullOrEmpty(txtConfPass.Text))
+            if (String.IsNullOrEmpty(txtPass.Text) || String.IsNullOrEmpty(txtConfPass.Text))
             {
                 message += "Password or ConfirmPass cannot be blank!\n";
-            }else if(String.Compare(txtPass.Text, txtConfPass.Text, true) != 0)
+            }
+            else if (String.Compare(txtPass.Text, txtConfPass.Text, true) != 0)
             {
                 message += "Password and ConfirmPass don't matching!\n";
             }
@@ -71,7 +80,7 @@ namespace QuanLychiTieu
             {
                 _user.PASSWORD = new MD5Hash().EncryptionMD5Hash(txtPass.Text);
             }
-            if(!String.IsNullOrEmpty(message))
+            if (!String.IsNullOrEmpty(message))
             {
                 DialogResult dialog = MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -80,7 +89,7 @@ namespace QuanLychiTieu
                 _qLChiTieuModel.USERS.Add(_user);
                 _qLChiTieuModel.SaveChanges();
                 DialogResult dialog = MessageBox.Show("Register success!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if(dialog == DialogResult.OK)
+                if (dialog == DialogResult.OK)
                 {
                     this.Close();
                     _loginForm.Show();
