@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLychiTieu
 {
@@ -26,39 +24,41 @@ namespace QuanLychiTieu
         private void Statistics_Load(object sender, EventArgs e)
         {
             _qLChiTieu = new QLChiTieuModel();
-            var expenses = from ex in _qLChiTieu.EXPENSES
-                           join exType in _qLChiTieu.EXPENSESTYPEs on ex.EXTYPEID equals exType.EXTYPEID
-                           where ex.USERID == _userId
-                           select new { name = exType.NAMEEXTYPE, money = ex.MONEY, date = ex.EXDATE };
-            var income = from inCo in _qLChiTieu.INCOMEs
-                         join inCoType in _qLChiTieu.INCOMETYPEs on inCo.INTYPEID equals inCoType.INTYPEID
-                         where inCo.USERID == _userId
-                         select new { name = inCoType.NAMEINTYPE, money = inCo.MONEY, date = inCo.INDATE };
-            chartEx.ChartAreas[0].Position = new ElementPosition(0, 0, 100, 80);
-            chartEx.Legends[0].Docking = Docking.Bottom;
-            chartEx.Legends[0].Alignment = StringAlignment.Near;
+            var expenses = _qLChiTieu.EXPENSES.Where(x => x.USERID == _userId)
+                           .GroupBy(x => x.EXDATE.Value.Year)
+                           .Select(x => new {date = x.Key, money = x.Sum(m => m.MONEY) })
+                           .ToList();
             foreach (var item in expenses)
             {
-                if (!chartEx.Series.Any(s => s.Name == item.name))
-                {
-                    chartEx.Series.Add(item.name);
-                    chartEx.Series[item.name]["PixelPointWidth"] = "40";
-                    chartEx.Series[item.name].ChartType = SeriesChartType.Column;
-                    int pointIndex = chartEx.Series[item.name].Points.AddXY(item.date.Value.Year, item.money);
-                    chartEx.Series[item.name].Points[pointIndex].Label = item.money.ToString();
-                }
-                else
-                {
-                    DataPoint point = chartEx.Series[item.name].Points.FirstOrDefault(p => p.XValue == item.date.Value.Year);
-
-                    if (point != null)
-                    {
-                        point.YValues[0] += (double)item.money;
-                        point.Label = point.YValues[0].ToString();
-                    }
-                }
+                chartMain.Series["Expenses"].Points.AddXY(item.date, (double)item.money);
+            }
+            var income = _qLChiTieu.INCOMEs.Where(x => x.USERID == _userId)
+                         .GroupBy(x => x.INDATE.Value.Year)
+                         .Select(x => new { date = x.Key, money = x.Sum(m => m.MONEY) });
+            foreach(var item in income)
+            {
+                chartMain.Series["Income"].Points.AddXY(item.date, (double)item.money);
             }
         }
 
+        private void lkExpenses_MouseEnter(object sender, EventArgs e)
+        {
+            lkExpenses.LinkColor = Color.Red;
+        }
+
+        private void lkExpenses_MouseLeave(object sender, EventArgs e)
+        {
+            lkExpenses.LinkColor = Color.Gray;
+        }
+
+        private void lkIncome_MouseEnter(object sender, EventArgs e)
+        {
+            lkIncome.LinkColor = Color.Red;
+        }
+
+        private void lkIncome_MouseLeave(object sender, EventArgs e)
+        {
+            lkIncome.LinkColor = Color.Gray;
+        }
     }
 }
