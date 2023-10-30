@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbFill = new System.Windows.Forms.ComboBox();
@@ -40,6 +40,8 @@
             this.lkIncome = new System.Windows.Forms.LinkLabel();
             this.lkExpenses = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateFill = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -47,35 +49,37 @@
             // 
             // chartMain
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartMain.ChartAreas.Add(chartArea3);
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend3.Name = "Legend1";
-            legend3.Title = "Statistics";
-            this.chartMain.Legends.Add(legend3);
-            this.chartMain.Location = new System.Drawing.Point(12, 115);
+            chartArea1.Name = "ChartArea1";
+            this.chartMain.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            legend1.Title = "Statistics";
+            this.chartMain.Legends.Add(legend1);
+            this.chartMain.Location = new System.Drawing.Point(12, 135);
             this.chartMain.Name = "chartMain";
-            series5.ChartArea = "ChartArea1";
-            series5.EmptyPointStyle.Name = "Expenses";
-            series5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series5.IsValueShownAsLabel = true;
-            series5.Legend = "Legend1";
-            series5.Name = "Expenses";
-            series6.ChartArea = "ChartArea1";
-            series6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series6.IsValueShownAsLabel = true;
-            series6.Legend = "Legend1";
-            series6.Name = "Income";
-            this.chartMain.Series.Add(series5);
-            this.chartMain.Series.Add(series6);
-            this.chartMain.Size = new System.Drawing.Size(669, 473);
+            series1.ChartArea = "ChartArea1";
+            series1.EmptyPointStyle.Name = "Expenses";
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Expenses";
+            series2.ChartArea = "ChartArea1";
+            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series2.IsValueShownAsLabel = true;
+            series2.Legend = "Legend1";
+            series2.Name = "Income";
+            this.chartMain.Series.Add(series1);
+            this.chartMain.Series.Add(series2);
+            this.chartMain.Size = new System.Drawing.Size(669, 453);
             this.chartMain.TabIndex = 0;
             this.chartMain.Text = "chart1";
-            title3.Name = "Statistics";
-            this.chartMain.Titles.Add(title3);
+            title1.Name = "Statistics";
+            this.chartMain.Titles.Add(title1);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dateFill);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.cbFill);
             this.groupBox1.Controls.Add(this.label1);
@@ -84,7 +88,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(677, 100);
+            this.groupBox1.Size = new System.Drawing.Size(677, 117);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tools";
@@ -93,9 +97,9 @@
             // 
             this.cbFill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFill.FormattingEnabled = true;
-            this.cbFill.Location = new System.Drawing.Point(148, 25);
+            this.cbFill.Location = new System.Drawing.Point(148, 55);
             this.cbFill.Name = "cbFill";
-            this.cbFill.Size = new System.Drawing.Size(246, 24);
+            this.cbFill.Size = new System.Drawing.Size(293, 24);
             this.cbFill.TabIndex = 3;
             this.cbFill.SelectedIndexChanged += new System.EventHandler(this.cbFill_SelectedIndexChanged);
             // 
@@ -103,7 +107,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(86, 28);
+            this.label1.Location = new System.Drawing.Point(86, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 18);
             this.label1.TabIndex = 2;
@@ -114,7 +118,7 @@
             this.lkIncome.AutoSize = true;
             this.lkIncome.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lkIncome.LinkColor = System.Drawing.Color.Gray;
-            this.lkIncome.Location = new System.Drawing.Point(278, 78);
+            this.lkIncome.Location = new System.Drawing.Point(278, 90);
             this.lkIncome.Name = "lkIncome";
             this.lkIncome.Size = new System.Drawing.Size(57, 16);
             this.lkIncome.TabIndex = 1;
@@ -128,7 +132,7 @@
             this.lkExpenses.AutoSize = true;
             this.lkExpenses.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lkExpenses.LinkColor = System.Drawing.Color.Gray;
-            this.lkExpenses.Location = new System.Drawing.Point(142, 78);
+            this.lkExpenses.Location = new System.Drawing.Point(142, 90);
             this.lkExpenses.Name = "lkExpenses";
             this.lkExpenses.Size = new System.Drawing.Size(75, 16);
             this.lkExpenses.TabIndex = 0;
@@ -146,6 +150,23 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(86, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 18);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Date:";
+            // 
+            // dateFill
+            // 
+            this.dateFill.Location = new System.Drawing.Point(148, 18);
+            this.dateFill.Name = "dateFill";
+            this.dateFill.Size = new System.Drawing.Size(293, 22);
+            this.dateFill.TabIndex = 6;
             // 
             // Statistics
             // 
@@ -176,5 +197,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbFill;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DateTimePicker dateFill;
+        private System.Windows.Forms.Label label2;
     }
 }

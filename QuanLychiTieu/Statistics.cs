@@ -83,12 +83,12 @@ namespace QuanLychiTieu
         private void cbFill_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectItem = cbFill.SelectedValue;
+            string date = dateFill.Value.ToShortDateString();
             switch (selectItem)
             {
                 case 1:
                     chartMain.Series["Expenses"].Points.Clear();
                     chartMain.Series["Income"].Points.Clear();
-                    string date = DateTime.Now.ToShortDateString();
                     string sql = "SELECT EXDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM EXPENSES WHERE USERID = :p0 AND " +
                                  "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
                                  "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
@@ -109,6 +109,7 @@ namespace QuanLychiTieu
                     }
                     break;
                 case 2:
+                    DialogResult dialog = MessageBox.Show(date);
                     break;
                 case 3:
                     break;
