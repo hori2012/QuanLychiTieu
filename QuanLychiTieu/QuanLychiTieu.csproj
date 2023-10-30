@@ -183,6 +183,7 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultDB.cs" />
     <Compile Include="Statistics.cs">
       <SubType>Form</SubType>
     </Compile>
