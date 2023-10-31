@@ -82,6 +82,7 @@ namespace QuanLychiTieu
 
         private void cbFill_SelectedIndexChanged(object sender, EventArgs e)
         {
+            List<DateTime> allDates = new List<DateTime>();
             var selectItem = cbFill.SelectedValue;
             string date = dateFill.Value.ToShortDateString();
             chartMain.Series["Expenses"].Points.Clear();
@@ -95,19 +96,36 @@ namespace QuanLychiTieu
                                  "GROUP BY EXDATE " +
                                  "ORDER BY EXDATE";
                     var expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, date);
-                    foreach (var item in expenses)
-                    {
-                        chartMain.Series["Expenses"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
-                    }
                     sql = "SELECT INDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM INCOME WHERE USERID = :p0 AND " +
                            "INDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
                            "INDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
                            "GROUP BY INDATE " +
                            "ORDER BY INDATE";
                     var income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, date);
-                    foreach (var item in income)
+                    allDates.AddRange(expenses.Select(i => i._date));
+                    allDates.AddRange(income.Select(i => i._date));
+                    allDates = allDates.Distinct().OrderBy(d => d).ToList();
+                    foreach (DateTime dt in allDates)
                     {
-                        chartMain.Series["Income"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                        if (!expenses.Any(i => i._date == dt))
+                        {
+                            chartMain.Series["Expenses"].Points.AddXY(dt.ToShortDateString(), 0);
+                        }
+                        else
+                        {
+                            var item = expenses.First(i => i._date == dt);
+                            chartMain.Series["Expenses"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                        }
+
+                        if (!income.Any(i => i._date == dt))
+                        {
+                            chartMain.Series["Income"].Points.AddXY(dt.ToShortDateString(), 0);
+                        }
+                        else
+                        {
+                            var item = income.First(i => i._date == dt);
+                            chartMain.Series["Income"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                        }
                     }
                     break;
                 case 2:
@@ -121,12 +139,9 @@ namespace QuanLychiTieu
                          "GROUP BY INDATE " +
                          "ORDER BY INDATE";
                     income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, dateFill.Value.Month);
-                    // Tạo một danh sách chung của tất cả các ngày
-                    List<DateTime> allDates = new List<DateTime>();
                     allDates.AddRange(expenses.Select(i => i._date));
                     allDates.AddRange(income.Select(i => i._date));
                     allDates = allDates.Distinct().OrderBy(d => d).ToList();
-                    // Điền các giá trị thiếu với 0
                     foreach (DateTime dt in allDates)
                     {
                         if (!expenses.Any(i => i._date == dt))
@@ -151,6 +166,7 @@ namespace QuanLychiTieu
                     }
                     break;
                 case 3:
+
                     break;
                 case 4:
                     break;
