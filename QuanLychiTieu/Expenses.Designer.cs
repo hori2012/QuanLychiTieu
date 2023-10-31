@@ -54,6 +54,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(285, 57);
             this.label1.Name = "label1";
@@ -64,6 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(74, 142);
             this.label2.Name = "label2";
@@ -84,18 +86,20 @@
             // 
             // btnAddType
             // 
+            this.btnAddType.BackColor = System.Drawing.Color.Transparent;
             this.btnAddType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddType.Location = new System.Drawing.Point(534, 139);
             this.btnAddType.Name = "btnAddType";
             this.btnAddType.Size = new System.Drawing.Size(111, 30);
             this.btnAddType.TabIndex = 6;
             this.btnAddType.Text = "Add type";
-            this.btnAddType.UseVisualStyleBackColor = true;
+            this.btnAddType.UseVisualStyleBackColor = false;
             this.btnAddType.Click += new System.EventHandler(this.btnAddType_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(74, 187);
             this.label3.Name = "label3";
@@ -176,6 +180,7 @@
             // lbMoney
             // 
             this.lbMoney.AutoSize = true;
+            this.lbMoney.BackColor = System.Drawing.Color.Transparent;
             this.lbMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMoney.Location = new System.Drawing.Point(74, 234);
             this.lbMoney.Name = "lbMoney";
@@ -205,6 +210,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
+            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.linkLabel1.LinkColor = System.Drawing.Color.Gray;
             this.linkLabel1.Location = new System.Drawing.Point(74, 264);
@@ -219,6 +225,7 @@
             // 
             // picLoad
             // 
+            this.picLoad.BackColor = System.Drawing.Color.Transparent;
             this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
             this.picLoad.Location = new System.Drawing.Point(565, 196);
@@ -231,6 +238,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.spending;
             this.pictureBox1.Location = new System.Drawing.Point(3, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -244,6 +252,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812253117951_d2ca48418be587ad8e20d79d0a1e1ab3;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(693, 600);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label4);

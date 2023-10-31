@@ -248,5 +248,6 @@ namespace QuanLychiTieu
         {
             picLogout.BackColor = Color.FromArgb(255, 255, 128);
         }
+
     }
 }

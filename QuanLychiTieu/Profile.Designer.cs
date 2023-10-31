@@ -39,14 +39,14 @@
             this.rbMale = new System.Windows.Forms.RadioButton();
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.pnUpdatePass = new System.Windows.Forms.Panel();
-            this.txtConfirmPass = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.likChangePass = new System.Windows.Forms.LinkLabel();
             this.picEyeHide2 = new System.Windows.Forms.PictureBox();
             this.picEyeShow1 = new System.Windows.Forms.PictureBox();
             this.picEyeHide1 = new System.Windows.Forms.PictureBox();
             this.picEyeShow2 = new System.Windows.Forms.PictureBox();
+            this.txtConfirmPass = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.likChangePass = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnUpdatePass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEyeHide2)).BeginInit();
@@ -59,6 +59,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(262, 146);
             this.label1.Name = "label1";
@@ -69,6 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(135, 216);
             this.label2.Name = "label2";
@@ -79,6 +81,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(135, 263);
             this.label3.Name = "label3";
@@ -89,6 +92,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(135, 311);
             this.label4.Name = "label4";
@@ -134,27 +138,30 @@
             // rbMale
             // 
             this.rbMale.AutoSize = true;
+            this.rbMale.BackColor = System.Drawing.Color.Transparent;
             this.rbMale.Location = new System.Drawing.Point(326, 309);
             this.rbMale.Name = "rbMale";
             this.rbMale.Size = new System.Drawing.Size(58, 20);
             this.rbMale.TabIndex = 9;
             this.rbMale.TabStop = true;
             this.rbMale.Text = "Male";
-            this.rbMale.UseVisualStyleBackColor = true;
+            this.rbMale.UseVisualStyleBackColor = false;
             // 
             // rbFemale
             // 
             this.rbFemale.AutoSize = true;
+            this.rbFemale.BackColor = System.Drawing.Color.Transparent;
             this.rbFemale.Location = new System.Drawing.Point(481, 309);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(74, 20);
             this.rbFemale.TabIndex = 10;
             this.rbFemale.TabStop = true;
             this.rbFemale.Text = "Female";
-            this.rbFemale.UseVisualStyleBackColor = true;
+            this.rbFemale.UseVisualStyleBackColor = false;
             // 
             // pnUpdatePass
             // 
+            this.pnUpdatePass.BackColor = System.Drawing.Color.Transparent;
             this.pnUpdatePass.Controls.Add(this.picEyeHide2);
             this.pnUpdatePass.Controls.Add(this.picEyeShow1);
             this.pnUpdatePass.Controls.Add(this.picEyeHide1);
@@ -167,48 +174,6 @@
             this.pnUpdatePass.Name = "pnUpdatePass";
             this.pnUpdatePass.Size = new System.Drawing.Size(437, 100);
             this.pnUpdatePass.TabIndex = 11;
-            // 
-            // txtConfirmPass
-            // 
-            this.txtConfirmPass.Location = new System.Drawing.Point(201, 63);
-            this.txtConfirmPass.Name = "txtConfirmPass";
-            this.txtConfirmPass.PasswordChar = '*';
-            this.txtConfirmPass.Size = new System.Drawing.Size(229, 22);
-            this.txtConfirmPass.TabIndex = 12;
-            this.txtConfirmPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConfirmPass_KeyDown);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(10, 63);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 18);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "ConfirmPass:";
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(283, 494);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(86, 30);
-            this.btnUpdate.TabIndex = 12;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // likChangePass
-            // 
-            this.likChangePass.AutoSize = true;
-            this.likChangePass.LinkColor = System.Drawing.Color.Black;
-            this.likChangePass.Location = new System.Drawing.Point(135, 354);
-            this.likChangePass.Name = "likChangePass";
-            this.likChangePass.Size = new System.Drawing.Size(117, 16);
-            this.likChangePass.TabIndex = 13;
-            this.likChangePass.TabStop = true;
-            this.likChangePass.Text = "Change Password";
-            this.likChangePass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.likChangePass_LinkClicked);
             // 
             // picEyeHide2
             // 
@@ -258,6 +223,49 @@
             this.picEyeShow2.TabStop = false;
             this.picEyeShow2.Click += new System.EventHandler(this.picEyeShow2_Click);
             // 
+            // txtConfirmPass
+            // 
+            this.txtConfirmPass.Location = new System.Drawing.Point(201, 63);
+            this.txtConfirmPass.Name = "txtConfirmPass";
+            this.txtConfirmPass.PasswordChar = '*';
+            this.txtConfirmPass.Size = new System.Drawing.Size(229, 22);
+            this.txtConfirmPass.TabIndex = 12;
+            this.txtConfirmPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConfirmPass_KeyDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(10, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(111, 18);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "ConfirmPass:";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(283, 494);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(86, 30);
+            this.btnUpdate.TabIndex = 12;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // likChangePass
+            // 
+            this.likChangePass.AutoSize = true;
+            this.likChangePass.BackColor = System.Drawing.Color.Transparent;
+            this.likChangePass.LinkColor = System.Drawing.Color.Black;
+            this.likChangePass.Location = new System.Drawing.Point(135, 354);
+            this.likChangePass.Name = "likChangePass";
+            this.likChangePass.Size = new System.Drawing.Size(117, 16);
+            this.likChangePass.TabIndex = 13;
+            this.likChangePass.TabStop = true;
+            this.likChangePass.Text = "Change Password";
+            this.likChangePass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.likChangePass_LinkClicked);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.profile;
@@ -273,6 +281,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812271924581_9ea8fa077b401669cc789d0801a981fb;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(693, 600);
             this.Controls.Add(this.likChangePass);
             this.Controls.Add(this.btnUpdate);

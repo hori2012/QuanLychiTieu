@@ -166,7 +166,7 @@
             // 
             // pnShowMain
             // 
-            this.pnShowMain.BackColor = System.Drawing.Color.White;
+            this.pnShowMain.BackColor = System.Drawing.Color.Transparent;
             this.pnShowMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnShowMain.Controls.Add(this.label3);
             this.pnShowMain.Controls.Add(this.label2);
@@ -210,6 +210,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(959, 592);
             this.Controls.Add(this.pnShowMain);
             this.Controls.Add(this.panel1);
