@@ -35,13 +35,13 @@
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateFill = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cbFill = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lkIncome = new System.Windows.Forms.LinkLabel();
             this.lkExpenses = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateFill = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,12 +60,10 @@
             series1.ChartArea = "ChartArea1";
             series1.EmptyPointStyle.Name = "Expenses";
             series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.IsValueShownAsLabel = true;
             series1.Legend = "Legend1";
             series1.Name = "Expenses";
             series2.ChartArea = "ChartArea1";
             series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series2.IsValueShownAsLabel = true;
             series2.Legend = "Legend1";
             series2.Name = "Income";
             this.chartMain.Series.Add(series1);
@@ -92,6 +90,33 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tools";
+            // 
+            // dateFill
+            // 
+            this.dateFill.Location = new System.Drawing.Point(148, 18);
+            this.dateFill.Name = "dateFill";
+            this.dateFill.Size = new System.Drawing.Size(293, 22);
+            this.dateFill.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(86, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 18);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Date:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.financial_statement;
+            this.pictureBox1.Location = new System.Drawing.Point(500, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(124, 83);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // cbFill
             // 
@@ -140,33 +165,6 @@
             this.lkExpenses.Text = "Expenses";
             this.lkExpenses.MouseEnter += new System.EventHandler(this.lkExpenses_MouseEnter);
             this.lkExpenses.MouseLeave += new System.EventHandler(this.lkExpenses_MouseLeave);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.financial_statement;
-            this.pictureBox1.Location = new System.Drawing.Point(500, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(124, 83);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(86, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 18);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Date:";
-            // 
-            // dateFill
-            // 
-            this.dateFill.Location = new System.Drawing.Point(148, 18);
-            this.dateFill.Name = "dateFill";
-            this.dateFill.Size = new System.Drawing.Size(293, 22);
-            this.dateFill.TabIndex = 6;
             // 
             // Statistics
             // 
