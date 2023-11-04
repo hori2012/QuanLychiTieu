@@ -120,24 +120,25 @@ namespace QuanLychiTieu
                     {
                         foreach (DateTime dt in allDates)
                         {
+                            string dtLabel = dt.ToString("dd-MM");
                             if (!expenses.Any(i => i._date == dt))
                             {
-                                chartMain.Series["Expenses"].Points.AddXY(dt.ToShortDateString(), 0);
+                                chartMain.Series["Expenses"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
                                 var item = expenses.First(i => i._date == dt);
-                                chartMain.Series["Expenses"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                                chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                             }
 
                             if (!income.Any(i => i._date == dt))
                             {
-                                chartMain.Series["Income"].Points.AddXY(dt.ToShortDateString(), 0);
+                                chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
                                 var item = income.First(i => i._date == dt);
-                                chartMain.Series["Income"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                                chartMain.Series["Income"].Points.AddXY(dtLabel, (double)item._money);
                             }
                         }
                     }
@@ -173,24 +174,25 @@ namespace QuanLychiTieu
                         allDates = allDates.Distinct().OrderBy(d => d).ToList();
                         foreach (DateTime dt in allDates)
                         {
+                            string dtLabel = dt.ToString("dd-MM");
                             if (!expenses.Any(i => i._date == dt))
                             {
-                                chartMain.Series["Expenses"].Points.AddXY(dt.ToShortDateString(), 0);
+                                chartMain.Series["Expenses"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
                                 var item = expenses.First(i => i._date == dt);
-                                chartMain.Series["Expenses"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                                chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                             }
 
                             if (!income.Any(i => i._date == dt))
                             {
-                                chartMain.Series["Income"].Points.AddXY(dt.ToShortDateString(), 0);
+                                chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
                                 var item = income.First(i => i._date == dt);
-                                chartMain.Series["Income"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                                chartMain.Series["Income"].Points.AddXY(dtLabel, (double)item._money);
                             }
                         }
                     }
@@ -224,24 +226,25 @@ namespace QuanLychiTieu
                     {
                         foreach (DateTime dt in allDates)
                         {
+                            string dtLabel = dt.ToString("dd-MM");
                             if (!expenses.Any(i => i._date == dt))
                             {
-                                chartMain.Series["Expenses"].Points.AddXY(dt.ToShortDateString(), 0);
+                                chartMain.Series["Expenses"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
                                 var item = expenses.First(i => i._date == dt);
-                                chartMain.Series["Expenses"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                                chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                             }
 
                             if (!income.Any(i => i._date == dt))
                             {
-                                chartMain.Series["Income"].Points.AddXY(dt.ToShortDateString(), 0);
+                                chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
                                 var item = income.First(i => i._date == dt);
-                                chartMain.Series["Income"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                                chartMain.Series["Income"].Points.AddXY(dtLabel, (double)item._money);
                             }
                         }
                     }
@@ -297,24 +300,25 @@ namespace QuanLychiTieu
                     {
                         foreach (DateTime dt in allDates)
                         {
+                            string dtLabel = dt.ToString("dd-MM");
                             if (!expenses.Any(i => i._date == dt))
                             {
-                                chartMain.Series["Expenses"].Points.AddXY(dt.ToShortDateString(), 0);
+                                chartMain.Series["Expenses"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
                                 var item = expenses.First(i => i._date == dt);
-                                chartMain.Series["Expenses"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                                chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                             }
 
                             if (!income.Any(i => i._date == dt))
                             {
-                                chartMain.Series["Income"].Points.AddXY(dt.ToShortDateString(), 0);
+                                chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
                                 var item = income.First(i => i._date == dt);
-                                chartMain.Series["Income"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                                chartMain.Series["Income"].Points.AddXY(dtLabel, (double)item._money);
                             }
                         }
                     }
