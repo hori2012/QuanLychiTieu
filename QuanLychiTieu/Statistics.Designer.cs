@@ -28,50 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbValue = new System.Windows.Forms.ComboBox();
             this.dateFill = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.cbFill = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lkIncome = new System.Windows.Forms.LinkLabel();
             this.lkExpenses = new System.Windows.Forms.LinkLabel();
-            this.cbValue = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chartMain
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartMain.ChartAreas.Add(chartArea2);
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend2.Name = "Legend1";
-            legend2.Title = "Statistics";
-            this.chartMain.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartMain.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            legend1.Title = "Statistics";
+            this.chartMain.Legends.Add(legend1);
             this.chartMain.Location = new System.Drawing.Point(12, 135);
             this.chartMain.Name = "chartMain";
-            series3.ChartArea = "ChartArea1";
-            series3.EmptyPointStyle.Name = "Expenses";
-            series3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.Legend = "Legend1";
-            series3.Name = "Expenses";
-            series4.ChartArea = "ChartArea1";
-            series4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series4.Legend = "Legend1";
-            series4.Name = "Income";
-            this.chartMain.Series.Add(series3);
-            this.chartMain.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.EmptyPointStyle.Name = "Expenses";
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.Legend = "Legend1";
+            series1.Name = "Expenses";
+            series2.ChartArea = "ChartArea1";
+            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series2.Legend = "Legend1";
+            series2.Name = "Income";
+            this.chartMain.Series.Add(series1);
+            this.chartMain.Series.Add(series2);
             this.chartMain.Size = new System.Drawing.Size(669, 453);
             this.chartMain.TabIndex = 0;
             this.chartMain.Text = "chart1";
-            title2.Name = "Statistics";
-            this.chartMain.Titles.Add(title2);
+            title1.Name = "Statistics";
+            this.chartMain.Titles.Add(title1);
             // 
             // groupBox1
             // 
@@ -89,6 +89,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tools";
+            // 
+            // cbValue
+            // 
+            this.cbValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbValue.FormattingEnabled = true;
+            this.cbValue.Location = new System.Drawing.Point(523, 39);
+            this.cbValue.Name = "cbValue";
+            this.cbValue.Size = new System.Drawing.Size(142, 24);
+            this.cbValue.TabIndex = 7;
+            this.cbValue.SelectedIndexChanged += new System.EventHandler(this.cbValue_SelectedIndexChanged);
             // 
             // dateFill
             // 
@@ -154,15 +164,6 @@
             this.lkExpenses.Text = "Expenses";
             this.lkExpenses.MouseEnter += new System.EventHandler(this.lkExpenses_MouseEnter);
             this.lkExpenses.MouseLeave += new System.EventHandler(this.lkExpenses_MouseLeave);
-            // 
-            // cbValue
-            // 
-            this.cbValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbValue.FormattingEnabled = true;
-            this.cbValue.Location = new System.Drawing.Point(523, 39);
-            this.cbValue.Name = "cbValue";
-            this.cbValue.Size = new System.Drawing.Size(142, 24);
-            this.cbValue.TabIndex = 7;
             // 
             // Statistics
             // 
