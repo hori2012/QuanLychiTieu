@@ -403,5 +403,15 @@ namespace QuanLychiTieu
                 }
             }
         }
+
+        private void lkExpenses_Click(object sender, EventArgs e)
+        {
+            pnStatistc.Controls.Clear();
+            StatisticExpenses statisticExpenses = new StatisticExpenses(_userId);
+            statisticExpenses.TopLevel = false;
+            statisticExpenses.AutoScroll = true;
+            pnStatistc.Controls.Add(statisticExpenses);
+            statisticExpenses.Show();
+        }
     }
 }
