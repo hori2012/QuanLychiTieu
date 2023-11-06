@@ -105,9 +105,8 @@ namespace QuanLychiTieu
                            "GROUP BY INDATE " +
                            "ORDER BY INDATE";
                     var income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, DateTime.Now.ToShortDateString());
+                    allDates.Clear();
                     allDates.AddRange(expenses.Select(i => i._date));
-                    allDates.AddRange(income.Select(i => i._date));
-                    allDates = allDates.Distinct().OrderBy(d => d).ToList();
                     if (expenses.Any() == false && income.Any() == false)
                     {
                         DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -130,7 +129,12 @@ namespace QuanLychiTieu
                                 var item = expenses.First(i => i._date == dt);
                                 chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                             }
-
+                        }
+                        allDates.Clear();
+                        allDates.AddRange(income.Select(i => i._date));
+                        foreach (DateTime dt in allDates)
+                        {
+                            string dtLabel = dt.ToString("dd-MM");
                             if (!income.Any(i => i._date == dt))
                             {
                                 chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
@@ -159,6 +163,8 @@ namespace QuanLychiTieu
                          "GROUP BY INDATE " +
                          "ORDER BY INDATE";
                     income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, dateFill.Value.Month, dateFill.Value.Year);
+                    allDates.Clear();
+                    allDates.AddRange(expenses.Select(i => i._date));
                     if (expenses.Any() == false && income.Any() == false)
                     {
                         DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -169,9 +175,6 @@ namespace QuanLychiTieu
                     }
                     else
                     {
-                        allDates.AddRange(expenses.Select(i => i._date));
-                        allDates.AddRange(income.Select(i => i._date));
-                        allDates = allDates.Distinct().OrderBy(d => d).ToList();
                         foreach (DateTime dt in allDates)
                         {
                             string dtLabel = dt.ToString("dd-MM");
@@ -184,7 +187,12 @@ namespace QuanLychiTieu
                                 var item = expenses.First(i => i._date == dt);
                                 chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                             }
-
+                        }
+                        allDates.Clear();
+                        allDates.AddRange(income.Select(i => i._date));
+                        foreach (DateTime dt in allDates)
+                        {
+                            string dtLabel = dt.ToString("dd-MM");
                             if (!income.Any(i => i._date == dt))
                             {
                                 chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
@@ -211,9 +219,8 @@ namespace QuanLychiTieu
                          "GROUP BY INDATE " +
                          "ORDER BY INDATE";
                     income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, dateFill.Value.Year);
+                    allDates = new List<DateTime>();
                     allDates.AddRange(expenses.Select(i => i._date));
-                    allDates.AddRange(income.Select(i => i._date));
-                    allDates = allDates.Distinct().OrderBy(d => d).ToList();
                     if (expenses.Any() == false && income.Any() == false)
                     {
                         DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -227,16 +234,21 @@ namespace QuanLychiTieu
                         foreach (DateTime dt in allDates)
                         {
                             string dtLabel = dt.ToString("dd-MM");
-                            if (!expenses.Any(i => i._date == dt))
+                            if (!expenses.Any(i => i._date.Date == dt.Date))
                             {
                                 chartMain.Series["Expenses"].Points.AddXY(dtLabel, 0);
                             }
                             else
                             {
-                                var item = expenses.First(i => i._date == dt);
+                                var item = expenses.First(i => i._date.Date == dt.Date);
                                 chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                             }
-
+                        }
+                        allDates.Clear();
+                        allDates.AddRange(income.Select(i => i._date));
+                        foreach (DateTime dt in allDates)
+                        {
+                            string dtLabel = dt.ToString("dd-MM");
                             if (!income.Any(i => i._date == dt))
                             {
                                 chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
@@ -285,9 +297,8 @@ namespace QuanLychiTieu
                          "GROUP BY INDATE " +
                          "ORDER BY INDATE";
                     income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, DateTime.Now.Year);
+                    allDates.Clear();
                     allDates.AddRange(expenses.Select(i => i._date));
-                    allDates.AddRange(income.Select(i => i._date));
-                    allDates = allDates.Distinct().OrderBy(d => d).ToList();
                     if (expenses.Any() == false && income.Any() == false)
                     {
                         DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -310,7 +321,12 @@ namespace QuanLychiTieu
                                 var item = expenses.First(i => i._date == dt);
                                 chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                             }
-
+                        }
+                        allDates.Clear();
+                        allDates.AddRange(income.Select(i => i._date));
+                        foreach (DateTime dt in allDates)
+                        {
+                            string dtLabel = dt.ToString("dd-MM");
                             if (!income.Any(i => i._date == dt))
                             {
                                 chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
@@ -331,22 +347,22 @@ namespace QuanLychiTieu
         private void cbValue_SelectedIndexChanged(object sender, EventArgs e)
         {
             string sql = "";
+            chartMain.Series["Expenses"].Points.Clear();
+            chartMain.Series["Income"].Points.Clear();
             List<DateTime> allDates = new List<DateTime>();
             sql = "SELECT EXDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM EXPENSES WHERE USERID = :p0 AND " +
-                  "TO_CHAR(EXDATE, 'Month') = :p1 AND " +
+                  "EXTRACT(MONTH FROM EXDATE) = :p1 AND " +
                   "EXTRACT(YEAR FROM EXDATE) = :p2 " +
                   "GROUP BY EXDATE " +
                   "ORDER BY EXDATE";
-            var expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, cbValue.Text, DateTime.Now.Year);
+            var expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, cbValue.SelectedValue, DateTime.Now.Year);
             sql = "SELECT INDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM INCOME WHERE USERID = :p0 AND " +
-                 "TO_CHAR(INDATE, 'Month') = :p1 AND " +
+                 "EXTRACT(MONTH FROM INDATE) = :p1 AND " +
                  "EXTRACT(YEAR FROM INDATE) = :p2 " +
                  "GROUP BY INDATE " +
                  "ORDER BY INDATE";
-            var income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, cbValue.Text, DateTime.Now.Year);
+            var income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, cbValue.SelectedValue, DateTime.Now.Year);
             allDates.AddRange(expenses.Select(i => i._date));
-            allDates.AddRange(income.Select(i => i._date));
-            allDates = allDates.Distinct().OrderBy(d => d).ToList();
             if (expenses.Any() == false && income.Any() == false)
             {
                 DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -359,24 +375,30 @@ namespace QuanLychiTieu
             {
                 foreach (DateTime dt in allDates)
                 {
+                    string dtLabel = dt.ToString("dd-MM");
                     if (!expenses.Any(i => i._date == dt))
                     {
-                        chartMain.Series["Expenses"].Points.AddXY(dt.ToShortDateString(), 0);
+                        chartMain.Series["Expenses"].Points.AddXY(dtLabel, 0);
                     }
                     else
                     {
                         var item = expenses.First(i => i._date == dt);
-                        chartMain.Series["Expenses"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                        chartMain.Series["Expenses"].Points.AddXY(dtLabel, (double)item._money);
                     }
-
+                }
+                allDates.Clear();
+                allDates.AddRange(income.Select(i => i._date));
+                foreach (DateTime dt in allDates)
+                {
+                    string dtLabel = dt.ToString("dd-MM");
                     if (!income.Any(i => i._date == dt))
                     {
-                        chartMain.Series["Income"].Points.AddXY(dt.ToShortDateString(), 0);
+                        chartMain.Series["Income"].Points.AddXY(dtLabel, 0);
                     }
                     else
                     {
                         var item = income.First(i => i._date == dt);
-                        chartMain.Series["Income"].Points.AddXY(item._date.ToShortDateString(), (double)item._money);
+                        chartMain.Series["Income"].Points.AddXY(dtLabel, (double)item._money);
                     }
                 }
             }
