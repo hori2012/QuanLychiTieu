@@ -62,7 +62,6 @@ namespace QuanLychiTieu
                                 Year = z.Key.Year,
                                 money = z.Sum(m => m.x.MONEY)
                             })
-                            .Take(5)
                             .ToList();
             allYear.AddRange(expenses.Select(x => x.Year));
             allType.AddRange(expenses.Select(x => x.NameExType));
@@ -107,6 +106,17 @@ namespace QuanLychiTieu
             {
                 case 1:
                     cbValue.Hide();
+                    foreach (var series in chartMain.Series)
+                    {
+                        chartMain.Series[series.Name].Points.Clear();
+                    }
+                    string sql = "SELECT EXPENSESTYPE,NAMEEXTYPE AS \"_nameType\", EXDATE AS \"_date\", SUM(MONEY) AS \"_money\" " +
+                                 "FROM EXPENSES WHERE USERID = :p0 AND " +
+                                 "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
+                                 "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
+                                 "GROUP BY EXDATE " +
+                                 "ORDER BY EXDATE";
+                    var expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, DateTime.Now.ToShortDateString());
                     break;
                 case 2:
                     cbValue.Show();
@@ -132,12 +142,25 @@ namespace QuanLychiTieu
                     cbValue.Show();
                     break;
                 case 3:
+                    cbValue.Hide();
+                    foreach (var series in chartMain.Series)
+                    {
+                        chartMain.Series[series.Name].Points.Clear();
+                    }
                     break;
                 case 4:
                     cbValue.Hide();
+                    foreach (var series in chartMain.Series)
+                    {
+                        chartMain.Series[series.Name].Points.Clear();
+                    }
                     break;
                 default:
                     cbValue.Hide();
+                    foreach (var series in chartMain.Series)
+                    {
+                        chartMain.Series[series.Name].Points.Clear();
+                    }
                     break;
             }
         }
