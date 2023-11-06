@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series22 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title11 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.pnStatisEx = new System.Windows.Forms.Panel();
             this.chartMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbValue = new System.Windows.Forms.ComboBox();
             this.dateFill = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,7 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lkIncome = new System.Windows.Forms.LinkLabel();
             this.lkHome = new System.Windows.Forms.LinkLabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pnStatisEx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -61,30 +59,36 @@
             // 
             // chartMain
             // 
-            chartArea11.Name = "ChartArea1";
-            this.chartMain.ChartAreas.Add(chartArea11);
-            legend11.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend11.Name = "Legend1";
-            legend11.Title = "Statistics";
-            this.chartMain.Legends.Add(legend11);
+            chartArea1.Name = "ChartArea1";
+            this.chartMain.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            legend1.Title = "Expenses";
+            this.chartMain.Legends.Add(legend1);
             this.chartMain.Location = new System.Drawing.Point(8, 135);
             this.chartMain.Name = "chartMain";
-            series21.ChartArea = "ChartArea1";
-            series21.EmptyPointStyle.Name = "Expenses";
-            series21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series21.Legend = "Legend1";
-            series21.Name = "Expenses";
-            series22.ChartArea = "ChartArea1";
-            series22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series22.Legend = "Legend1";
-            series22.Name = "Income";
-            this.chartMain.Series.Add(series21);
-            this.chartMain.Series.Add(series22);
             this.chartMain.Size = new System.Drawing.Size(669, 453);
             this.chartMain.TabIndex = 4;
             this.chartMain.Text = "chart1";
-            title11.Name = "Statistics";
-            this.chartMain.Titles.Add(title11);
+            title1.Name = "Statistics";
+            this.chartMain.Titles.Add(title1);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbValue);
+            this.groupBox1.Controls.Add(this.dateFill);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.cbFill);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lkIncome);
+            this.groupBox1.Controls.Add(this.lkHome);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(8, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(677, 117);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tools";
             // 
             // cbValue
             // 
@@ -161,23 +165,6 @@
             this.lkHome.Click += new System.EventHandler(this.lkHome_Click);
             this.lkHome.MouseEnter += new System.EventHandler(this.lkHome_MouseEnter);
             this.lkHome.MouseLeave += new System.EventHandler(this.lkHome_MouseLeave);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cbValue);
-            this.groupBox1.Controls.Add(this.dateFill);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cbFill);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.lkIncome);
-            this.groupBox1.Controls.Add(this.lkHome);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(8, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(677, 117);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tools";
             // 
             // StatisticExpenses
             // 

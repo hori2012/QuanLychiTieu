@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,12 +45,49 @@ namespace QuanLychiTieu
         private void StatisticExpenses_Load(object sender, EventArgs e)
         {
             cbValue.Hide();
-
             cbFill.SelectedIndexChanged -= cbFill_SelectedIndexChanged;
             cbFill.DataSource = _comboItems;
             cbFill.ValueMember = "Value";
             cbFill.DisplayMember = "Display";
             cbFill.SelectedIndexChanged += cbFill_SelectedIndexChanged;
+            List<int> allYear = new List<int>();
+            List<string> allType = new List<string>();
+            var expenses = _qLChiTieu.EXPENSES.Join(_qLChiTieu.EXPENSESTYPEs, x => x.EXTYPEID, y => y.EXTYPEID, (x, y) => new { x, y })
+                            .Where(z => z.x.USERID == _userId)
+                            .GroupBy(z => new { z.y.NAMEEXTYPE, z.x.EXDATE.Value.Year })
+                            .OrderBy(z => z.Key.Year)
+                            .Select(z => new
+                            {
+                                NameExType = z.Key.NAMEEXTYPE,
+                                Year = z.Key.Year,
+                                money = z.Sum(m => m.x.MONEY)
+                            })
+                            .Take(5)
+                            .ToList();
+            allYear.AddRange(expenses.Select(x => x.Year));
+            allType.AddRange(expenses.Select(x => x.NameExType));
+            foreach (var type in allType)
+            {
+                if(!chartMain.Series.Any(x => x.Name == type))
+                {
+                    chartMain.Series.Add(type);
+                }
+            }
+            foreach (var year in allYear)
+            {
+                foreach(var series in chartMain.Series)
+                {
+                    if (expenses.Any(x => x.NameExType == series.Name && x.Year == year))
+                    {
+                        var item = expenses.First(x => x.NameExType == series.Name && x.Year == year);
+                        chartMain.Series[series.Name].Points.AddXY(year, (double)item.money);
+                    }
+                    else
+                    {
+                        chartMain.Series[series.Name].Points.AddXY(year, 0);
+                    }
+                }
+            }
         }
 
         private void lkHome_MouseEnter(object sender, EventArgs e)
@@ -65,7 +103,7 @@ namespace QuanLychiTieu
         private void cbFill_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectItem = cbFill.SelectedValue;
-            switch(selectItem)
+            switch (selectItem)
             {
                 case 1:
                     cbValue.Hide();
