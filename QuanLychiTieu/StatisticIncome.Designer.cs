@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.pnStatisIn = new System.Windows.Forms.Panel();
             this.chartMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -48,7 +48,9 @@
             // 
             // pnStatisIn
             // 
-            this.pnStatisIn.BackColor = System.Drawing.Color.White;
+            this.pnStatisIn.BackColor = System.Drawing.Color.Transparent;
+            this.pnStatisIn.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812254013250_530f7a4de9348d2221bfb204a57d3f61;
+            this.pnStatisIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnStatisIn.Controls.Add(this.chartMain);
             this.pnStatisIn.Controls.Add(this.groupBox1);
             this.pnStatisIn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -59,19 +61,19 @@
             // 
             // chartMain
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chartMain.ChartAreas.Add(chartArea4);
-            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend4.Name = "Legend1";
-            legend4.Title = "Expenses";
-            this.chartMain.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.chartMain.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            legend1.Title = "Expenses";
+            this.chartMain.Legends.Add(legend1);
             this.chartMain.Location = new System.Drawing.Point(8, 135);
             this.chartMain.Name = "chartMain";
             this.chartMain.Size = new System.Drawing.Size(669, 453);
             this.chartMain.TabIndex = 4;
             this.chartMain.Text = "chart1";
-            title4.Name = "Statistics";
-            this.chartMain.Titles.Add(title4);
+            title1.Name = "Statistics";
+            this.chartMain.Titles.Add(title1);
             // 
             // groupBox1
             // 
@@ -174,6 +176,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812254013250_530f7a4de9348d2221bfb204a57d3f61;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(693, 600);
             this.Controls.Add(this.pnStatisIn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

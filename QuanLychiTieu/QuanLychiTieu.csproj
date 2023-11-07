@@ -343,6 +343,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="budget.ico" />
+    <None Include="Resources\z4812254013250_530f7a4de9348d2221bfb204a57d3f61.jpg" />
     <None Include="Resources\z4812252816823_4e536b64a092c02ebc7603f5e36effb4.jpg" />
     <None Include="Resources\z4812253117951_d2ca48418be587ad8e20d79d0a1e1ab3.jpg" />
     <None Include="Resources\z4812271924581_9ea8fa077b401669cc789d0801a981fb.jpg" />

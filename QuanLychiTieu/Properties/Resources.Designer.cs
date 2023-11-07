@@ -283,6 +283,16 @@ namespace QuanLychiTieu.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap z4812254013250_530f7a4de9348d2221bfb204a57d3f61 {
+            get {
+                object obj = ResourceManager.GetObject("z4812254013250_530f7a4de9348d2221bfb204a57d3f61", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap z4812271924581_9ea8fa077b401669cc789d0801a981fb {
             get {
                 object obj = ResourceManager.GetObject("z4812271924581_9ea8fa077b401669cc789d0801a981fb", resourceCulture);

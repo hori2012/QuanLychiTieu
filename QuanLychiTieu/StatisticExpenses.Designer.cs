@@ -48,7 +48,9 @@
             // 
             // pnStatisEx
             // 
-            this.pnStatisEx.BackColor = System.Drawing.Color.White;
+            this.pnStatisEx.BackColor = System.Drawing.Color.Transparent;
+            this.pnStatisEx.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812254013250_530f7a4de9348d2221bfb204a57d3f61;
+            this.pnStatisEx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnStatisEx.Controls.Add(this.chartMain);
             this.pnStatisEx.Controls.Add(this.groupBox1);
             this.pnStatisEx.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -59,6 +61,7 @@
             // 
             // chartMain
             // 
+            this.chartMain.BackColor = System.Drawing.Color.Transparent;
             chartArea3.Name = "ChartArea1";
             this.chartMain.ChartAreas.Add(chartArea3);
             legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
@@ -173,6 +176,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812254013250_530f7a4de9348d2221bfb204a57d3f61;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(693, 600);
             this.Controls.Add(this.pnStatisEx);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
