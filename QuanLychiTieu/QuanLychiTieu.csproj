@@ -191,6 +191,12 @@
     <Compile Include="StatisticExpenses.Designer.cs">
       <DependentUpon>StatisticExpenses.cs</DependentUpon>
     </Compile>
+    <Compile Include="StatisticIncome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticIncome.Designer.cs">
+      <DependentUpon>StatisticIncome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Statistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StatisticExpenses.resx">
       <DependentUpon>StatisticExpenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticIncome.resx">
+      <DependentUpon>StatisticIncome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Statistics.resx">
       <DependentUpon>Statistics.cs</DependentUpon>

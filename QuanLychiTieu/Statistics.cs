@@ -413,5 +413,25 @@ namespace QuanLychiTieu
             pnStatistc.Controls.Add(statisticExpenses);
             statisticExpenses.Show();
         }
+
+        private void lkIncome_MouseEnter_1(object sender, EventArgs e)
+        {
+            lkIncome.LinkColor = Color.Red;
+        }
+
+        private void lkIncome_MouseLeave_1(object sender, EventArgs e)
+        {
+            lkIncome.LinkColor = Color.Gray;
+        }
+
+        private void lkIncome_Click(object sender, EventArgs e)
+        {
+            pnStatistc.Controls.Clear();
+            StatisticIncome statisticIncome = new StatisticIncome(_userId);
+            statisticIncome.TopLevel = false;
+            statisticIncome.AutoScroll = true;
+            pnStatistc.Controls.Add(statisticIncome);
+            statisticIncome.Show();
+        }
     }
 }

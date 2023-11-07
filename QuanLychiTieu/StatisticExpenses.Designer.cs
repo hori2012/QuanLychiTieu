@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.pnStatisEx = new System.Windows.Forms.Panel();
             this.chartMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,19 +59,19 @@
             // 
             // chartMain
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartMain.ChartAreas.Add(chartArea1);
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend1.Name = "Legend1";
-            legend1.Title = "Expenses";
-            this.chartMain.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chartMain.ChartAreas.Add(chartArea3);
+            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend3.Name = "Legend1";
+            legend3.Title = "Expenses";
+            this.chartMain.Legends.Add(legend3);
             this.chartMain.Location = new System.Drawing.Point(8, 135);
             this.chartMain.Name = "chartMain";
             this.chartMain.Size = new System.Drawing.Size(669, 453);
             this.chartMain.TabIndex = 4;
             this.chartMain.Text = "chart1";
-            title1.Name = "Statistics";
-            this.chartMain.Titles.Add(title1);
+            title3.Name = "Statistics";
+            this.chartMain.Titles.Add(title3);
             // 
             // groupBox1
             // 
@@ -150,6 +150,9 @@
             this.lkIncome.TabIndex = 1;
             this.lkIncome.TabStop = true;
             this.lkIncome.Text = "Income";
+            this.lkIncome.Click += new System.EventHandler(this.lkIncome_Click);
+            this.lkIncome.MouseEnter += new System.EventHandler(this.lkIncome_MouseEnter);
+            this.lkIncome.MouseLeave += new System.EventHandler(this.lkIncome_MouseLeave);
             // 
             // lkHome
             // 

@@ -5,20 +5,19 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLychiTieu
 {
-    public partial class StatisticExpenses : Form
+    public partial class StatisticIncome : Form
     {
         private QLChiTieuModel _qLChiTieu;
         private int _userId;
         private List<ComboItem> _comboItems;
         private List<ComboItem> _comboValues;
-        public StatisticExpenses(int userId)
+        public StatisticIncome(int userId)
         {
             InitializeComponent();
             _userId = userId;
@@ -32,17 +31,7 @@ namespace QuanLychiTieu
             };
         }
 
-        private void lkHome_Click(object sender, EventArgs e)
-        {
-            pnStatisEx.Controls.Clear();
-            Statistics statistic = new Statistics(_userId);
-            statistic.TopLevel = false;
-            statistic.AutoScroll = true;
-            pnStatisEx.Controls.Add(statistic);
-            statistic.Show();
-        }
-
-        private void StatisticExpenses_Load(object sender, EventArgs e)
+        private void StatisticIncome_Load(object sender, EventArgs e)
         {
             cbValue.Hide();
             cbFill.SelectedIndexChanged -= cbFill_SelectedIndexChanged;
@@ -52,19 +41,19 @@ namespace QuanLychiTieu
             cbFill.SelectedIndexChanged += cbFill_SelectedIndexChanged;
             List<int> allYear = new List<int>();
             List<string> allType = new List<string>();
-            var expenses = _qLChiTieu.EXPENSES.Join(_qLChiTieu.EXPENSESTYPEs, x => x.EXTYPEID, y => y.EXTYPEID, (x, y) => new { x, y })
+            var income = _qLChiTieu.INCOMEs.Join(_qLChiTieu.INCOMETYPEs, x => x.INTYPEID, y => y.INTYPEID, (x, y) => new { x, y })
                             .Where(z => z.x.USERID == _userId)
-                            .GroupBy(z => new { z.y.NAMEEXTYPE, z.x.EXDATE.Value.Year })
+                            .GroupBy(z => new { z.y.NAMEINTYPE, z.x.INDATE.Value.Year })
                             .OrderBy(z => z.Key.Year)
                             .Select(z => new
                             {
-                                NameExType = z.Key.NAMEEXTYPE,
+                                NameExType = z.Key.NAMEINTYPE,
                                 Year = z.Key.Year,
                                 money = z.Sum(m => m.x.MONEY)
                             })
                             .ToList();
-            allYear.AddRange(expenses.Select(x => x.Year).Distinct());
-            allType.AddRange(expenses.Select(x => x.NameExType));
+            allYear.AddRange(income.Select(x => x.Year).Distinct());
+            allType.AddRange(income.Select(x => x.NameExType));
             foreach (var type in allType)
             {
                 if (!chartMain.Series.Any(x => x.Name == type))
@@ -76,9 +65,9 @@ namespace QuanLychiTieu
             {
                 foreach (var series in chartMain.Series)
                 {
-                    if (expenses.Any(x => x.NameExType == series.Name && x.Year == year))
+                    if (income.Any(x => x.NameExType == series.Name && x.Year == year))
                     {
-                        var item = expenses.First(x => x.NameExType == series.Name && x.Year == year);
+                        var item = income.First(x => x.NameExType == series.Name && x.Year == year);
                         chartMain.Series[series.Name].Points.AddXY(year, (double)item.money);
                     }
                     else
@@ -99,6 +88,36 @@ namespace QuanLychiTieu
             lkHome.LinkColor = Color.Gray;
         }
 
+        private void lkExpenses_MouseEnter(object sender, EventArgs e)
+        {
+            lkExpenses.LinkColor = Color.Red;
+        }
+
+        private void lkExpenses_MouseLeave(object sender, EventArgs e)
+        {
+            lkExpenses.LinkColor = Color.Gray;
+        }
+
+        private void lkHome_Click(object sender, EventArgs e)
+        {
+            pnStatisIn.Controls.Clear();
+            Statistics statistics = new Statistics(_userId);
+            statistics.TopLevel = false;
+            statistics.AutoScroll = true;
+            pnStatisIn.Controls.Add(statistics);
+            statistics.Show();
+        }
+
+        private void lkExpenses_Click(object sender, EventArgs e)
+        {
+            pnStatisIn.Controls.Clear();
+            StatisticExpenses statisticExpenses = new StatisticExpenses(_userId);
+            statisticExpenses.TopLevel = false;
+            statisticExpenses.AutoScroll = true;
+            pnStatisIn.Controls.Add(statisticExpenses);
+            statisticExpenses.Show();
+        }
+
         private void cbFill_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectItem = cbFill.SelectedValue;
@@ -110,34 +129,34 @@ namespace QuanLychiTieu
                     {
                         chartMain.Series[series.Name].Points.Clear();
                     }
-                    string sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
-                           "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                           "WHERE EXPENSES.USERID = :p0 AND " +
-                           "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
-                           "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
-                           "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
-                           "ORDER BY EXPENSES.EXDATE";
-                    var expenses = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, DateTime.Now.ToShortDateString());
-                    if (expenses.Any() == false)
+                    string sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                                 "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                                 "WHERE INCOME.USERID = :p0 AND " +
+                                 "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
+                                 "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
+                                 "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
+                                 "ORDER BY INCOME.INDATE";
+                    var income = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, DateTime.Now.ToShortDateString());
+                    if (income.Any() == false)
                     {
                         DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         if (dialog == DialogResult.OK)
                         {
-                            StatisticExpenses_Load(sender, e);
+                            StatisticIncome_Load(sender, e);    
                         }
                     }
                     else
                     {
                         List<DateTime> allDate = new List<DateTime>();
-                        allDate.AddRange(expenses.Select(x => x._date).Distinct());
+                        allDate.AddRange(income.Select(x => x._date).Distinct());
                         foreach (var dt in allDate)
                         {
                             string date = dt.ToString("dd-MM");
                             foreach (var series in chartMain.Series)
                             {
-                                if (expenses.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
+                                if (income.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
                                 {
-                                    var item = expenses.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
+                                    var item = income.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
                                     chartMain.Series[series.Name].Points.AddXY(date, (double)item._money);
                                 }
                                 else
@@ -177,33 +196,33 @@ namespace QuanLychiTieu
                     {
                         chartMain.Series[series.Name].Points.Clear();
                     }
-                    sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
-                          "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                          "WHERE EXPENSES.USERID = :p0 AND " +
-                          "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p1 " +
-                          "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
-                               "ORDER BY EXPENSES.EXDATE";
-                    expenses = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, DateTime.Now.Year);
-                    if (expenses.Any() == false)
+                    sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND " +
+                          "EXTRACT(YEAR FROM INCOME.INDATE) = :p1 " +
+                          "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
+                    income = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, DateTime.Now.Year);
+                    if (income.Any() == false)
                     {
                         DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         if (dialog == DialogResult.OK)
                         {
-                            StatisticExpenses_Load(sender, e);
+                            StatisticIncome_Load(sender, e);
                         }
                     }
                     else
                     {
                         List<DateTime> allDate = new List<DateTime>();
-                        allDate.AddRange(expenses.Select(x => x._date).Distinct());
+                        allDate.AddRange(income.Select(x => x._date).Distinct());
                         foreach (var dt in allDate)
                         {
                             string date = dt.ToString("dd-MM");
                             foreach (var series in chartMain.Series)
                             {
-                                if (expenses.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
+                                if (income.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
                                 {
-                                    var item = expenses.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
+                                    var item = income.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
                                     chartMain.Series[series.Name].Points.AddXY(date, (double)item._money);
                                 }
                                 else
@@ -220,34 +239,34 @@ namespace QuanLychiTieu
                     {
                         chartMain.Series[series.Name].Points.Clear();
                     }
-                    sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
-                          "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                          "WHERE EXPENSES.USERID = :p0 AND " +
-                          "EXTRACT(MONTH FROM EXPENSES.EXDATE) = :p1 AND " +
-                          "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p2 " +
-                          "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
-                          "ORDER BY EXPENSES.EXDATE";
-                    expenses = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, dateFill.Value.Month, dateFill.Value.Year);
-                    if (expenses.Any() == false)
+                    sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND " +
+                          "EXTRACT(MONTH FROM INCOME.INDATE) = :p1 AND " +
+                          "EXTRACT(YEAR FROM INCOME.INDATE) = :p2 " +
+                          "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
+                    income = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, dateFill.Value.Month, dateFill.Value.Year);
+                    if (income.Any() == false)
                     {
                         DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         if (dialog == DialogResult.OK)
                         {
-                            StatisticExpenses_Load(sender, e);
+                            StatisticIncome_Load(sender, e);
                         }
                     }
                     else
                     {
                         List<DateTime> allDate = new List<DateTime>();
-                        allDate.AddRange(expenses.Select(x => x._date).Distinct());
+                        allDate.AddRange(income.Select(x => x._date).Distinct());
                         foreach (var dt in allDate)
                         {
                             string date = dt.ToString("dd-MM");
                             foreach (var series in chartMain.Series)
                             {
-                                if (expenses.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
+                                if (income.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
                                 {
-                                    var item = expenses.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
+                                    var item = income.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
                                     chartMain.Series[series.Name].Points.AddXY(date, (double)item._money);
                                 }
                                 else
@@ -264,33 +283,33 @@ namespace QuanLychiTieu
                     {
                         chartMain.Series[series.Name].Points.Clear();
                     }
-                    sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
-                          "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                          "WHERE EXPENSES.USERID = :p0 AND " +
-                          "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p1 " +
-                          "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
-                          "ORDER BY EXPENSES.EXDATE";
-                    expenses = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, dateFill.Value.Year);
-                    if (expenses.Any() == false)
+                    sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND " +
+                          "EXTRACT(YEAR FROM INCOME.INDATE) = :p1 " +
+                          "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
+                    income = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, dateFill.Value.Year);
+                    if (income.Any() == false)
                     {
                         DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         if (dialog == DialogResult.OK)
                         {
-                            StatisticExpenses_Load(sender, e);
+                            StatisticIncome_Load(sender, e);
                         }
                     }
                     else
                     {
                         List<DateTime> allDate = new List<DateTime>();
-                        allDate.AddRange(expenses.Select(x => x._date).Distinct());
+                        allDate.AddRange(income.Select(x => x._date).Distinct());
                         foreach (var dt in allDate)
                         {
                             string date = dt.ToString("dd-MM");
                             foreach (var series in chartMain.Series)
                             {
-                                if (expenses.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
+                                if (income.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
                                 {
-                                    var item = expenses.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
+                                    var item = income.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
                                     chartMain.Series[series.Name].Points.AddXY(date, (double)item._money);
                                 }
                                 else
@@ -310,34 +329,34 @@ namespace QuanLychiTieu
             {
                 chartMain.Series[series.Name].Points.Clear();
             }
-            string sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
-                         "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                         "WHERE EXPENSES.USERID = :p0 AND " +
-                         "EXTRACT(MONTH FROM EXPENSES.EXDATE) = :p1 AND " +
-                         "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p2 " +
-                         "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
-                         "ORDER BY EXPENSES.EXDATE";
-            var expenses = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, cbValue.SelectedValue, DateTime.Now.Year);
-            if (expenses.Any() == false)
+            string sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND " +
+                          "EXTRACT(MONTH FROM INCOME.INDATE) = :p1 AND " +
+                          "EXTRACT(YEAR FROM INCOME.INDATE) = :p2 " +
+                          "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
+            var income = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, cbValue.SelectedValue, DateTime.Now.Year);
+            if (income.Any() == false)
             {
                 DialogResult dialog = MessageBox.Show("No data available for the selected period!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 if (dialog == DialogResult.OK)
                 {
-                    StatisticExpenses_Load(sender, e);
+                    StatisticIncome_Load(sender, e);
                 }
             }
             else
             {
                 List<DateTime> allDate = new List<DateTime>();
-                allDate.AddRange(expenses.Select(x => x._date).Distinct());
+                allDate.AddRange(income.Select(x => x._date).Distinct());
                 foreach (var dt in allDate)
                 {
                     string date = dt.ToString("dd-MM");
                     foreach (var series in chartMain.Series)
                     {
-                        if (expenses.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
+                        if (income.Any(x => x._nameType == series.Name && x._date.Date == dt.Date))
                         {
-                            var item = expenses.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
+                            var item = income.First(x => x._nameType == series.Name && x._date.Date == dt.Date);
                             chartMain.Series[series.Name].Points.AddXY(date, (double)item._money);
                         }
                         else
@@ -347,26 +366,6 @@ namespace QuanLychiTieu
                     }
                 }
             }
-        }
-
-        private void lkIncome_MouseEnter(object sender, EventArgs e)
-        {
-            lkIncome.LinkColor = Color.Red;
-        }
-
-        private void lkIncome_MouseLeave(object sender, EventArgs e)
-        {
-            lkIncome.LinkColor = Color.Gray;
-        }
-
-        private void lkIncome_Click(object sender, EventArgs e)
-        {
-            pnStatisEx.Controls.Clear();
-            StatisticIncome statisticIncome = new StatisticIncome(_userId);
-            statisticIncome.TopLevel = false;
-            statisticIncome.AutoScroll = true;
-            pnStatisEx.Controls.Add(statisticIncome);
-            statisticIncome.Show();
         }
     }
 }
