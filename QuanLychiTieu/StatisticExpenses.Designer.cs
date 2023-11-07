@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.pnStatisEx = new System.Windows.Forms.Panel();
             this.chartMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -41,9 +41,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lkIncome = new System.Windows.Forms.LinkLabel();
             this.lkHome = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnStatisEx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnStatisEx
@@ -62,22 +64,23 @@
             // chartMain
             // 
             this.chartMain.BackColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.chartMain.ChartAreas.Add(chartArea3);
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend3.Name = "Legend1";
-            legend3.Title = "Expenses";
-            this.chartMain.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this.chartMain.ChartAreas.Add(chartArea2);
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend2.Name = "Legend1";
+            legend2.Title = "Expenses";
+            this.chartMain.Legends.Add(legend2);
             this.chartMain.Location = new System.Drawing.Point(8, 135);
             this.chartMain.Name = "chartMain";
             this.chartMain.Size = new System.Drawing.Size(669, 453);
             this.chartMain.TabIndex = 4;
             this.chartMain.Text = "chart1";
-            title3.Name = "Statistics";
-            this.chartMain.Titles.Add(title3);
+            title2.Name = "Statistics";
+            this.chartMain.Titles.Add(title2);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.cbValue);
             this.groupBox1.Controls.Add(this.dateFill);
             this.groupBox1.Controls.Add(this.label2);
@@ -172,6 +175,16 @@
             this.lkHome.MouseEnter += new System.EventHandler(this.lkHome_MouseEnter);
             this.lkHome.MouseLeave += new System.EventHandler(this.lkHome_MouseLeave);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.financial_statement;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(86, 71);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // StatisticExpenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -189,6 +202,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -205,5 +219,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel lkIncome;
         private System.Windows.Forms.LinkLabel lkHome;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
