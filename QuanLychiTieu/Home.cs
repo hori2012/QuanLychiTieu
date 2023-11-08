@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLychiTieu
 {
@@ -192,6 +194,7 @@ namespace QuanLychiTieu
             lbIncome.Paint += new PaintEventHandler(picAvatar_Paint);
             lbStatistics.Paint += new PaintEventHandler(picAvatar_Paint);
             picLogout.Paint += new PaintEventHandler(picAvatar_Paint);
+            
         }
         void picAvatar_Paint(object sender, PaintEventArgs e)
         {
@@ -249,5 +252,59 @@ namespace QuanLychiTieu
             picLogout.BackColor = Color.FromArgb(255, 255, 128);
         }
 
+        private void Home_Shown(object sender, EventArgs e)
+        {
+            if(_qLChiTieuModel.EXPENSES.Any(x => x.USERID == _userId && x.EXDATE.Value.Month == DateTime.Now.Month) && _qLChiTieuModel.INCOMEs.Any(x => x.USERID == _userId && x.INDATE.Value.Month == DateTime.Now.Month))
+            {
+                string message = "";
+                var totalMonthCur = (from expense in _qLChiTieuModel.EXPENSES
+                                     where expense.USERID == _userId && expense.EXDATE.Value.Month == DateTime.Now.Month
+                                     select expense.MONEY).Sum();
+                int preMonth = DateTime.Now.AddMonths(-1).Month;
+                var totalMonthPre = (from expense in _qLChiTieuModel.EXPENSES
+                                     where expense.USERID == _userId && expense.EXDATE.Value.Month == preMonth
+                                     select expense.MONEY).Sum();
+                if (totalMonthPre != 0 && ((totalMonthCur - totalMonthPre) / totalMonthPre) * 100 > 0)
+                {
+                    message += "This month, expenses increased by " + Math.Round((double)((totalMonthCur - totalMonthPre) / totalMonthPre) * 100, 0) + "%";
+                }
+                else if (totalMonthPre != 0 && ((totalMonthCur - totalMonthPre) / totalMonthPre) * 100 < 0)
+                {
+                    message += "This month, expenses decreased by " + Math.Round((double)((totalMonthCur - totalMonthPre) / totalMonthPre) * 100 * -1, 0) + "%";
+                }
+                else
+                {
+                    message += "Last month you did not update any expenses\n";
+                }
+                totalMonthCur = (from income in _qLChiTieuModel.INCOMEs
+                                 where income.USERID == _userId && income.INDATE.Value.Month == DateTime.Now.Month
+                                 select income.MONEY).Sum();
+                totalMonthPre = (from income in _qLChiTieuModel.INCOMEs
+                                 where income.USERID == _userId && income.INDATE.Value.Month == preMonth
+                                 select income.MONEY).Sum();
+                if (totalMonthPre != 0 && ((totalMonthCur - totalMonthPre) / totalMonthPre) * 100 > 0)
+                {
+                    message += ", income increased by " + Math.Round((double)((totalMonthCur - totalMonthPre) / totalMonthPre) * 100, 0) + "% compared to last month\n";
+                }
+                else if (totalMonthPre != 0 && ((totalMonthCur - totalMonthPre) / totalMonthPre) * 100 < 0)
+                {
+                    message += ", income decreased by " + Math.Round((double)((totalMonthCur - totalMonthPre) / totalMonthPre) * 100 * -1, 0) + "% compared to last month\n";
+                }
+                else
+                {
+                    message += "Last month you did not update any income\n";
+                }
+                NumberFormatInfo nfi = new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 };
+                var totalYear = (from expense in _qLChiTieuModel.EXPENSES
+                                 where expense.USERID == _userId && expense.EXDATE.Value.Year == DateTime.Now.Year
+                                 select expense.MONEY).Sum();
+                message += "\nThis year, the average monthly expenses is: " + (totalYear / 12).Value.ToString("#,##0", nfi) + "VND; ";
+                totalYear = (from income in _qLChiTieuModel.INCOMEs
+                             where income.USERID == _userId && income.INDATE.Value.Year == DateTime.Now.Year
+                             select income.MONEY).Sum();
+                message += "the average monthly expenditure is: " + (totalYear / 12).Value.ToString("#,##0", nfi) + "VND.";
+                DialogResult dialog = MessageBox.Show(message, "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
