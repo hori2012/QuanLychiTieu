@@ -53,6 +53,10 @@ namespace QuanLychiTieu
             {
                 dtGridIn.Rows.Add(item.id, item.nameType, item.money.Value.ToString("#,##0", nfi), item.date.Value.ToShortDateString(), item.note);
             }
+            var totalMoney = (from income in _qLChiTieu.INCOMEs
+                              where income.USERID == _userId && income.INDATE.Value.Year == DateTime.Now.Year
+                              select income.MONEY).Sum();
+            lbTotalMoney.Text = totalMoney.Value.ToString("#,##0", nfi) + " VND";
         }
 
         private void btnAddType_Click(object sender, EventArgs e)

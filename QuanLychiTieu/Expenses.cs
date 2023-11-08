@@ -77,6 +77,10 @@ namespace QuanLychiTieu
             {
                 dtGridEx.Rows.Add(item.id, item.nameType, item.money.Value.ToString("#,##0", nfi), item.date.Value.ToShortDateString(), item.note);
             }
+            var totalMoney = (from expenses in _qLChiTieu.EXPENSES
+                     where expenses.USERID == _userId && expenses.EXDATE.Value.Year == DateTime.Now.Year
+                     select expenses.MONEY).Sum();
+            lbTotalMoney.Text = totalMoney.Value.ToString("#,##0", nfi) + " VND";
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

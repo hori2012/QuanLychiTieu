@@ -368,5 +368,24 @@ namespace QuanLychiTieu
             pnStatisEx.Controls.Add(statisticIncome);
             statisticIncome.Show();
         }
+
+        private void picLoad_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = 2000;
+            picLoad.Image = Properties.Resources.work_in_progress;
+            timer.Tick += (s, ev) =>
+            {
+                picLoad.Image = Properties.Resources.work_in_progress_static;
+                foreach (var series in chartMain.Series)
+                {
+                    chartMain.Series[series.Name].Points.Clear();
+                }
+                StatisticExpenses_Load(sender, e);
+                timer.Stop();
+
+            };
+            timer.Start();
+        }
     }
 }
