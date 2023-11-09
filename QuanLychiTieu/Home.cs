@@ -18,6 +18,10 @@ namespace QuanLychiTieu
         private QLChiTieuModel _qLChiTieuModel;
         private Login _loginForm;
         private int _userId;
+        private bool isProfileClicked = false;
+        private bool isExpensesClicked = false;
+        private bool isIncomeClicked = false;
+        private bool isStatisticClicked = false;
         public Home(Login loginForm, int userId)
         {
             InitializeComponent();
@@ -31,6 +35,10 @@ namespace QuanLychiTieu
             lbExpense.BackColor = Color.FromArgb(255, 255, 128);
             lbIncome.BackColor = Color.FromArgb(255, 255, 128);
             lbStatistics.BackColor = Color.FromArgb(255, 255, 128);
+            isProfileClicked = true;
+            isExpensesClicked = false;
+            isIncomeClicked = false;
+            isStatisticClicked = false;
             foreach (Control control in pnShowMain.Controls)
             {
                 control.Dispose();
@@ -66,6 +74,10 @@ namespace QuanLychiTieu
             lbProfile.BackColor = Color.FromArgb(255, 255, 128);
             lbIncome.BackColor = Color.FromArgb(255, 255, 128);
             lbStatistics.BackColor = Color.FromArgb(255, 255, 128);
+            isProfileClicked = false;
+            isExpensesClicked = true;
+            isIncomeClicked = false;
+            isStatisticClicked = false;
             foreach (Control control in pnShowMain.Controls)
             {
                 control.Dispose();
@@ -101,6 +113,10 @@ namespace QuanLychiTieu
             lbExpense.BackColor = Color.FromArgb(255, 255, 128);
             lbProfile.BackColor = Color.FromArgb(255, 255, 128);
             lbStatistics.BackColor = Color.FromArgb(255, 255, 128);
+            isProfileClicked = false;
+            isExpensesClicked = false;
+            isIncomeClicked = true;
+            isStatisticClicked = false;
             foreach (Control control in pnShowMain.Controls)
             {
                 control.Dispose();
@@ -136,6 +152,10 @@ namespace QuanLychiTieu
             lbIncome.BackColor = Color.FromArgb(255, 255, 128);
             lbExpense.BackColor = Color.FromArgb(255, 255, 128);
             lbProfile.BackColor = Color.FromArgb(255, 255, 128);
+            isProfileClicked = false;
+            isExpensesClicked = false;
+            isIncomeClicked = false;
+            isStatisticClicked = true;
             foreach (Control control in pnShowMain.Controls)
             {
                 control.Dispose();
@@ -203,43 +223,67 @@ namespace QuanLychiTieu
 
         private void lbProfile_MouseEnter(object sender, EventArgs e)
         {
-            lbProfile.BackColor = Color.White;
+            if (!isProfileClicked)
+            {
+                lbProfile.BackColor = Color.White;
+            }
         }
 
         private void lbProfile_MouseLeave(object sender, EventArgs e)
         {
 
-            lbProfile.BackColor = Color.FromArgb(255, 255, 128);
+            if (!isProfileClicked)
+            {
+                lbProfile.BackColor = Color.FromArgb(255, 255, 128);
+            }
         }
 
         private void lbExpense_MouseEnter(object sender, EventArgs e)
         {
-            lbExpense.BackColor = Color.White;
+            if (!isExpensesClicked)
+            {
+                lbExpense.BackColor = Color.White;
+            }
         }
 
         private void lbExpense_MouseLeave(object sender, EventArgs e)
         {
-            lbExpense.BackColor = Color.FromArgb(255, 255, 128);
+            if (!isExpensesClicked)
+            {
+                lbExpense.BackColor = Color.FromArgb(255, 255, 128);
+            }
         }
 
         private void lbIncome_MouseEnter(object sender, EventArgs e)
         {
-            lbIncome.BackColor = Color.White;
+            if (!isIncomeClicked)
+            {
+                lbIncome.BackColor = Color.White;
+            }
         }
 
         private void lbIncome_MouseLeave(object sender, EventArgs e)
         {
-            lbIncome.BackColor = Color.FromArgb(255, 255, 128);
+            if (!isIncomeClicked)
+            {
+                lbIncome.BackColor = Color.FromArgb(255, 255, 128);
+            }
         }
 
         private void lbStatistics_MouseEnter(object sender, EventArgs e)
         {
-            lbStatistics.BackColor = Color.White;
+            if (!isStatisticClicked)
+            {
+                lbStatistics.BackColor = Color.White;
+            }
         }
 
         private void lbStatistics_MouseLeave(object sender, EventArgs e)
         {
-            lbStatistics.BackColor = Color.FromArgb(255, 255, 128);
+            if (!isStatisticClicked)
+            {
+                lbStatistics.BackColor = Color.FromArgb(255, 255, 128);
+            }
         }
 
         private void picLogout_MouseEnter(object sender, EventArgs e)

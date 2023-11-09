@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.pnStatisIn = new System.Windows.Forms.Panel();
             this.chartMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.picLoad = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cbValue = new System.Windows.Forms.ComboBox();
             this.dateFill = new System.Windows.Forms.DateTimePicker();
@@ -42,12 +43,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lkExpenses = new System.Windows.Forms.LinkLabel();
             this.lkHome = new System.Windows.Forms.LinkLabel();
-            this.picLoad = new System.Windows.Forms.PictureBox();
             this.pnStatisIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnStatisIn
@@ -65,19 +65,19 @@
             // 
             // chartMain
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartMain.ChartAreas.Add(chartArea2);
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend2.Name = "Legend1";
-            legend2.Title = "Expenses";
-            this.chartMain.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartMain.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.Name = "Legend1";
+            legend1.Title = "Income";
+            this.chartMain.Legends.Add(legend1);
             this.chartMain.Location = new System.Drawing.Point(8, 135);
             this.chartMain.Name = "chartMain";
             this.chartMain.Size = new System.Drawing.Size(669, 453);
             this.chartMain.TabIndex = 4;
             this.chartMain.Text = "chart1";
-            title2.Name = "Statistics";
-            this.chartMain.Titles.Add(title2);
+            title1.Name = "Statistics";
+            this.chartMain.Titles.Add(title1);
             // 
             // groupBox1
             // 
@@ -97,6 +97,19 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tools";
+            // 
+            // picLoad
+            // 
+            this.picLoad.BackColor = System.Drawing.Color.Transparent;
+            this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
+            this.picLoad.Location = new System.Drawing.Point(415, 82);
+            this.picLoad.Name = "picLoad";
+            this.picLoad.Size = new System.Drawing.Size(35, 29);
+            this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLoad.TabIndex = 15;
+            this.picLoad.TabStop = false;
+            this.picLoad.Click += new System.EventHandler(this.picLoad_Click);
             // 
             // pictureBox1
             // 
@@ -187,19 +200,6 @@
             this.lkHome.MouseEnter += new System.EventHandler(this.lkHome_MouseEnter);
             this.lkHome.MouseLeave += new System.EventHandler(this.lkHome_MouseLeave);
             // 
-            // picLoad
-            // 
-            this.picLoad.BackColor = System.Drawing.Color.Transparent;
-            this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
-            this.picLoad.Location = new System.Drawing.Point(415, 82);
-            this.picLoad.Name = "picLoad";
-            this.picLoad.Size = new System.Drawing.Size(35, 29);
-            this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLoad.TabIndex = 15;
-            this.picLoad.TabStop = false;
-            this.picLoad.Click += new System.EventHandler(this.picLoad_Click);
-            // 
             // StatisticIncome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -217,8 +217,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
