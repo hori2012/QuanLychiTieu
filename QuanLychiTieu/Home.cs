@@ -298,9 +298,9 @@ namespace QuanLychiTieu
 
         private void Home_Shown(object sender, EventArgs e)
         {
-            if(_qLChiTieuModel.EXPENSES.Any(x => x.USERID == _userId && x.EXDATE.Value.Month == DateTime.Now.Month) && _qLChiTieuModel.INCOMEs.Any(x => x.USERID == _userId && x.INDATE.Value.Month == DateTime.Now.Month))
+            string message = "";
+            if (_qLChiTieuModel.EXPENSES.Any(x => x.USERID == _userId && x.EXDATE.Value.Month == DateTime.Now.Month) && _qLChiTieuModel.INCOMEs.Any(x => x.USERID == _userId && x.INDATE.Value.Month == DateTime.Now.Month))
             {
-                string message = "";
                 var totalMonthCur = (from expense in _qLChiTieuModel.EXPENSES
                                      where expense.USERID == _userId && expense.EXDATE.Value.Month == DateTime.Now.Month
                                      select expense.MONEY).Sum();
@@ -342,7 +342,19 @@ namespace QuanLychiTieu
                 var totalYear = (from expense in _qLChiTieuModel.EXPENSES
                                  where expense.USERID == _userId && expense.EXDATE.Value.Year == DateTime.Now.Year
                                  select expense.MONEY).Sum();
-                message += "\nThis year, the average monthly expenses is: " + (totalYear / 12).Value.ToString("#,##0", nfi) + "VND; ";
+                message += "This year, the average monthly expenses is: " + (totalYear / 12).Value.ToString("#,##0", nfi) + "VND; ";
+                totalYear = (from income in _qLChiTieuModel.INCOMEs
+                             where income.USERID == _userId && income.INDATE.Value.Year == DateTime.Now.Year
+                             select income.MONEY).Sum();
+                message += "the average monthly expenditure is: " + (totalYear / 12).Value.ToString("#,##0", nfi) + "VND.";
+                DialogResult dialog = MessageBox.Show(message, "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }else if (_qLChiTieuModel.EXPENSES.Any(x => x.USERID == _userId && x.EXDATE.Value.Year == DateTime.Now.Year) && _qLChiTieuModel.INCOMEs.Any(x => x.USERID == _userId && x.INDATE.Value.Year == DateTime.Now.Year))
+            {
+                NumberFormatInfo nfi = new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 };
+                var totalYear = (from expense in _qLChiTieuModel.EXPENSES
+                                 where expense.USERID == _userId && expense.EXDATE.Value.Year == DateTime.Now.Year
+                                 select expense.MONEY).Sum();
+                message += "This year, the average monthly expenses is: " + (totalYear / 12).Value.ToString("#,##0", nfi) + "VND; ";
                 totalYear = (from income in _qLChiTieuModel.INCOMEs
                              where income.USERID == _userId && income.INDATE.Value.Year == DateTime.Now.Year
                              select income.MONEY).Sum();
