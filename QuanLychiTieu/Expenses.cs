@@ -195,11 +195,12 @@ namespace QuanLychiTieu
 
         private void dateExpense_CloseUp(object sender, EventArgs e)
         {
-            string itemSelect = dateExpense.Value.ToShortDateString();
+            string itemSelect = dateExpense.Value.ToString("MM-yyyy");
             for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
             {
                 DataGridViewRow row = dtGridEx.Rows[i];
-                if (String.Compare(row.Cells["colDate"].Value.ToString(), itemSelect, true) != 0)
+                DateTime colDate = DateTime.ParseExact(row.Cells["colDate"].Value.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                if (String.Compare(colDate.ToString("MM-yyyy"), itemSelect, true) != 0)
                 {
                     dtGridEx.Rows.Remove(row);
                 }

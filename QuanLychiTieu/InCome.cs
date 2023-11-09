@@ -174,11 +174,12 @@ namespace QuanLychiTieu
 
         private void dateIncome_CloseUp(object sender, EventArgs e)
         {
-            string itemSelect = dateIncome.Value.ToShortDateString();
+            string itemSelect = dateIncome.Value.ToString("MM-yyyy");
             for (int i = dtGridIn.RowCount - 2; i >= 0; i--)
             {
                 DataGridViewRow row = dtGridIn.Rows[i];
-                if (String.Compare(row.Cells["colDate"].Value.ToString(), itemSelect, true) != 0)
+                DateTime colDate = DateTime.ParseExact(row.Cells["colDate"].Value.ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                if (String.Compare(colDate.ToString("MM-yyyy"), itemSelect, true) != 0)
                 {
                     dtGridIn.Rows.Remove(row);
                 }

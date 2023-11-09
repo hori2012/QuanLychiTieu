@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -16,6 +17,7 @@ namespace QuanLychiTieu
     {
         private QLChiTieuModel _qLChiTieu;
         private int _userId;
+        private bool ischeck = false;
         public Profile(int userId)
         {
             InitializeComponent();
@@ -40,6 +42,20 @@ namespace QuanLychiTieu
             else
             {
                 rbMale.Checked = true;
+            }
+            NumberFormatInfo nfi = new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 };
+            var totalYearEx = (from expense in _qLChiTieu.EXPENSES
+                             where expense.USERID == _userId && expense.EXDATE.Value.Year == DateTime.Now.Year
+                             select expense.MONEY).Sum();
+            lbMoneyEx.Text = totalYearEx.Value.ToString("#,##0", nfi) + " VND";
+            var totalYearIn = (from income in _qLChiTieu.INCOMEs
+                         where income.USERID == _userId && income.INDATE.Value.Year == DateTime.Now.Year
+                         select income.MONEY).Sum();
+            lbMoneyIncome.Text = totalYearIn.Value.ToString("#,##0", nfi) + " VND";
+            lbBalance.Text = (totalYearIn - totalYearEx).Value.ToString("#,##0", nfi) + " VND";
+            if ((totalYearIn - totalYearEx) < 0)
+            {
+                ischeck = true;
             }
         }
 
@@ -171,6 +187,14 @@ namespace QuanLychiTieu
             if (e.KeyCode == Keys.Enter)
             {
                 btnUpdate.PerformClick();
+            }
+        }
+
+        private void Profile_Shown(object sender, EventArgs e)
+        {
+            if (ischeck)
+            {
+                DialogResult dialog = MessageBox.Show("A negative balance could be due to you forgetting to update your income entries, or there may have been errors in entering income and expenditure information into the system.\n Please verify again!!", "Notify", MessageBoxButtons.OK);
             }
         }
     }
