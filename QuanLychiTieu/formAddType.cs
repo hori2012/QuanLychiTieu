@@ -27,7 +27,7 @@ namespace QuanLychiTieu
             EXPENSESTYPE value = new EXPENSESTYPE();
             value.USERID = _userId;
             string message = "";
-            var exType = _qLChiTieu.EXPENSESTYPEs.Where(x => (x.NAMEEXTYPE.Replace(" ", "") == txtNameType.Text.Replace(" ", "")) && x.USERID == _userId).Any();
+            var exType = _qLChiTieu.EXPENSESTYPEs.Where(x => (x.NAMEEXTYPE.Replace(" ", "").ToLower() == txtNameType.Text.Replace(" ", "").ToLower()) && x.USERID == _userId).Any();
             if(exType == true)
             {
                 message += "Name expenses type is exist!\n";
