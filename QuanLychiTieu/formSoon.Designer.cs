@@ -35,9 +35,9 @@
             // picSoon
             // 
             this.picSoon.Image = global::QuanLychiTieu.Properties.Resources.soon;
-            this.picSoon.Location = new System.Drawing.Point(251, 241);
+            this.picSoon.Location = new System.Drawing.Point(269, 249);
             this.picSoon.Name = "picSoon";
-            this.picSoon.Size = new System.Drawing.Size(161, 80);
+            this.picSoon.Size = new System.Drawing.Size(215, 109);
             this.picSoon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSoon.TabIndex = 3;
             this.picSoon.TabStop = false;
@@ -47,7 +47,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(693, 600);
+            this.ClientSize = new System.Drawing.Size(761, 641);
             this.Controls.Add(this.picSoon);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "formSoon";

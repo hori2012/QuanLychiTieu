@@ -58,7 +58,7 @@ namespace QuanLychiTieu
         {
             _qLChiTieu = new QLChiTieuModel();
             cbExType.SelectedIndexChanged -= cbExType_SelectedIndexChanged;
-            cbExType.DataSource = _qLChiTieu.EXPENSESTYPEs.Where(x => x.USERID == _userId).ToList();
+            cbExType.DataSource = _qLChiTieu.EXPENSESTYPEs.Where(x => x.USERID == _userId && x.ISACTIVE == "Y").ToList();
             cbExType.ValueMember = "EXTYPEID";
             cbExType.DisplayMember = "NAMEEXTYPE";
             cbExType.SelectedIndexChanged += cbExType_SelectedIndexChanged;
@@ -71,6 +71,7 @@ namespace QuanLychiTieu
             var values = from expenses in _qLChiTieu.EXPENSES
                          join expensesType in _qLChiTieu.EXPENSESTYPEs on expenses.EXTYPEID equals expensesType.EXTYPEID
                          where expenses.USERID == _userId
+                         orderby expenses.EXPENSESID
                          select new { id = expenses.EXPENSESID, nameType = expensesType.NAMEEXTYPE, money = expenses.MONEY, date = expenses.EXDATE, note = expenses.NOTE };
             NumberFormatInfo nfi = new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 };
             foreach (var item in values)
@@ -122,18 +123,32 @@ namespace QuanLychiTieu
         private void cbExType_SelectedIndexChanged(object sender, EventArgs e)
         {
             string itemSelect = cbExType.Text.ToString();
-            for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+            DialogResult dialog = MessageBox.Show("Do you want to search or delete '" + itemSelect + "'? [Yes: Search] or [No: Delete]", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(dialog == DialogResult.Yes)
             {
-                DataGridViewRow row = dtGridEx.Rows[i];
-                if (String.Compare(row.Cells["colExType"].Value.ToString(), itemSelect, true) != 0)
+                for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
                 {
-                    dtGridEx.Rows.Remove(row);
+                    DataGridViewRow row = dtGridEx.Rows[i];
+                    if (String.Compare(row.Cells["colExType"].Value.ToString(), itemSelect, true) != 0)
+                    {
+                        dtGridEx.Rows.Remove(row);
+                    }
+                }
+                if (dtGridEx.RowCount == 1)
+                {
+                    dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Expenses_Load(sender, e);
                 }
             }
-            if (dtGridEx.RowCount == 1)
+            else
             {
-                DialogResult dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                EXPENSESTYPE eXPENSESTYPE = _qLChiTieu.EXPENSESTYPEs.Find(cbExType.SelectedValue);
+                eXPENSESTYPE.ISACTIVE = "N";
+                _qLChiTieu.SaveChanges();
+                dialog = MessageBox.Show("Delete success!!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Expenses_Load(sender, e);
             }
+            
         }
 
         private void cbMoney_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,6 +205,7 @@ namespace QuanLychiTieu
             if (dtGridEx.RowCount == 1)
             {
                 DialogResult dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Expenses_Load(sender, e);
             }
         }
 
@@ -208,7 +224,37 @@ namespace QuanLychiTieu
             if (dtGridEx.RowCount == 1)
             {
                 DialogResult dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Expenses_Load(sender, e);
             }
+        }
+
+        private void dtGridEx_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            {
+                switch (e.Column.Name)
+                {
+                    case "colMoney":
+                        long a = long.Parse(e.CellValue1.ToString().Replace(".", ""));
+                        long b = long.Parse(e.CellValue2.ToString().Replace(".", ""));
+                        e.SortResult = a.CompareTo(b);
+                        break;
+
+                    case "colDate":
+                        DateTime aDate = DateTime.Parse(e.CellValue1.ToString());
+                        DateTime bDate = DateTime.Parse(e.CellValue2.ToString());
+                        e.SortResult = aDate.CompareTo(bDate);
+                        break;
+
+                    case "colExType":
+                    case "colNote":
+                    default:
+                        e.SortResult = String.Compare(e.CellValue1.ToString(), e.CellValue2.ToString());
+                        break;
+                }
+
+                e.Handled = true;
+            }
+            //dtGridEx.SortCompare += new DataGridViewSortCompareEventHandler(dtGridEx_SortCompare);
         }
     }
 }

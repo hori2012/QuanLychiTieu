@@ -22,6 +22,10 @@ namespace QuanLychiTieu.Models
         [StringLength(250)]
         public string NAMEEXTYPE { get; set; }
         public decimal? USERID { get; set; }
+
+        [StringLength(1)]
+        public string ISACTIVE { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EXPENS> EXPENSES { get; set; }
         public virtual USER USER { get; set; }

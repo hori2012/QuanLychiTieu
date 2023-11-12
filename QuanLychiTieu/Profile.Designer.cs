@@ -66,10 +66,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(276, 74);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(343, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 42);
+            this.label1.Size = new System.Drawing.Size(141, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Profile";
             // 
@@ -78,7 +78,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(135, 261);
+            this.label2.Location = new System.Drawing.Point(196, 285);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 18);
             this.label2.TabIndex = 1;
@@ -89,7 +89,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(135, 308);
+            this.label3.Location = new System.Drawing.Point(196, 332);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 18);
             this.label3.TabIndex = 2;
@@ -100,7 +100,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(135, 356);
+            this.label4.Location = new System.Drawing.Point(196, 380);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 18);
             this.label4.TabIndex = 3;
@@ -118,7 +118,7 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(326, 261);
+            this.txtName.Location = new System.Drawing.Point(387, 285);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(229, 22);
             this.txtName.TabIndex = 6;
@@ -126,7 +126,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(326, 308);
+            this.txtEmail.Location = new System.Drawing.Point(387, 332);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(229, 22);
             this.txtEmail.TabIndex = 7;
@@ -145,7 +145,7 @@
             // 
             this.rbMale.AutoSize = true;
             this.rbMale.BackColor = System.Drawing.Color.Transparent;
-            this.rbMale.Location = new System.Drawing.Point(326, 354);
+            this.rbMale.Location = new System.Drawing.Point(387, 378);
             this.rbMale.Name = "rbMale";
             this.rbMale.Size = new System.Drawing.Size(58, 20);
             this.rbMale.TabIndex = 9;
@@ -157,7 +157,7 @@
             // 
             this.rbFemale.AutoSize = true;
             this.rbFemale.BackColor = System.Drawing.Color.Transparent;
-            this.rbFemale.Location = new System.Drawing.Point(481, 354);
+            this.rbFemale.Location = new System.Drawing.Point(542, 378);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(74, 20);
             this.rbFemale.TabIndex = 10;
@@ -176,7 +176,7 @@
             this.pnUpdatePass.Controls.Add(this.label6);
             this.pnUpdatePass.Controls.Add(this.txtPass);
             this.pnUpdatePass.Controls.Add(this.label5);
-            this.pnUpdatePass.Location = new System.Drawing.Point(125, 427);
+            this.pnUpdatePass.Location = new System.Drawing.Point(186, 451);
             this.pnUpdatePass.Name = "pnUpdatePass";
             this.pnUpdatePass.Size = new System.Drawing.Size(437, 100);
             this.pnUpdatePass.TabIndex = 11;
@@ -251,7 +251,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(283, 539);
+            this.btnUpdate.Location = new System.Drawing.Point(351, 568);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(86, 30);
             this.btnUpdate.TabIndex = 12;
@@ -264,7 +264,7 @@
             this.likChangePass.AutoSize = true;
             this.likChangePass.BackColor = System.Drawing.Color.Transparent;
             this.likChangePass.LinkColor = System.Drawing.Color.Black;
-            this.likChangePass.Location = new System.Drawing.Point(135, 399);
+            this.likChangePass.Location = new System.Drawing.Point(196, 423);
             this.likChangePass.Name = "likChangePass";
             this.likChangePass.Size = new System.Drawing.Size(117, 16);
             this.likChangePass.TabIndex = 13;
@@ -287,7 +287,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(129, 164);
+            this.label7.Location = new System.Drawing.Point(187, 159);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(211, 18);
             this.label7.TabIndex = 14;
@@ -298,7 +298,7 @@
             this.lable1.AutoSize = true;
             this.lable1.BackColor = System.Drawing.Color.Transparent;
             this.lable1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lable1.Location = new System.Drawing.Point(129, 189);
+            this.lable1.Location = new System.Drawing.Point(187, 196);
             this.lable1.Name = "lable1";
             this.lable1.Size = new System.Drawing.Size(227, 18);
             this.lable1.TabIndex = 15;
@@ -309,7 +309,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(135, 217);
+            this.label9.Location = new System.Drawing.Point(194, 234);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(155, 18);
             this.label9.TabIndex = 16;
@@ -320,7 +320,7 @@
             this.lbMoneyIncome.AutoSize = true;
             this.lbMoneyIncome.BackColor = System.Drawing.Color.Transparent;
             this.lbMoneyIncome.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMoneyIncome.Location = new System.Drawing.Point(397, 166);
+            this.lbMoneyIncome.Location = new System.Drawing.Point(455, 161);
             this.lbMoneyIncome.Name = "lbMoneyIncome";
             this.lbMoneyIncome.Size = new System.Drawing.Size(58, 16);
             this.lbMoneyIncome.TabIndex = 17;
@@ -331,7 +331,7 @@
             this.lbMoneyEx.AutoSize = true;
             this.lbMoneyEx.BackColor = System.Drawing.Color.Transparent;
             this.lbMoneyEx.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMoneyEx.Location = new System.Drawing.Point(397, 191);
+            this.lbMoneyEx.Location = new System.Drawing.Point(455, 198);
             this.lbMoneyEx.Name = "lbMoneyEx";
             this.lbMoneyEx.Size = new System.Drawing.Size(58, 16);
             this.lbMoneyEx.TabIndex = 18;
@@ -342,7 +342,7 @@
             this.lbBalance.AutoSize = true;
             this.lbBalance.BackColor = System.Drawing.Color.Transparent;
             this.lbBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBalance.Location = new System.Drawing.Point(397, 219);
+            this.lbBalance.Location = new System.Drawing.Point(456, 236);
             this.lbBalance.Name = "lbBalance";
             this.lbBalance.Size = new System.Drawing.Size(58, 16);
             this.lbBalance.TabIndex = 19;
@@ -355,7 +355,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812271924581_9ea8fa077b401669cc789d0801a981fb;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(693, 600);
+            this.ClientSize = new System.Drawing.Size(761, 641);
             this.Controls.Add(this.lbBalance);
             this.Controls.Add(this.lbMoneyEx);
             this.Controls.Add(this.lbMoneyIncome);

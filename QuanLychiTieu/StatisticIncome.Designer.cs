@@ -60,11 +60,12 @@
             this.pnStatisIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnStatisIn.Location = new System.Drawing.Point(0, 0);
             this.pnStatisIn.Name = "pnStatisIn";
-            this.pnStatisIn.Size = new System.Drawing.Size(693, 600);
+            this.pnStatisIn.Size = new System.Drawing.Size(761, 641);
             this.pnStatisIn.TabIndex = 1;
             // 
             // chartMain
             // 
+            this.chartMain.BorderlineColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.chartMain.ChartAreas.Add(chartArea1);
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
@@ -73,7 +74,7 @@
             this.chartMain.Legends.Add(legend1);
             this.chartMain.Location = new System.Drawing.Point(8, 135);
             this.chartMain.Name = "chartMain";
-            this.chartMain.Size = new System.Drawing.Size(669, 453);
+            this.chartMain.Size = new System.Drawing.Size(750, 494);
             this.chartMain.TabIndex = 4;
             this.chartMain.Text = "chart1";
             title1.Name = "Statistics";
@@ -93,7 +94,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(8, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(677, 117);
+            this.groupBox1.Size = new System.Drawing.Size(750, 117);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tools";
@@ -103,7 +104,7 @@
             this.picLoad.BackColor = System.Drawing.Color.Transparent;
             this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
-            this.picLoad.Location = new System.Drawing.Point(415, 82);
+            this.picLoad.Location = new System.Drawing.Point(480, 85);
             this.picLoad.Name = "picLoad";
             this.picLoad.Size = new System.Drawing.Size(35, 29);
             this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -114,7 +115,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.financial_statement;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 28);
+            this.pictureBox1.Location = new System.Drawing.Point(54, 21);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(86, 71);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -125,7 +126,7 @@
             // 
             this.cbValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbValue.FormattingEnabled = true;
-            this.cbValue.Location = new System.Drawing.Point(523, 39);
+            this.cbValue.Location = new System.Drawing.Point(588, 42);
             this.cbValue.Name = "cbValue";
             this.cbValue.Size = new System.Drawing.Size(142, 24);
             this.cbValue.TabIndex = 7;
@@ -135,7 +136,7 @@
             // 
             this.dateFill.CustomFormat = "MM-yyyy";
             this.dateFill.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateFill.Location = new System.Drawing.Point(174, 18);
+            this.dateFill.Location = new System.Drawing.Point(239, 21);
             this.dateFill.Name = "dateFill";
             this.dateFill.Size = new System.Drawing.Size(300, 22);
             this.dateFill.TabIndex = 6;
@@ -144,7 +145,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(112, 18);
+            this.label2.Location = new System.Drawing.Point(177, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 18);
             this.label2.TabIndex = 5;
@@ -154,7 +155,7 @@
             // 
             this.cbFill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFill.FormattingEnabled = true;
-            this.cbFill.Location = new System.Drawing.Point(174, 55);
+            this.cbFill.Location = new System.Drawing.Point(239, 58);
             this.cbFill.Name = "cbFill";
             this.cbFill.Size = new System.Drawing.Size(300, 24);
             this.cbFill.TabIndex = 3;
@@ -164,7 +165,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(112, 58);
+            this.label1.Location = new System.Drawing.Point(177, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 18);
             this.label1.TabIndex = 2;
@@ -175,7 +176,7 @@
             this.lkExpenses.AutoSize = true;
             this.lkExpenses.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lkExpenses.LinkColor = System.Drawing.Color.Gray;
-            this.lkExpenses.Location = new System.Drawing.Point(307, 90);
+            this.lkExpenses.Location = new System.Drawing.Point(372, 93);
             this.lkExpenses.Name = "lkExpenses";
             this.lkExpenses.Size = new System.Drawing.Size(75, 16);
             this.lkExpenses.TabIndex = 1;
@@ -190,7 +191,7 @@
             this.lkHome.AutoSize = true;
             this.lkHome.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lkHome.LinkColor = System.Drawing.Color.Gray;
-            this.lkHome.Location = new System.Drawing.Point(171, 90);
+            this.lkHome.Location = new System.Drawing.Point(236, 93);
             this.lkHome.Name = "lkHome";
             this.lkHome.Size = new System.Drawing.Size(76, 16);
             this.lkHome.TabIndex = 0;
@@ -207,7 +208,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812254013250_530f7a4de9348d2221bfb204a57d3f61;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(693, 600);
+            this.ClientSize = new System.Drawing.Size(761, 641);
             this.Controls.Add(this.pnStatisIn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StatisticIncome";

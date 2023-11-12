@@ -61,9 +61,9 @@
             this.panel1.Controls.Add(this.lbExpense);
             this.panel1.Controls.Add(this.lbProfile);
             this.panel1.Controls.Add(this.picAvatar);
-            this.panel1.Location = new System.Drawing.Point(-1, -4);
+            this.panel1.Location = new System.Drawing.Point(-1, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(269, 603);
+            this.panel1.Size = new System.Drawing.Size(269, 641);
             this.panel1.TabIndex = 0;
             // 
             // lbName
@@ -88,7 +88,7 @@
             // 
             this.picLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLogout.Image = global::QuanLychiTieu.Properties.Resources.logout;
-            this.picLogout.Location = new System.Drawing.Point(-4, 533);
+            this.picLogout.Location = new System.Drawing.Point(-7, 567);
             this.picLogout.Name = "picLogout";
             this.picLogout.Size = new System.Drawing.Size(276, 61);
             this.picLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -102,7 +102,7 @@
             // 
             this.lbStatistics.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatistics.Location = new System.Drawing.Point(-4, 441);
+            this.lbStatistics.Location = new System.Drawing.Point(-4, 451);
             this.lbStatistics.Name = "lbStatistics";
             this.lbStatistics.Size = new System.Drawing.Size(276, 61);
             this.lbStatistics.TabIndex = 3;
@@ -116,7 +116,7 @@
             // 
             this.lbIncome.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbIncome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIncome.Location = new System.Drawing.Point(-4, 342);
+            this.lbIncome.Location = new System.Drawing.Point(-4, 352);
             this.lbIncome.Name = "lbIncome";
             this.lbIncome.Size = new System.Drawing.Size(276, 61);
             this.lbIncome.TabIndex = 2;
@@ -130,7 +130,7 @@
             // 
             this.lbExpense.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbExpense.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbExpense.Location = new System.Drawing.Point(-4, 248);
+            this.lbExpense.Location = new System.Drawing.Point(-4, 255);
             this.lbExpense.Name = "lbExpense";
             this.lbExpense.Size = new System.Drawing.Size(276, 61);
             this.lbExpense.TabIndex = 1;
@@ -144,7 +144,7 @@
             // 
             this.lbProfile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbProfile.Location = new System.Drawing.Point(-7, 152);
+            this.lbProfile.Location = new System.Drawing.Point(-7, 159);
             this.lbProfile.Name = "lbProfile";
             this.lbProfile.Size = new System.Drawing.Size(276, 61);
             this.lbProfile.TabIndex = 0;
@@ -171,16 +171,16 @@
             this.pnShowMain.Controls.Add(this.label3);
             this.pnShowMain.Controls.Add(this.label2);
             this.pnShowMain.Controls.Add(this.picHeart);
-            this.pnShowMain.Location = new System.Drawing.Point(264, -4);
+            this.pnShowMain.Location = new System.Drawing.Point(264, 0);
             this.pnShowMain.Name = "pnShowMain";
-            this.pnShowMain.Size = new System.Drawing.Size(693, 600);
+            this.pnShowMain.Size = new System.Drawing.Size(771, 637);
             this.pnShowMain.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe Print", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(258, 378);
+            this.label3.Location = new System.Drawing.Point(303, 378);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(189, 30);
             this.label3.TabIndex = 2;
@@ -190,7 +190,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(132, 188);
+            this.label2.Location = new System.Drawing.Point(177, 188);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(442, 25);
             this.label2.TabIndex = 1;
@@ -199,9 +199,9 @@
             // picHeart
             // 
             this.picHeart.Image = global::QuanLychiTieu.Properties.Resources.heart;
-            this.picHeart.Location = new System.Drawing.Point(271, 262);
+            this.picHeart.Location = new System.Drawing.Point(316, 262);
             this.picHeart.Name = "picHeart";
-            this.picHeart.Size = new System.Drawing.Size(161, 80);
+            this.picHeart.Size = new System.Drawing.Size(176, 96);
             this.picHeart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picHeart.TabIndex = 0;
             this.picHeart.TabStop = false;
@@ -212,7 +212,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(959, 592);
+            this.ClientSize = new System.Drawing.Size(1028, 637);
             this.Controls.Add(this.pnShowMain);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

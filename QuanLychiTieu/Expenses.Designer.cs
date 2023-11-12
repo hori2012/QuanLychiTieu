@@ -57,10 +57,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(285, 57);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(339, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 38);
+            this.label1.Size = new System.Drawing.Size(204, 46);
             this.label1.TabIndex = 1;
             this.label1.Text = "Expenses";
             // 
@@ -69,7 +69,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(74, 142);
+            this.label2.Location = new System.Drawing.Point(74, 133);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 18);
             this.label2.TabIndex = 3;
@@ -80,7 +80,7 @@
             this.cbExType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cbExType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbExType.FormattingEnabled = true;
-            this.cbExType.Location = new System.Drawing.Point(247, 141);
+            this.cbExType.Location = new System.Drawing.Point(247, 132);
             this.cbExType.Name = "cbExType";
             this.cbExType.Size = new System.Drawing.Size(262, 24);
             this.cbExType.TabIndex = 5;
@@ -90,7 +90,7 @@
             // 
             this.btnAddType.BackColor = System.Drawing.Color.Transparent;
             this.btnAddType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddType.Location = new System.Drawing.Point(534, 139);
+            this.btnAddType.Location = new System.Drawing.Point(565, 126);
             this.btnAddType.Name = "btnAddType";
             this.btnAddType.Size = new System.Drawing.Size(111, 30);
             this.btnAddType.TabIndex = 6;
@@ -103,7 +103,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(74, 187);
+            this.label3.Location = new System.Drawing.Point(74, 178);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 18);
             this.label3.TabIndex = 7;
@@ -111,7 +111,7 @@
             // 
             // dateExpense
             // 
-            this.dateExpense.Location = new System.Drawing.Point(247, 187);
+            this.dateExpense.Location = new System.Drawing.Point(247, 178);
             this.dateExpense.Name = "dateExpense";
             this.dateExpense.Size = new System.Drawing.Size(262, 22);
             this.dateExpense.TabIndex = 8;
@@ -119,6 +119,8 @@
             // 
             // dtGridEx
             // 
+            this.dtGridEx.AllowUserToAddRows = false;
+            this.dtGridEx.AllowUserToDeleteRows = false;
             this.dtGridEx.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dtGridEx.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGridEx.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -128,16 +130,17 @@
             this.colDate,
             this.colNote});
             this.dtGridEx.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dtGridEx.Location = new System.Drawing.Point(7, 289);
+            this.dtGridEx.Location = new System.Drawing.Point(7, 280);
             this.dtGridEx.MultiSelect = false;
             this.dtGridEx.Name = "dtGridEx";
             this.dtGridEx.ReadOnly = true;
             this.dtGridEx.RowHeadersWidth = 51;
             this.dtGridEx.RowTemplate.Height = 24;
             this.dtGridEx.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtGridEx.Size = new System.Drawing.Size(678, 298);
+            this.dtGridEx.Size = new System.Drawing.Size(751, 350);
             this.dtGridEx.TabIndex = 10;
             this.dtGridEx.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridEx_CellDoubleClick);
+            this.dtGridEx.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dtGridEx_SortCompare);
             // 
             // colId
             // 
@@ -145,7 +148,7 @@
             this.colId.MinimumWidth = 6;
             this.colId.Name = "colId";
             this.colId.ReadOnly = true;
-            this.colId.Width = 125;
+            this.colId.Width = 50;
             // 
             // colExType
             // 
@@ -184,7 +187,7 @@
             this.lbMoney.AutoSize = true;
             this.lbMoney.BackColor = System.Drawing.Color.Transparent;
             this.lbMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMoney.Location = new System.Drawing.Point(74, 234);
+            this.lbMoney.Location = new System.Drawing.Point(74, 225);
             this.lbMoney.Name = "lbMoney";
             this.lbMoney.Size = new System.Drawing.Size(63, 18);
             this.lbMoney.TabIndex = 11;
@@ -194,7 +197,7 @@
             // 
             this.cbMoney.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMoney.FormattingEnabled = true;
-            this.cbMoney.Location = new System.Drawing.Point(247, 234);
+            this.cbMoney.Location = new System.Drawing.Point(247, 225);
             this.cbMoney.Name = "cbMoney";
             this.cbMoney.Size = new System.Drawing.Size(262, 24);
             this.cbMoney.TabIndex = 12;
@@ -204,7 +207,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(74, 262);
+            this.label4.Location = new System.Drawing.Point(74, 253);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 18);
             this.label4.TabIndex = 14;
@@ -215,7 +218,7 @@
             this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
             this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.linkLabel1.LinkColor = System.Drawing.Color.Gray;
-            this.linkLabel1.Location = new System.Drawing.Point(74, 264);
+            this.linkLabel1.Location = new System.Drawing.Point(74, 255);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(77, 16);
             this.linkLabel1.TabIndex = 15;
@@ -230,7 +233,7 @@
             this.picLoad.BackColor = System.Drawing.Color.Transparent;
             this.picLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picLoad.Image = global::QuanLychiTieu.Properties.Resources.work_in_progress_static;
-            this.picLoad.Location = new System.Drawing.Point(565, 196);
+            this.picLoad.Location = new System.Drawing.Point(589, 193);
             this.picLoad.Name = "picLoad";
             this.picLoad.Size = new System.Drawing.Size(51, 41);
             this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -242,7 +245,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::QuanLychiTieu.Properties.Resources.spending;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(164, 115);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -254,9 +257,9 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(334, 266);
+            this.label5.Location = new System.Drawing.Point(359, 257);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 16);
+            this.label5.Size = new System.Drawing.Size(147, 15);
             this.label5.TabIndex = 16;
             this.label5.Text = "Total money this year:";
             // 
@@ -265,9 +268,9 @@
             this.lbTotalMoney.AutoSize = true;
             this.lbTotalMoney.BackColor = System.Drawing.Color.Transparent;
             this.lbTotalMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalMoney.Location = new System.Drawing.Point(500, 266);
+            this.lbTotalMoney.Location = new System.Drawing.Point(525, 257);
             this.lbTotalMoney.Name = "lbTotalMoney";
-            this.lbTotalMoney.Size = new System.Drawing.Size(0, 16);
+            this.lbTotalMoney.Size = new System.Drawing.Size(0, 15);
             this.lbTotalMoney.TabIndex = 17;
             // 
             // Expenses
@@ -277,7 +280,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::QuanLychiTieu.Properties.Resources.z4812253117951_d2ca48418be587ad8e20d79d0a1e1ab3;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(693, 600);
+            this.ClientSize = new System.Drawing.Size(761, 641);
             this.Controls.Add(this.lbTotalMoney);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.linkLabel1);
@@ -320,12 +323,12 @@
         private System.Windows.Forms.PictureBox picLoad;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbTotalMoney;
         private System.Windows.Forms.DataGridViewTextBoxColumn colId;
         private System.Windows.Forms.DataGridViewTextBoxColumn colExType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMoney;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNote;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lbTotalMoney;
     }
 }

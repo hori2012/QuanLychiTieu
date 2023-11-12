@@ -24,13 +24,28 @@ namespace QuanLychiTieu
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            EXPENSESTYPE value = new EXPENSESTYPE();
-            value.USERID = _userId;
+            EXPENSESTYPE eXPENSESTYPE = new EXPENSESTYPE();
             string message = "";
             var exType = _qLChiTieu.EXPENSESTYPEs.Where(x => (x.NAMEEXTYPE.Replace(" ", "").ToLower() == txtNameType.Text.Replace(" ", "").ToLower()) && x.USERID == _userId).Any();
             if(exType == true)
             {
-                message += "Name expenses type is exist!\n";
+                if (_qLChiTieu.EXPENSESTYPEs.Where(x => x.USERID == _userId && (x.NAMEEXTYPE.Replace(" ", "").ToLower() == txtNameType.Text.Replace(" ", "").ToLower()) && x.ISACTIVE == "N").Any())
+                {
+                    DialogResult dialog = MessageBox.Show("You’ve added this before, do you want to restore it?", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialog == DialogResult.Yes)
+                    {
+                        int id = (int)_qLChiTieu.EXPENSESTYPEs.Where(x => (x.NAMEEXTYPE.Replace(" ", "").ToLower() == txtNameType.Text.Replace(" ", "").ToLower()) && x.USERID == _userId).First().EXTYPEID;
+                        eXPENSESTYPE = _qLChiTieu.EXPENSESTYPEs.Find(id);
+                        eXPENSESTYPE.ISACTIVE = "Y";
+                        _qLChiTieu.SaveChanges();
+                        dialog = MessageBox.Show("Successfully restored!!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        message = "check";
+                    }
+                }
+                else
+                {
+                    message += "Name expenses type is exist!\n";
+                }
             }
             else
             {
@@ -41,16 +56,17 @@ namespace QuanLychiTieu
                 else
                 {
 
-                    value.NAMEEXTYPE = txtNameType.Text;
+                    eXPENSESTYPE.USERID = _userId;
+                    eXPENSESTYPE.NAMEEXTYPE = txtNameType.Text;
                 }
             }
-            if (!String.IsNullOrEmpty(message))
+            if (String.IsNullOrEmpty(message) == false && String.Compare(message, "check", true) != 0)
             {
                 DialogResult dialog = MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else
+            else if (String.Compare(message, "check", true) != 0)
             {
-                _qLChiTieu.EXPENSESTYPEs.Add(value);
+                _qLChiTieu.EXPENSESTYPEs.Add(eXPENSESTYPE);
                 _qLChiTieu.SaveChanges();
                 DialogResult dialog = MessageBox.Show("Add success!!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
