@@ -13,6 +13,7 @@ create table ExpensesType(
     ExTypeID int GENERATED ALWAYS AS IDENTITY(START WITH 1 INCREMENT BY 1) not null,
     NameExType varchar2(250),
     UserID int,
+	isActive char(1) DEFAULT 'Y',
     primary key(ExTypeID),
     foreign key (UserID) references Users(UserID)
 );
@@ -33,6 +34,7 @@ create table IncomeType(
     InTypeID int GENERATED ALWAYS AS IDENTITY(START WITH 1 INCREMENT BY 1) not null,
     NameInType varchar2(250),
     UserID int,
+	isActive char(1) DEFAULT 'Y',
     primary key (InTypeID),
     foreign key (UserID) references Users(UserID)
 );
