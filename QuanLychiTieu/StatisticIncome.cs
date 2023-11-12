@@ -132,8 +132,8 @@ namespace QuanLychiTieu
                     string sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
                           "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
                           "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
-                          "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
-                          "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
+                          "INCOME.INDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
+                          "INCOME.INDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
                           "GROUP BY INCOME.INDATE " +
                           "ORDER BY INCOME.INDATE";
                     var income = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, DateTime.Now.ToShortDateString());
