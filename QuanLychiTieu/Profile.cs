@@ -47,16 +47,26 @@ namespace QuanLychiTieu
             var totalYearEx = (from expense in _qLChiTieu.EXPENSES
                              where expense.USERID == _userId && expense.EXDATE.Value.Year == DateTime.Now.Year
                              select expense.MONEY).Sum();
-            lbMoneyEx.Text = totalYearEx.Value.ToString("#,##0", nfi) + " VND";
             var totalYearIn = (from income in _qLChiTieu.INCOMEs
                          where income.USERID == _userId && income.INDATE.Value.Year == DateTime.Now.Year
                          select income.MONEY).Sum();
-            lbMoneyIncome.Text = totalYearIn.Value.ToString("#,##0", nfi) + " VND";
-            lbBalance.Text = (totalYearIn - totalYearEx).Value.ToString("#,##0", nfi) + " VND";
-            if ((totalYearIn - totalYearEx) < 0)
+            if (totalYearEx.HasValue && totalYearIn.HasValue)
             {
-                ischeck = true;
+                lbMoneyEx.Text = totalYearEx.Value.ToString("#,##0", nfi) + " VND";
+                lbMoneyIncome.Text = totalYearIn.Value.ToString("#,##0", nfi) + " VND";
+                lbBalance.Text = (totalYearIn - totalYearEx).Value.ToString("#,##0", nfi) + " VND";
+                if ((totalYearIn - totalYearEx) < 0)
+                {
+                    ischeck = true;
+                }
             }
+            else
+            {
+                lbMoneyEx.Text = "0.00 VND";
+                lbMoneyIncome.Text = "0.00 VND";
+                lbBalance.Text = "0.00 VND";
+            }
+           
         }
 
         private void likChangePass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -106,6 +116,7 @@ namespace QuanLychiTieu
             }
             if (pnUpdatePass.Visible)
             {
+                //"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
                 if (String.IsNullOrEmpty(txtPass.Text) || String.IsNullOrEmpty(txtConfirmPass.Text))
                 {
                     message += "Password or ConfirmPass cannot be blank!\n";

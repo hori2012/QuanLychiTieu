@@ -81,7 +81,14 @@ namespace QuanLychiTieu
             var totalMoney = (from expenses in _qLChiTieu.EXPENSES
                      where expenses.USERID == _userId && expenses.EXDATE.Value.Year == DateTime.Now.Year
                      select expenses.MONEY).Sum();
-            lbTotalMoney.Text = totalMoney.Value.ToString("#,##0", nfi) + " VND";
+            if (totalMoney.HasValue)
+            {
+                lbTotalMoney.Text = totalMoney.Value.ToString("#,##0", nfi) + " VND";
+            }
+            else
+            {
+                lbTotalMoney.Text = "0.00 VND";
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

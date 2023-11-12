@@ -57,7 +57,14 @@ namespace QuanLychiTieu
             var totalMoney = (from income in _qLChiTieu.INCOMEs
                               where income.USERID == _userId && income.INDATE.Value.Year == DateTime.Now.Year
                               select income.MONEY).Sum();
-            lbTotalMoney.Text = totalMoney.Value.ToString("#,##0", nfi) + " VND";
+            if (totalMoney.HasValue)
+            {
+                lbTotalMoney.Text = totalMoney.Value.ToString("#,##0", nfi) + " VND";
+            }
+            else
+            {
+                lbTotalMoney.Text = "0.00 VND";
+            }
         }
 
         private void btnAddType_Click(object sender, EventArgs e)

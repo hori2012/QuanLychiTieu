@@ -30,6 +30,7 @@ namespace QuanLychiTieu
         private void picRegister_Click(object sender, EventArgs e)
         {
             USER _user = new USER();
+            //^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
             Regex regex = new Regex(@"^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$");
             string message = "";
             if (String.IsNullOrEmpty(txtName.Text))
