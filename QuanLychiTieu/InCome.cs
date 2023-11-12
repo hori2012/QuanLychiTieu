@@ -46,7 +46,7 @@ namespace QuanLychiTieu
             dtGridIn.Rows.Clear();
             var result = from income in _qLChiTieu.INCOMEs
                          join incomeType in _qLChiTieu.INCOMETYPEs on income.INTYPEID equals incomeType.INTYPEID
-                         where income.USERID == _userId
+                         where income.USERID == _userId && incomeType.ISACTIVE == "Y"
                          orderby income.INCOMEID
                          select new {id = income.INCOMEID, nameType = incomeType.NAMEINTYPE,  money = income.MONEY, date = income.INDATE, note = income.NOTE};
             NumberFormatInfo nfi = new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 };
@@ -112,7 +112,7 @@ namespace QuanLychiTieu
             DialogResult dialog = MessageBox.Show("Do you want to search or delete '" + itemSelect + "'? [Yes: Search] or [No: Delete]", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialog == DialogResult.Yes)
             {
-                for (int i = dtGridIn.RowCount - 2; i >= 0; i--)
+                for (int i = dtGridIn.RowCount - 1; i >= 0; i--)
                 {
                     DataGridViewRow row = dtGridIn.Rows[i];
                     if (String.Compare(row.Cells["colInType"].Value.ToString(), itemSelect, true) != 0)
@@ -120,7 +120,7 @@ namespace QuanLychiTieu
                         dtGridIn.Rows.Remove(row);
                     }
                 }
-                if (dtGridIn.RowCount == 1)
+                if (dtGridIn.RowCount == 0)
                 {
                     dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -131,7 +131,10 @@ namespace QuanLychiTieu
                 iNCOMETYPE.ISACTIVE = "N";
                 _qLChiTieu.SaveChanges();
                 dialog = MessageBox.Show("Delete success!!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                InCome_Load(sender, e);
+                if (dialog == DialogResult.OK)
+                {
+                    InCome_Load(sender, e);
+                }
             }
         }
 

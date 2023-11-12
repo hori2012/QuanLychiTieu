@@ -53,7 +53,7 @@ namespace QuanLychiTieu
             List<int> allYear = new List<int>();
             List<string> allType = new List<string>();
             var expenses = _qLChiTieu.EXPENSES.Join(_qLChiTieu.EXPENSESTYPEs, x => x.EXTYPEID, y => y.EXTYPEID, (x, y) => new { x, y })
-                            .Where(z => z.x.USERID == _userId)
+                            .Where(z => z.x.USERID == _userId && z.y.ISACTIVE == "Y")
                             .GroupBy(z => new { z.y.NAMEEXTYPE, z.x.EXDATE.Value.Year })
                             .OrderBy(z => z.Key.Year)
                             .Select(z => new
@@ -110,13 +110,13 @@ namespace QuanLychiTieu
                     {
                         chartMain.Series[series.Name].Points.Clear();
                     }
-                    string sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
-                           "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                           "WHERE EXPENSES.USERID = :p0 AND " +
-                           "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
-                           "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
-                           "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
-                           "ORDER BY EXPENSES.EXDATE";
+                    string sql = "SELECT SUM(EXPENSES.MONEY) AS \"_money\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
+                                 "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
+                                 "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
+                                 "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
+                                 "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
+                                 "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
+                                 "ORDER BY EXPENSES.EXDATE";
                     var expenses = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, DateTime.Now.ToShortDateString());
                     if (expenses.Any() == false)
                     {
@@ -179,7 +179,7 @@ namespace QuanLychiTieu
                     }
                     sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
                           "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                          "WHERE EXPENSES.USERID = :p0 AND " +
+                          "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
                           "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p1 " +
                           "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
                                "ORDER BY EXPENSES.EXDATE";
@@ -222,7 +222,7 @@ namespace QuanLychiTieu
                     }
                     sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
                           "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                          "WHERE EXPENSES.USERID = :p0 AND " +
+                          "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
                           "EXTRACT(MONTH FROM EXPENSES.EXDATE) = :p1 AND " +
                           "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p2 " +
                           "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
@@ -266,7 +266,7 @@ namespace QuanLychiTieu
                     }
                     sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
                           "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                          "WHERE EXPENSES.USERID = :p0 AND " +
+                          "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
                           "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p1 " +
                           "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +
                           "ORDER BY EXPENSES.EXDATE";
@@ -312,7 +312,7 @@ namespace QuanLychiTieu
             }
             string sql = "SELECT EXPENSESTYPE.NAMEEXTYPE AS \"_nameType\", EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
                          "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
-                         "WHERE EXPENSES.USERID = :p0 AND " +
+                         "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
                          "EXTRACT(MONTH FROM EXPENSES.EXDATE) = :p1 AND " +
                          "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p2 " +
                          "GROUP BY EXPENSESTYPE.NAMEEXTYPE, EXPENSES.EXDATE " +

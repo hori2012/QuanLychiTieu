@@ -57,6 +57,7 @@ namespace QuanLychiTieu
                 {
                     iNCOMETYPE.USERID = _userId;
                     iNCOMETYPE.NAMEINTYPE = txtNameType.Text;
+                    iNCOMETYPE.ISACTIVE = "Y";
                 }
             }
             if (String.IsNullOrEmpty(message) == false && String.Compare(message, "check", true) != 0)

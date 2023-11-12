@@ -70,7 +70,7 @@ namespace QuanLychiTieu
             dtGridEx.Rows.Clear();
             var values = from expenses in _qLChiTieu.EXPENSES
                          join expensesType in _qLChiTieu.EXPENSESTYPEs on expenses.EXTYPEID equals expensesType.EXTYPEID
-                         where expenses.USERID == _userId
+                         where expenses.USERID == _userId && expensesType.ISACTIVE == "Y"
                          orderby expenses.EXPENSESID
                          select new { id = expenses.EXPENSESID, nameType = expensesType.NAMEEXTYPE, money = expenses.MONEY, date = expenses.EXDATE, note = expenses.NOTE };
             NumberFormatInfo nfi = new NumberFormatInfo { NumberGroupSeparator = ".", NumberDecimalDigits = 0 };
@@ -133,7 +133,7 @@ namespace QuanLychiTieu
             DialogResult dialog = MessageBox.Show("Do you want to search or delete '" + itemSelect + "'? [Yes: Search] or [No: Delete]", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(dialog == DialogResult.Yes)
             {
-                for (int i = dtGridEx.RowCount - 2; i >= 0; i--)
+                for (int i = dtGridEx.RowCount - 1; i >= 0; i--)
                 {
                     DataGridViewRow row = dtGridEx.Rows[i];
                     if (String.Compare(row.Cells["colExType"].Value.ToString(), itemSelect, true) != 0)
@@ -141,7 +141,7 @@ namespace QuanLychiTieu
                         dtGridEx.Rows.Remove(row);
                     }
                 }
-                if (dtGridEx.RowCount == 1)
+                if (dtGridEx.RowCount == 0)
                 {
                     dialog = MessageBox.Show("There are no valid values", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Expenses_Load(sender, e);
@@ -153,7 +153,10 @@ namespace QuanLychiTieu
                 eXPENSESTYPE.ISACTIVE = "N";
                 _qLChiTieu.SaveChanges();
                 dialog = MessageBox.Show("Delete success!!", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Expenses_Load(sender, e);
+                if(dialog == DialogResult.OK)
+                {
+                    Expenses_Load(sender, e);
+                }
             }
             
         }

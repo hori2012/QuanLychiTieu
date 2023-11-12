@@ -27,7 +27,7 @@ namespace QuanLychiTieu
             EXPENSESTYPE eXPENSESTYPE = new EXPENSESTYPE();
             string message = "";
             var exType = _qLChiTieu.EXPENSESTYPEs.Where(x => (x.NAMEEXTYPE.Replace(" ", "").ToLower() == txtNameType.Text.Replace(" ", "").ToLower()) && x.USERID == _userId).Any();
-            if(exType == true)
+            if (exType == true)
             {
                 if (_qLChiTieu.EXPENSESTYPEs.Where(x => x.USERID == _userId && (x.NAMEEXTYPE.Replace(" ", "").ToLower() == txtNameType.Text.Replace(" ", "").ToLower()) && x.ISACTIVE == "N").Any())
                 {
@@ -58,6 +58,7 @@ namespace QuanLychiTieu
 
                     eXPENSESTYPE.USERID = _userId;
                     eXPENSESTYPE.NAMEEXTYPE = txtNameType.Text;
+                    eXPENSESTYPE.ISACTIVE = "Y";
                 }
             }
             if (String.IsNullOrEmpty(message) == false && String.Compare(message, "check", true) != 0)

@@ -42,7 +42,7 @@ namespace QuanLychiTieu
             List<int> allYear = new List<int>();
             List<string> allType = new List<string>();
             var income = _qLChiTieu.INCOMEs.Join(_qLChiTieu.INCOMETYPEs, x => x.INTYPEID, y => y.INTYPEID, (x, y) => new { x, y })
-                            .Where(z => z.x.USERID == _userId)
+                            .Where(z => z.x.USERID == _userId && z.y.ISACTIVE == "Y")
                             .GroupBy(z => new { z.y.NAMEINTYPE, z.x.INDATE.Value.Year })
                             .OrderBy(z => z.Key.Year)
                             .Select(z => new
@@ -130,12 +130,12 @@ namespace QuanLychiTieu
                         chartMain.Series[series.Name].Points.Clear();
                     }
                     string sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
-                                 "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
-                                 "WHERE INCOME.USERID = :p0 AND " +
-                                 "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
-                                 "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
-                                 "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
-                                 "ORDER BY INCOME.INDATE";
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
+                          "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
+                          "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
+                          "GROUP BY INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
                     var income = _qLChiTieu.Database.SqlQuery<ResultDbEXIn>(sql, _userId, DateTime.Now.ToShortDateString());
                     if (income.Any() == false)
                     {
@@ -198,7 +198,7 @@ namespace QuanLychiTieu
                     }
                     sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
                           "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
-                          "WHERE INCOME.USERID = :p0 AND " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
                           "EXTRACT(YEAR FROM INCOME.INDATE) = :p1 " +
                           "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
                           "ORDER BY INCOME.INDATE";
@@ -241,7 +241,7 @@ namespace QuanLychiTieu
                     }
                     sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
                           "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
-                          "WHERE INCOME.USERID = :p0 AND " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
                           "EXTRACT(MONTH FROM INCOME.INDATE) = :p1 AND " +
                           "EXTRACT(YEAR FROM INCOME.INDATE) = :p2 " +
                           "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
@@ -285,7 +285,7 @@ namespace QuanLychiTieu
                     }
                     sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
                           "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
-                          "WHERE INCOME.USERID = :p0 AND " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
                           "EXTRACT(YEAR FROM INCOME.INDATE) = :p1 " +
                           "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +
                           "ORDER BY INCOME.INDATE";
@@ -331,7 +331,7 @@ namespace QuanLychiTieu
             }
             string sql = "SELECT INCOMETYPE.NAMEINTYPE AS \"_nameType\", INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
                           "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
-                          "WHERE INCOME.USERID = :p0 AND " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
                           "EXTRACT(MONTH FROM INCOME.INDATE) = :p1 AND " +
                           "EXTRACT(YEAR FROM INCOME.INDATE) = :p2 " +
                           "GROUP BY INCOMETYPE.NAMEINTYPE, INCOME.INDATE " +

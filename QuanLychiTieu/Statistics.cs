@@ -36,9 +36,10 @@ namespace QuanLychiTieu
             cbValue.Hide();
             dateFill.Value = DateTime.Now;
             _qLChiTieu = new QLChiTieuModel();
-            var expenses = _qLChiTieu.EXPENSES.Where(x => x.USERID == _userId)
-                           .GroupBy(x => x.EXDATE.Value.Year)
-                           .Select(x => new { date = x.Key, money = x.Sum(m => m.MONEY) })
+            var expenses = _qLChiTieu.EXPENSES.Join(_qLChiTieu.EXPENSESTYPEs, x => x.EXTYPEID, y => y.EXTYPEID, (x, y) => new { x, y })
+                           .Where(z => z.x.USERID == _userId && z.y.ISACTIVE == "Y")
+                           .GroupBy(z => z.x.EXDATE.Value.Year)
+                           .Select(z => new { date = z.Key, money = z.Sum(m => m.x.MONEY) })
                            .OrderByDescending(x => x.date)
                            .Take(5)
                            .ToList();
@@ -46,9 +47,10 @@ namespace QuanLychiTieu
             {
                 chartMain.Series["Expenses"].Points.AddXY(item.date, (double)item.money);
             }
-            var income = _qLChiTieu.INCOMEs.Where(x => x.USERID == _userId)
-                         .GroupBy(x => x.INDATE.Value.Year)
-                         .Select(x => new { date = x.Key, money = x.Sum(m => m.MONEY) })
+            var income = _qLChiTieu.INCOMEs.Join(_qLChiTieu.INCOMETYPEs, x => x.INTYPEID, y => y.INTYPEID, (x, y) => new { x, y })
+                         .Where(z => z.x.USERID == _userId && z.y.ISACTIVE == "Y")
+                         .GroupBy(z => z.x.INDATE.Value.Year)
+                         .Select(z => new { date = z.Key, money = z.Sum(m => m.x.MONEY) })
                          .OrderByDescending(x => x.date)
                          .Take(5)
                          .ToList();
@@ -93,17 +95,21 @@ namespace QuanLychiTieu
                     cbValue.Hide();
                     chartMain.Series["Expenses"].Points.Clear();
                     chartMain.Series["Income"].Points.Clear();
-                    string sql = "SELECT EXDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM EXPENSES WHERE USERID = :p0 AND " +
-                                 "EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
-                                 "EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
-                                 "GROUP BY EXDATE " +
-                                 "ORDER BY EXDATE";
+                    string sql = "SELECT EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
+                                 "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
+                                 "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
+                                 "EXPENSES.EXDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
+                                 "EXPENSES.EXDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
+                                 "GROUP BY EXPENSES.EXDATE " +
+                                 "ORDER BY EXPENSES.EXDATE";
                     var expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, DateTime.Now.ToShortDateString());
-                    sql = "SELECT INDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM INCOME WHERE USERID = :p0 AND " +
-                           "INDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
-                           "INDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
-                           "GROUP BY INDATE " +
-                           "ORDER BY INDATE";
+                    sql = "SELECT INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
+                          "INCOME.INDATE >= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') AND " +
+                          "INCOME.INDATE <= TRUNC(TO_DATE(:p1, 'DD-MM-YYYY'), 'IW') + 6 " +
+                          "GROUP BY INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
                     var income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, DateTime.Now.ToShortDateString());
                     allDates.Clear();
                     allDates.AddRange(expenses.Select(i => i._date).Distinct());
@@ -170,15 +176,19 @@ namespace QuanLychiTieu
                     cbValue.Hide();
                     chartMain.Series["Expenses"].Points.Clear();
                     chartMain.Series["Income"].Points.Clear();
-                    sql = "SELECT EXDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM EXPENSES WHERE USERID = :p0 AND " +
-                          "EXTRACT(YEAR FROM EXDATE) = :p1 " +
-                          "GROUP BY EXDATE " +
-                          "ORDER BY EXDATE";
+                    sql = "SELECT EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
+                           "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
+                           "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
+                           "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p1 " +
+                           "GROUP BY EXPENSES.EXDATE " +
+                           "ORDER BY EXPENSES.EXDATE";
                     expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, DateTime.Now.Year);
-                    sql = "SELECT INDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM INCOME WHERE USERID = :p0 AND " +
-                         "EXTRACT(YEAR FROM INDATE) = :p1 " +
-                         "GROUP BY INDATE " +
-                         "ORDER BY INDATE";
+                    sql = "SELECT INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
+                          "EXTRACT(YEAR FROM INCOME.INDATE) = :p1 " +
+                          "GROUP BY INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
                     income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, DateTime.Now.Year);
                     allDates.Clear();
                     allDates.AddRange(expenses.Select(i => i._date).Distinct());
@@ -223,17 +233,21 @@ namespace QuanLychiTieu
                     cbValue.Hide();
                     chartMain.Series["Expenses"].Points.Clear();
                     chartMain.Series["Income"].Points.Clear();
-                    sql = "SELECT EXDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM EXPENSES WHERE USERID = :p0 AND " +
-                          "EXTRACT(MONTH FROM EXDATE) = :p1 AND " +
-                          "EXTRACT(YEAR FROM EXDATE) = :p2 " +
-                          "GROUP BY EXDATE " +
-                          "ORDER BY EXDATE";
+                    sql = "SELECT EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
+                           "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
+                           "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
+                           "EXTRACT(MONTH FROM EXPENSES.EXDATE) = :p1 AND " +
+                           "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p2 " +
+                           "GROUP BY EXPENSES.EXDATE " +
+                           "ORDER BY EXPENSES.EXDATE";
                     expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, dateFill.Value.Month, dateFill.Value.Year);
-                    sql = "SELECT INDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM INCOME WHERE USERID = :p0 AND " +
-                         "EXTRACT(MONTH FROM INDATE) = :p1 AND " +
-                         "EXTRACT(YEAR FROM INDATE) = :p2 " +
-                         "GROUP BY INDATE " +
-                         "ORDER BY INDATE";
+                    sql = "SELECT INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
+                          "EXTRACT(MONTH FROM INCOME.INDATE) = :p1 AND " +
+                          "EXTRACT(YEAR FROM INCOME.INDATE) = :p2 " +
+                          "GROUP BY INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
                     income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, dateFill.Value.Month, dateFill.Value.Year);
                     allDates.Clear();
                     allDates.AddRange(expenses.Select(i => i._date).Distinct());
@@ -278,15 +292,19 @@ namespace QuanLychiTieu
                     cbValue.Hide();
                     chartMain.Series["Expenses"].Points.Clear();
                     chartMain.Series["Income"].Points.Clear();
-                    sql = "SELECT EXDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM EXPENSES WHERE USERID = :p0 AND " +
-                          "EXTRACT(YEAR FROM EXDATE) = :p1 " +
-                          "GROUP BY EXDATE " +
-                          "ORDER BY EXDATE";
+                    sql ="SELECT EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
+                           "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
+                           "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
+                           "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p1 " +
+                           "GROUP BY EXPENSES.EXDATE " +
+                           "ORDER BY EXPENSES.EXDATE";
                     expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, dateFill.Value.Year);
-                    sql = "SELECT INDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM INCOME WHERE USERID = :p0 AND " +
-                         "EXTRACT(YEAR FROM INDATE) = :p1 " +
-                         "GROUP BY INDATE " +
-                         "ORDER BY INDATE";
+                    sql = "SELECT INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                          "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                          "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
+                          "EXTRACT(YEAR FROM INCOME.INDATE) = :p1 " +
+                          "GROUP BY INCOME.INDATE " +
+                          "ORDER BY INCOME.INDATE";
                     income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, dateFill.Value.Year);
                     allDates.Clear();
                     allDates.AddRange(expenses.Select(i => i._date).Distinct());
@@ -338,17 +356,21 @@ namespace QuanLychiTieu
             chartMain.Series["Expenses"].Points.Clear();
             chartMain.Series["Income"].Points.Clear();
             List<DateTime> allDates = new List<DateTime>();
-            sql = "SELECT EXDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM EXPENSES WHERE USERID = :p0 AND " +
-                  "EXTRACT(MONTH FROM EXDATE) = :p1 AND " +
-                  "EXTRACT(YEAR FROM EXDATE) = :p2 " +
-                  "GROUP BY EXDATE " +
-                  "ORDER BY EXDATE";
+            sql = "SELECT EXPENSES.EXDATE AS \"_date\", SUM(EXPENSES.MONEY) AS \"_money\" " +
+                  "FROM EXPENSES JOIN EXPENSESTYPE ON EXPENSES.EXTYPEID = EXPENSESTYPE.EXTYPEID " +
+                  "WHERE EXPENSES.USERID = :p0 AND EXPENSESTYPE.ISACTIVE = 'Y' AND " +
+                  "EXTRACT(MONTH FROM EXPENSES.EXDATE) = :p1 AND " +
+                  "EXTRACT(YEAR FROM EXPENSES.EXDATE) = :p2 " +
+                  "GROUP BY EXPENSES.EXDATE " +
+                  "ORDER BY EXPENSES.EXDATE";
             var expenses = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, cbValue.SelectedValue, DateTime.Now.Year);
-            sql = "SELECT INDATE AS \"_date\", SUM(MONEY) AS \"_money\" FROM INCOME WHERE USERID = :p0 AND " +
-                 "EXTRACT(MONTH FROM INDATE) = :p1 AND " +
-                 "EXTRACT(YEAR FROM INDATE) = :p2 " +
-                 "GROUP BY INDATE " +
-                 "ORDER BY INDATE";
+            sql = "SELECT INCOME.INDATE AS \"_date\", SUM(INCOME.MONEY) AS \"_money\" " +
+                  "FROM INCOME JOIN INCOMETYPE ON INCOME.INTYPEID = INCOMETYPE.INTYPEID " +
+                  "WHERE INCOME.USERID = :p0 AND INCOMETYPE.ISACTIVE = 'Y' AND " +
+                  "EXTRACT(MONTH FROM INCOME.INDATE) = :p1 AND " +
+                  "EXTRACT(YEAR FROM INCOME.INDATE) = :p2 " +
+                  "GROUP BY INCOME.INDATE " +
+                  "ORDER BY INCOME.INDATE";
             var income = _qLChiTieu.Database.SqlQuery<ResultDB>(sql, _userId, cbValue.SelectedValue, DateTime.Now.Year);
             allDates.Clear();
             allDates.AddRange(expenses.Select(i => i._date).Distinct());
