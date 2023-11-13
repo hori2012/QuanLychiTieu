@@ -74,7 +74,7 @@ namespace QuanLychiTieu
         private void AddExpenses_Load(object sender, EventArgs e)
         {
             _qLChiTieu = new QLChiTieuModel();
-            cbExType.DataSource = _qLChiTieu.EXPENSESTYPEs.Where(x => x.USERID == _userId).ToList();
+            cbExType.DataSource = _qLChiTieu.EXPENSESTYPEs.Where(x => x.USERID == _userId && x.ISACTIVE == "Y").ToList();
             cbExType.ValueMember = "EXTYPEID";
             cbExType.DisplayMember = "NAMEEXTYPE";
         }

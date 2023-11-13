@@ -31,7 +31,7 @@ namespace QuanLychiTieu
             _qLChiTieu = new QLChiTieuModel();
             var result = from expense in _qLChiTieu.EXPENSES
                          join expensesType in _qLChiTieu.EXPENSESTYPEs on expense.EXTYPEID equals expensesType.EXTYPEID
-                         where expense.EXPENSESID == _expensesId
+                         where expense.EXPENSESID == _expensesId && expensesType.ISACTIVE == "Y"
                          select new { nameType = expensesType.NAMEEXTYPE, money = expense.MONEY, date = expense.EXDATE, note = expense.NOTE };
             foreach (var item in result)
             {

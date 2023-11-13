@@ -27,7 +27,7 @@ namespace QuanLychiTieu
             _qLChiTieu = new QLChiTieuModel();
             var result = from income in _qLChiTieu.INCOMEs
                          join incomeType in _qLChiTieu.INCOMETYPEs on income.INTYPEID equals incomeType.INTYPEID
-                         where income.INCOMEID == _incomeId
+                         where income.INCOMEID == _incomeId && incomeType.ISACTIVE == "Y"
                          select new { nameType = incomeType.NAMEINTYPE, money = income.MONEY, date = income.INDATE, note = income.NOTE };
             foreach (var item in result)
             {
