@@ -31,8 +31,8 @@ namespace QuanLychiTieu
             {
                 if (_qLChiTieu.EXPENSESTYPEs.Where(x => x.USERID == _userId && (x.NAMEEXTYPE.Replace(" ", "").ToLower() == txtNameType.Text.Replace(" ", "").ToLower()) && x.ISACTIVE == "N").Any())
                 {
-                    DialogResult dialog = MessageBox.Show("You’ve added this before, do you want to restore it?", "Notify", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialog == DialogResult.Yes)
+                    DialogResult dialog = MessageBox.Show("You’ve added this before, do you want to restore it?", "Notify", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    if (dialog == DialogResult.OK)
                     {
                         int id = (int)_qLChiTieu.EXPENSESTYPEs.Where(x => (x.NAMEEXTYPE.Replace(" ", "").ToLower() == txtNameType.Text.Replace(" ", "").ToLower()) && x.USERID == _userId).First().EXTYPEID;
                         eXPENSESTYPE = _qLChiTieu.EXPENSESTYPEs.Find(id);
